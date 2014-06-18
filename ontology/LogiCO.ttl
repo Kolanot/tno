@@ -1,0 +1,1603 @@
+# baseURI: http://tno-logistics.nl/LogiCO
+# imports: http://www.w3.org/2006/time
+
+@prefix LogiCO:  <http://tno-logistics.nl/LogiCO#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml:     <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+<http://tno-logistics.nl/Container>
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:MoveableEquipment ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onClass LogiCO:ContainerSize ;
+                owl:onProperty LogiCO:hasContainerSize ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      owl:equivalentClass LogiCO:Container .
+
+<http://tno-logistics.nl/LogiCO>
+      rdf:type owl:Ontology ;
+      rdfs:comment """LogiCO (Logistics Core Ontology) contains:
+- core concepts and properties used in the Logistics domain, and 
+- mappings (as annotations) to UN/EDIFACTS Data elements. 
+
+""" , "LogiCO imports the W3C Time ontology in described in http://www.w3.org/TR/owl-time/" ;
+      rdfs:label "LogiCO"@en ;
+      LogiCO:creator "Laura Daniele" ;
+      LogiCO:date "29-10-2013" ;
+      LogiCO:publisher "TNO" ;
+      owl:imports <http://www.w3.org/2006/time> ;
+      owl:versionIRI <http://tno-logistics.nl/LogiCO> .
+
+LogiCO:Abstract
+      rdf:type owl:Class ;
+      rdfs:comment """Any Entity that cannot be located in space-time. 
+
+Equivalent to the concept of Abstract in DOLCE UltraLite (DUL) ontology.""" ;
+      rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+      rdfs:subClassOf LogiCO:Entity .
+
+LogiCO:Activity
+      rdf:type owl:Class ;
+      rdfs:comment """An Activity denotes an action that is relevant for the purpose of logistics and provides value for a potential customer.
+An Activity can be Atomic or Complex. Atomic activities can be used to compose more complex activities. 
+
+Activities and their properties are further specialized in the Logistics Service Ontology.
+
+Properties:
+An activity can have as trigger an event (Activity hasTrigger Event)
+An event can be trigger of an activity (Event isTriggerOf Activity) """ ;
+      rdfs:subClassOf LogiCO:Entity .
+
+LogiCO:Actor
+      rdf:type owl:Class ;
+      rdfs:comment """An actor represents a company, an authority or an individual that provides or requests activities and operates on physical resources 
+
+We have identified a number of Actor types that are relevant for logistics, but the list can be further extended.
+
+Equivalent to the concept of Agent in:
+DOLCE UltraLite (DUL) ontology: 'Any agentive Object , either physical (e.g. a whale, a robot, an oak), or social (e.g. a corporation, an institution, a community)'.""" ;
+      rdfs:subClassOf LogiCO:Object ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasAddress ;
+                owl:someValuesFrom LogiCO:Address
+              ] ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 3035  Party function code qualifier  
+Desc: Code giving specific meaning to a party.
+
+D.12B Core Component Library UN02000044""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3035.htm> .
+
+LogiCO:Address
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Object ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onClass LogiCO:Building ;
+                owl:onProperty LogiCO:hasBuilding ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onClass LogiCO:Country ;
+                owl:onProperty LogiCO:hasCountry ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasPostalCode ;
+                owl:someValuesFrom xsd:string
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onClass LogiCO:City ;
+                owl:onProperty LogiCO:hasCity ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onClass LogiCO:Street ;
+                owl:onProperty LogiCO:hasStreet ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Composite Data Element C058 NAME AND ADDRESS
+Desc: Unstructured name and address: one to five lines""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/trcd/trcdc058.htm> .
+
+LogiCO:AirTransport
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TransportMode .
+
+LogiCO:Airplane
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TransportMeans .
+
+LogiCO:Airport
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:FacilityStructure .
+
+LogiCO:Amount
+      rdf:type owl:Class ;
+      rdfs:comment """A quantity, independently from how it is measured, computed, etc.
+
+Equivalent to the concept of Amount in DOLCE UltraLite (DUL) ontology.""" ;
+      rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+      rdfs:subClassOf LogiCO:Abstract .
+
+LogiCO:AmountUnit
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:UnitOfMeasure ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:allValuesFrom LogiCO:Amount ;
+                owl:onProperty LogiCO:measures
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:measures ;
+                owl:someValuesFrom LogiCO:Amount
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasAmountValue ;
+                owl:someValuesFrom
+                        [ rdf:type rdfs:Datatype ;
+                          owl:unionOf (xsd:integer xsd:string)
+                        ]
+              ] .
+
+LogiCO:Bag
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Package .
+
+LogiCO:Bank
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Actor .
+
+LogiCO:Barge
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TransportMeans .
+
+LogiCO:Barrel
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Package .
+
+LogiCO:Basket
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Package .
+
+LogiCO:Bottle
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Package .
+
+LogiCO:Box
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Package .
+
+LogiCO:Bucket
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Package .
+
+LogiCO:Building
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Location , LogiCO:GeoPoint ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasBuildingName ;
+                owl:someValuesFrom xsd:string
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onDataRange xsd:integer ;
+                owl:onProperty LogiCO:hasBuildingNumber ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+LogiCO:Bulk
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:ProductClass .
+
+LogiCO:Buyer
+      rdf:type owl:Class ;
+      rdfs:comment "Who is paying " ;
+      rdfs:subClassOf LogiCO:Actor .
+
+LogiCO:Capacity
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttribute .
+
+LogiCO:Carrier
+      rdf:type owl:Class ;
+      rdfs:comment "Who is carrying the goods and is operating the transport means. That's why a synonim of carrier is Operator." ;
+      rdfs:subClassOf LogiCO:Actor .
+
+LogiCO:Carton
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Package .
+
+LogiCO:Case
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Package .
+
+LogiCO:Celsius
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TemperatureUnit .
+
+LogiCO:City
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Location , LogiCO:GeoArea ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasCityName ;
+                owl:someValuesFrom xsd:string
+              ] ;
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3164.htm> , """UN/EDIFACT D.12B Data Element 3164  City name                  
+Desc: Name of a city.""" .
+
+LogiCO:Consignee
+      rdf:type owl:Class ;
+      rdfs:comment "Who is receving (sometimes buyer and consignee are the same)" ;
+      rdfs:subClassOf LogiCO:Actor .
+
+LogiCO:Consignor
+      rdf:type owl:Class ;
+      rdfs:comment "Who is shipping (sometimes is the same than the seller) - Shipper is a synonym of Consignor" ;
+      rdfs:subClassOf LogiCO:Actor .
+
+LogiCO:Container
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Package .
+
+LogiCO:ContainerSize
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:EquipmentSize ;
+      LogiCO:mappingToEDI """ UN/EDIFACT D.12B Composite Data element C224 EQUIPMENT SIZE AND TYPE
+Desc: Code and or name identifying size and type of equipment. Code preferred.""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/trcd/trcdc224.htm> .
+
+LogiCO:ContainerSizeUnit
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:SizeUnit ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:measures ;
+                owl:someValuesFrom LogiCO:ContainerSize
+              ] .
+
+LogiCO:Country
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Location , LogiCO:GeoArea ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasCountryName ;
+                owl:someValuesFrom xsd:string
+              ] ;
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3207.htm> , """UN/EDIFACT D.12B Data Element  3207  Country identifier                       
+Desc: Identification of the name of the country or other geographical entity as defined in ISO 3166-1 and UN/ECE Recommendation 3.""" .
+
+LogiCO:Crane
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:StaticEquipment .
+
+LogiCO:Crate
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Package .
+
+LogiCO:CustomsAuthorithy
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Actor .
+
+LogiCO:CustomsBroker
+      rdf:type owl:Class ;
+      rdfs:comment "who is acting on behalf of an importer (who can be the buyer) or exporter (who can be the seller) for customs related issues" ;
+      rdfs:subClassOf LogiCO:Actor .
+
+LogiCO:Document
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Object .
+
+LogiCO:Drum
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Package .
+
+LogiCO:Electronics
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Regular .
+
+LogiCO:Entity
+      rdf:type owl:Class ;
+      rdfs:comment """Anything of interest in a certain universe of discourse (in our case, the logistics domain)
+
+Equivalent to the concept of Entity in:
+- DOLCE UltraLite (DUL) ontology:  'Anything: real, possible, or imaginary, which some modeller wants to talk about for some purpose.'
+- PROTON ontology: 'Any sort of an entity of interest, usually something existing, happening, or purely abstract' """ ;
+      rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> .
+
+LogiCO:EquipmentRequirement
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Requirement ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 4233  Marking instructions code 
+Desc: Code specifying instructions for marking.""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred4233.htm> .
+
+LogiCO:EquipmentSize
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Size ;
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/trcd/trcdc224.htm> , """ UN/EDIFACT D.12B Composite Data element C224 EQUIPMENT SIZE AND TYPE
+Desc: Code and or name identifying size and type of equipment. Code preferred.""" .
+
+LogiCO:Event
+      rdf:type owl:Class ;
+      rdfs:comment """An event is a trigger that can be used to synchronize two or more activities. Events and their properties are further specialized in the Logistics Service Ontology.
+
+For example, consider an activity of road transport by truck, which is followed by the activity of discharge of this truck at destination. In this case, the departure of the truck can be regarded as a trigger for the activity of transport, while the arrival of this truck to its destination can be regarded as a trigger for the activity of discharge.
+
+Properties:
+An event can be trigger of an activity (Event isTriggerOf Activity) 
+An activity can have as trigger an event (Activity hasTrigger Event)
+
+With the definition above, we specialize the concept of Event defined in a general way (on purpose) in the DOLCE UltraLite (DUL) ontology. According to the DUL definition, an event consists of any physical, social, or mental process, event, or state.""" ;
+      rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+      rdfs:subClassOf LogiCO:Entity .
+
+LogiCO:Facility
+      rdf:type owl:Class ;
+      rdfs:comment """Static resource (usually a building) built, installed or established to facilitate related activities in a point location. 
+
+A facility has a location of type GeoPoint (in contrast to facility structures, such as ports or airports, which have a location of type GeoArea since they denote an entire geographical area)
+
+Specialization of the concept of Physical Place in:
+- DOLCE UltraLite (DUL) ontology: 'A physical object that is inherently located; for example, a water area.'""" ;
+      rdfs:subClassOf LogiCO:StaticResource ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:minQualifiedCardinality
+                        "0"^^xsd:nonNegativeInteger ;
+                owl:onClass LogiCO:StaticEquipment ;
+                owl:onProperty LogiCO:hosts
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasLocation ;
+                owl:someValuesFrom LogiCO:GeoPoint
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:minQualifiedCardinality
+                        "0"^^xsd:nonNegativeInteger ;
+                owl:onClass LogiCO:FacilityStructure ;
+                owl:onProperty LogiCO:isPartOf
+              ] ;
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3227.htm> , """UN/EDIFACT D.12B Data Element 3227  Location function code qualifier    
+Desc: Code identifying the function of a location.
+
+D.12B Core Component Library UN02000041""" ;
+      owl:disjointWith
+              [ rdf:type owl:Class ;
+                owl:intersectionOf (LogiCO:FacilityStructure LogiCO:StaticEquipment)
+              ] .
+
+LogiCO:FacilityStructure
+      rdf:type owl:Class ;
+      rdfs:comment """Static resource built, installed or established to facilitate related activities in a geographical area.
+
+A facility structure has a location of type GeoArea (in contrast to a facility, which has a location of type GeoPoint since it denotes a point location)
+
+Specialization of the concept of Physical Place in:
+- DOLCE UltraLite (DUL) ontology: 'A physical object that is inherently located; for example, a water area.'""" ;
+      rdfs:subClassOf LogiCO:StaticResource ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasLocation ;
+                owl:someValuesFrom LogiCO:GeoArea
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:minQualifiedCardinality
+                        "0"^^xsd:nonNegativeInteger ;
+                owl:onClass LogiCO:StaticEquipment ;
+                owl:onProperty LogiCO:hosts
+              ] ;
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3227.htm> , """UN/EDIFACT D.12B Data Element 3227  Location function code qualifier Desc: Code identifying the function of a location.
+
+D.12B Core Component Library UN02000041""" .
+
+LogiCO:Fahrenheit
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TemperatureUnit .
+
+LogiCO:Feet
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:ContainerSizeUnit .
+
+LogiCO:Flammable
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:ProductClass .
+
+LogiCO:Forwarder
+      rdf:type owl:Class ;
+      rdfs:comment "Who is handling/organizing the shipment on behalf of somebody else that owns the goods. This organization sometimes is hust about having a phone and a desk, maybe a computer, and booking resources. In other cases, for example DHL, the forwarder also executes some parts because he owns resources (airplanes, trucks), but the forwarder never own the goods himself. " ;
+      rdfs:subClassOf LogiCO:Actor .
+
+LogiCO:GeoArea
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:SpaceRegion .
+
+LogiCO:GeoCoordinateSystem
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:SpaceRegionUnit .
+
+LogiCO:GeoPoint
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:SpaceRegion .
+
+LogiCO:GovernmentAgency
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Actor .
+
+LogiCO:GrossVolume
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Volume .
+
+LogiCO:GrossWeight
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Weight .
+
+LogiCO:HeavyMachinery
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:ProductClass .
+
+LogiCO:Height
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttribute .
+
+LogiCO:HeightUnit
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttributeUnit .
+
+LogiCO:Hub
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Facility .
+
+LogiCO:InlandTerminalOperator
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TerminalOperator .
+
+LogiCO:InlandWaterTransport
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TransportMode .
+
+LogiCO:Instant
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TemporalRegion ;
+      owl:equivalentClass <http://www.w3.org/2006/time#Instant> .
+
+LogiCO:Insurer
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Actor .
+
+LogiCO:Interval
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TemporalRegion ;
+      owl:equivalentClass <http://www.w3.org/2006/time#Interval> .
+
+LogiCO:Lenght
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttribute .
+
+LogiCO:LenghtUnith
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttributeUnit .
+
+LogiCO:Location
+      rdf:type owl:Class ;
+      rdfs:comment """It represents the relative location used to define the place(s) relevant for logistics activities
+
+Equivalent to the concept of Place in:
+- DOLCE UltraLite (DUL) ontology:  'A location, in a very generic sense: a political geographic entity (Roma, Lesotho), a non-material location determined by the presence of other entities ('the area close to Roma'), pivot events or signs ('the area where the helicopter fell'), complements of other entities ('the area under the table'), etc. 
+In this generic sense, a Place is a relative location. For an absolute location, see the class SpaceRegion.""" ;
+      rdfs:subClassOf LogiCO:Object ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 3227  Location function code qualifier
+Desc: Code identifying the function of a location.
+
+D.12B Core Component Library UN02000041""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3227.htm> .
+
+LogiCO:Modality
+      rdf:type owl:Class ;
+      rdfs:comment """A modality is an abstract that denotes the specific mode in which an entity is used.
+
+For example, the mode of transport is a modality that denotes which particluar mode is used for the activity of transport, i.e., air transport, road transport, etc. """ ;
+      rdfs:subClassOf LogiCO:Abstract .
+
+LogiCO:MonetaryAmount
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Amount ;
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred5025.htm> , """UN/EDIFACT D.12B Data Element 5025  Monetary amount type code qualifier
+Desc: Code qualifying the type of monetary amount.""" .
+
+LogiCO:MonetaryUnit
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:AmountUnit ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasAmountValue ;
+                owl:someValuesFrom xsd:string
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:measures ;
+                owl:someValuesFrom LogiCO:MonetaryAmount
+              ] ;
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred5004.htm> , """UN/EDIFACT D.12B Data Element 5004  Monetary amount   
+Desc: To specify a monetary amount.""" .
+
+LogiCO:MoveableEquipment
+      rdf:type owl:Class ;
+      rdfs:comment "Reusable object used for containment, protection and movement of product classes with or without package. A moveable equipment cannot move on its own (unpowered vehicle), but can be pulled or contained in a transport means" ;
+      rdfs:subClassOf LogiCO:MoveableResource ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:minQualifiedCardinality
+                        "0"^^xsd:nonNegativeInteger ;
+                owl:onClass LogiCO:TransportMeans ;
+                owl:onProperty LogiCO:isMovedBy
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasEquipmentID ;
+                owl:someValuesFrom xsd:string
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:minQualifiedCardinality
+                        "0"^^xsd:nonNegativeInteger ;
+                owl:onClass LogiCO:TransportMeans ;
+                owl:onProperty LogiCO:isContainedIn
+              ] ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 8053  Equipment type code qualifier     
+Desc: Code qualifying a type of equipment.""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred8053.htm> .
+
+LogiCO:MoveableResource
+      rdf:type owl:Class ;
+      rdfs:comment "A Moveable Resource is a physical resource characterized by the capability of moving on its own or being contained for the purpose of transportation" ;
+      rdfs:subClassOf LogiCO:PhysicalResource ;
+      owl:disjointWith LogiCO:StaticResource .
+
+LogiCO:NetWeight
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Weight .
+
+LogiCO:NormalTruck
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Truck .
+
+LogiCO:Number
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:AmountUnit ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasAmountValue ;
+                owl:someValuesFrom xsd:integer
+              ] .
+
+LogiCO:Object
+      rdf:type owl:Class ;
+      rdfs:comment """Any physical, social, or mental object, or a substance
+
+Equivalent to the concept of Object in DOLCE UltraLite (DUL) ontology.""" ;
+      rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+      rdfs:subClassOf LogiCO:Entity .
+
+LogiCO:OpenTop
+      rdf:type owl:Class ;
+      rdfs:subClassOf <http://tno-logistics.nl/Container> .
+
+LogiCO:Organic
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:ProductClass .
+
+LogiCO:Package
+      rdf:type owl:Class ;
+      rdfs:comment "Material used for containment, protection and movement of product classes" ;
+      rdfs:subClassOf LogiCO:MoveableResource ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:minQualifiedCardinality
+                        "0"^^xsd:nonNegativeInteger ;
+                owl:onClass LogiCO:TransportMeans ;
+                owl:onProperty LogiCO:isMovedBy
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasQuantity ;
+                owl:someValuesFrom LogiCO:Number
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:minQualifiedCardinality
+                        "0"^^xsd:nonNegativeInteger ;
+                owl:onClass LogiCO:MoveableEquipment ;
+                owl:onProperty LogiCO:isContainedIn
+              ] ;
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/trcd/trcdc213.htm> , """UN/EDIFACT D.12B Composite Data Element C213 NUMBER AND TYPE OF PACKAGES     
+Desc: Number and type of individual parts of a shipment.""" .
+
+LogiCO:Pallet
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:MoveableEquipment .
+
+LogiCO:Parameter
+      rdf:type owl:Class ;
+      rdfs:comment """A Concept that classifies an Abstract, such as, for example, a Physical Attribute, a Space Region or a Temporal Region.
+The difference between an Abstract and a Parameter is that abstracts represent sets of observable values, e.g. 'the height  of a given building', while parameters represent constraints or selections on observable values, e.g. 'VeryHigh'. 
+
+Equivalent to the concept of Parameter in DOLCE UltraLite (DUL) ontology.""" ;
+      rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+      rdfs:subClassOf LogiCO:Object .
+
+LogiCO:Percentage
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:AmountUnit ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasAmountValue ;
+                owl:someValuesFrom xsd:string
+              ] .
+
+LogiCO:Perishable
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:ProductClass .
+
+LogiCO:PhysicalAttribute
+      rdf:type owl:Class ;
+      rdfs:comment """Physical value of a physical object, e.g. density, color, etc.
+
+Equivalent to the concept of Physical Attribute in DOLCE UltraLite (DUL) ontology.""" ;
+      rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+      rdfs:subClassOf LogiCO:Abstract .
+
+LogiCO:PhysicalAttributeUnit
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:UnitOfMeasure .
+
+LogiCO:PhysicalResource
+      rdf:type owl:Class ;
+      rdfs:comment """Physical objects that are used in logistics activities, such as, for example, the moveable resources used during the activity of transport, i.e., the transport means and equipment used to move items to their destination.
+
+A physical resource is further specialized in a Moveable Resource, which is characterized by the capability of moving on its own or being contained for the purpose of transportation, and a Static Resource, which is used to handle moveable objects in a facility prior to their transportation.
+
+Equivalent to the concept of PhysicalObject in:
+- DOLCE UltraLite (DUL) ontology: 'Any Object that has a proper space region. The prototypical physical object has also an associated mass, but the nature of its mass can greatly vary based on the epistemological status of the object (scientifically measured, subjectively possible, imaginary)'""" ;
+      rdfs:subClassOf LogiCO:Object ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasLocation ;
+                owl:someValuesFrom LogiCO:SpaceRegion
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasTemperature ;
+                owl:someValuesFrom LogiCO:Temperature
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasQuantity ;
+                owl:someValuesFrom LogiCO:Amount
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasPhysicalAttribute ;
+                owl:someValuesFrom LogiCO:PhysicalAttribute
+              ] ;
+      owl:equivalentClass
+              [ rdf:type owl:Class ;
+                owl:unionOf (LogiCO:MoveableResource LogiCO:StaticResource)
+              ] .
+
+LogiCO:PhysicalState
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Abstract .
+
+LogiCO:Port
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:FacilityStructure .
+
+LogiCO:ProductClass
+      rdf:type owl:Class ;
+      rdfs:comment "A product class is used to select proper package, moveable equipment and transport means for several logistics activities, especially for transport. The selection is based on relevant properties of the product class, such as its physical state (solid, liquid, gas), required temperature, dangerousness, etc. " ;
+      rdfs:subClassOf LogiCO:MoveableResource ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onDataRange xsd:boolean ;
+                owl:onProperty LogiCO:isOversize ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:minQualifiedCardinality
+                        "0"^^xsd:nonNegativeInteger ;
+                owl:onClass LogiCO:TransportMeans ;
+                owl:onProperty LogiCO:isMovedBy
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:minQualifiedCardinality
+                        "0"^^xsd:nonNegativeInteger ;
+                owl:onClass LogiCO:Package ;
+                owl:onProperty LogiCO:isContainedIn
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onClass LogiCO:PhysicalState ;
+                owl:onProperty LogiCO:hasPhysicalState ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onDataRange xsd:boolean ;
+                owl:onProperty LogiCO:isRefeer ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onDataRange xsd:boolean ;
+                owl:onProperty LogiCO:isDangerous ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+LogiCO:RailwayStation
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Facility .
+
+LogiCO:RailwayTransport
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TransportMode .
+
+LogiCO:RailwayWagon
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:MoveableEquipment .
+
+LogiCO:Region
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Location , LogiCO:GeoArea ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasRegionName ;
+                owl:someValuesFrom xsd:string
+              ] ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Composite Data Element C819 COUNTRY SUBDIVISION DETAILS
+Desc: To specify a country subdivision, such as state, canton, county, prefecture.""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/trcd/trcdc819.htm> .
+
+LogiCO:Regular
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:ProductClass .
+
+LogiCO:Requirement
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Object .
+
+LogiCO:RoadTransport
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TransportMode .
+
+LogiCO:SeaTerminalOperator
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TerminalOperator .
+
+LogiCO:SeaTransport
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TransportMode .
+
+LogiCO:Seller
+      rdf:type owl:Class ;
+      rdfs:comment "Who is selling (is getting paid)" ;
+      rdfs:subClassOf LogiCO:Actor .
+
+LogiCO:SemiTrailer
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Truck .
+
+LogiCO:Shipper
+      rdf:type owl:Class ;
+      rdfs:comment "Who is shipping (sometimes is the same than the seller) - Consignor is a synonym of Shipper" ;
+      rdfs:subClassOf LogiCO:Actor .
+
+LogiCO:Size
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttribute .
+
+LogiCO:SizeUnit
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttributeUnit .
+
+LogiCO:SpaceRegion
+      rdf:type owl:Class ;
+      rdfs:comment """It represents the specific dimensional space tha defines the absolute location of an entity.
+In contrast, the class Location (which is a subclass of Object) represents the relative location of an entity.
+
+Equivalent to the concept of Space Region in:
+- DOLCE UltraLite (DUL) ontology:  'Any Region in a dimensional space that is used to localize an Entity'""" ;
+      rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+      rdfs:subClassOf LogiCO:Abstract ;
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3227.htm> , """UN/EDIFACT D.12B Data Element 3227  Location function code qualifier  
+Desc: Code identifying the function of a location.
+
+D.12B Core Component Library UN02000041""" .
+
+LogiCO:SpaceRegionUnit
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:UnitOfMeasure .
+
+LogiCO:Standard
+      rdf:type owl:Class ;
+      rdfs:subClassOf <http://tno-logistics.nl/Container> .
+
+LogiCO:StaticEquipment
+      rdf:type owl:Class ;
+      rdfs:comment "Reusable object that is used in a facility to handle moveable resources" ;
+      rdfs:subClassOf LogiCO:StaticResource ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasEquipmentID ;
+                owl:someValuesFrom xsd:string
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:isUsedIn ;
+                owl:someValuesFrom LogiCO:Facility
+              ] ;
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred8053.htm> , """UN/EDIFACT D.12B Data Element 8053  Equipment type code qualifier     
+Desc: Code qualifying a type of equipment.""" .
+
+LogiCO:StaticResource
+      rdf:type owl:Class ;
+      rdfs:comment "A Static Resource is a Physical Resource that is used to handle moveable objects in a facility prior to their transportation." ;
+      rdfs:subClassOf LogiCO:PhysicalResource .
+
+LogiCO:Stevedore
+      rdf:type owl:Class ;
+      rdfs:comment "who is phisically handling the containers in a location (sea transport related)" ;
+      rdfs:subClassOf LogiCO:Actor .
+
+LogiCO:Street
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:GeoArea , LogiCO:Location ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasStreetNumber ;
+                owl:someValuesFrom xsd:string
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasStreetName ;
+                owl:someValuesFrom xsd:string
+              ] ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Composite Data Element C059 STREET               
+Desc: Street address and/or PO Box number in a structur address: one to four lines.""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/trcd/trcdc059.htm> .
+
+LogiCO:Tank
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Package .
+
+LogiCO:Temperature
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttribute ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:isMeasuredIn ;
+                owl:someValuesFrom LogiCO:TemperatureUnit
+              ] .
+
+LogiCO:TemperatureUnit
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttributeUnit ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:hasTemperatureValue ;
+                owl:someValuesFrom xsd:decimal
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty LogiCO:measures ;
+                owl:someValuesFrom LogiCO:Temperature
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:allValuesFrom LogiCO:Temperature ;
+                owl:onProperty LogiCO:measures
+              ] .
+
+LogiCO:TemporalRegion
+      rdf:type owl:Class ;
+      rdfs:comment """Any Region in a dimensional space that aims at representing time. We use it to represent the start time, end time or time interval associated to activities.
+
+""" ;
+      rdfs:isDefinedBy "Equivalent to the concept of Temporal Entity in the Time ontology http://www.w3.org/TR/owl-time/" ;
+      rdfs:subClassOf LogiCO:Abstract ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Composite Data Element C507 DATE/TIME/PERIOD
+Desc: Date and/or timor period relevant to the specified date/time/period type.  D.12B Core Component Library UN02000162\"""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/trcd/trcdc507.htm> .
+
+LogiCO:Terminal
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Facility .
+
+LogiCO:TerminalOperator
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Actor .
+
+LogiCO:TowedBarge
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:MoveableEquipment .
+
+LogiCO:Toxic
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:ProductClass .
+
+LogiCO:Tractor
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Truck .
+
+LogiCO:Trailer
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:MoveableEquipment .
+
+LogiCO:Train
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TransportMeans .
+
+LogiCO:TransportMeans
+      rdf:type owl:Class ;
+      rdfs:comment "Reusable object that facilitates the activity of transport and moves on its own (powered vehicle)" ;
+      rdfs:subClassOf LogiCO:MoveableResource ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:minQualifiedCardinality
+                        "0"^^xsd:nonNegativeInteger ;
+                owl:onClass LogiCO:TransportMeans ;
+                owl:onProperty LogiCO:isMovedBy
+              ] ;
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred8053.htm> , """UN/EDIFACT D.12B Data Element 8053  Equipment type code qualifier     
+Desc: Code qualifying a type of equipment.""" .
+
+LogiCO:TransportMode
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Modality .
+
+LogiCO:Tray
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Package .
+
+LogiCO:Truck
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TransportMeans .
+
+LogiCO:UniformLoadDevice
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:MoveableEquipment .
+
+LogiCO:UnitOfMeasure
+      rdf:type owl:Class ;
+      rdfs:comment """Units of measure are parameters on regions (Space Regions, Temporal Regions), which can be valued as datatype values.
+
+Equivalent to the concept of UnitOf Measure in DOLCE UltraLite (DUL) ontology.""" ;
+      rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+      rdfs:subClassOf LogiCO:Parameter .
+
+LogiCO:Van
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TransportMeans .
+
+LogiCO:Vessel
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:TransportMeans .
+
+LogiCO:Volume
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttribute .
+
+LogiCO:VolumeUnit
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttributeUnit .
+
+LogiCO:Warehouse
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Facility .
+
+LogiCO:Weight
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttribute .
+
+LogiCO:WeightUnit
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttributeUnit .
+
+LogiCO:Width
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttribute .
+
+LogiCO:WidthUnit
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:PhysicalAttributeUnit .
+
+LogiCO:contains
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Object ;
+      rdfs:range LogiCO:MoveableResource .
+
+LogiCO:creator
+      rdf:type owl:AnnotationProperty .
+
+LogiCO:date
+      rdf:type owl:AnnotationProperty .
+
+LogiCO:hasActorID
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:Actor ;
+      rdfs:range
+              [ rdf:type rdfs:Datatype ;
+                owl:unionOf (xsd:int xsd:string)
+              ] ;
+      rdfs:subPropertyOf LogiCO:hasID ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 3039  Party identifier
+Desc: Code specifying the identity of a party.""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3039.htm> .
+
+LogiCO:hasAddress
+      rdf:type owl:ObjectProperty ;
+      rdfs:range LogiCO:Address .
+
+LogiCO:hasAmountValue
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:AmountUnit ;
+      rdfs:range
+              [ rdf:type rdfs:Datatype ;
+                owl:unionOf (xsd:decimal xsd:integer xsd:string)
+              ] ;
+      rdfs:subPropertyOf LogiCO:hasValue .
+
+LogiCO:hasBuilding
+      rdf:type owl:ObjectProperty ;
+      rdfs:range LogiCO:Building ;
+      rdfs:subPropertyOf LogiCO:hasLocation ;
+      owl:inverseOf LogiCO:isBuildingOf .
+
+LogiCO:hasBuildingName
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:Building ;
+      rdfs:range xsd:string .
+
+LogiCO:hasBuildingNumber
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:Building ;
+      rdfs:range xsd:int .
+
+LogiCO:hasCity
+      rdf:type owl:ObjectProperty ;
+      rdfs:range LogiCO:City ;
+      rdfs:subPropertyOf LogiCO:hasLocation .
+
+LogiCO:hasCityName
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:City ;
+      rdfs:range xsd:string .
+
+LogiCO:hasCode
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:Entity ;
+      rdfs:range
+              [ rdf:type rdfs:Datatype ;
+                owl:unionOf (xsd:int xsd:string)
+              ] .
+
+LogiCO:hasComponent
+      rdf:type owl:ObjectProperty ;
+      rdfs:comment """from DUL ontology
+
+is the hasPart property, but without transitivity""" ;
+      rdfs:domain LogiCO:Entity ;
+      rdfs:range LogiCO:Entity ;
+      rdfs:subPropertyOf LogiCO:hasPart ;
+      owl:inverseOf LogiCO:isComponentOf .
+
+LogiCO:hasConstituent
+      rdf:type owl:ObjectProperty ;
+      rdfs:comment "from DUL ontology" ;
+      rdfs:domain LogiCO:Entity ;
+      rdfs:range LogiCO:Entity ;
+      rdfs:subPropertyOf owl:topObjectProperty .
+
+LogiCO:hasContainerSize
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain <http://tno-logistics.nl/Container> ;
+      rdfs:range LogiCO:ContainerSize ;
+      rdfs:subPropertyOf LogiCO:hasSize .
+
+LogiCO:hasCoordinates
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:GeoArea , LogiCO:GeoPoint ;
+      rdfs:range LogiCO:GeoCoordinateSystem .
+
+LogiCO:hasCountry
+      rdf:type owl:ObjectProperty ;
+      rdfs:range LogiCO:Country ;
+      rdfs:subPropertyOf LogiCO:hasLocation ;
+      owl:inverseOf LogiCO:isCountryOf .
+
+LogiCO:hasCountryName
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:Country ;
+      rdfs:range xsd:string .
+
+LogiCO:hasDescription
+      rdf:type owl:DatatypeProperty ;
+      rdfs:range xsd:string .
+
+LogiCO:hasEquipmentID
+      rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
+      rdfs:domain
+              [ rdf:type owl:Class ;
+                owl:unionOf (LogiCO:MoveableEquipment LogiCO:StaticEquipment)
+              ] ;
+      rdfs:range xsd:string ;
+      rdfs:subPropertyOf LogiCO:hasID ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 8260  Equipment identifier      
+Desc: To identify equipment.""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred8260.htm> .
+
+LogiCO:hasEquipmentRequirement
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain
+              [ rdf:type owl:Class ;
+                owl:unionOf (LogiCO:MoveableEquipment LogiCO:Package LogiCO:StaticEquipment LogiCO:TransportMeans)
+              ] ;
+      rdfs:subPropertyOf LogiCO:hasRequirement .
+
+LogiCO:hasEquipmentStatus
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain
+              [ rdf:type owl:Class ;
+                owl:unionOf (LogiCO:MoveableEquipment LogiCO:StaticEquipment)
+              ] ;
+      rdfs:range
+              [ rdf:type rdfs:Datatype ;
+                owl:unionOf (xsd:int xsd:string)
+              ] ;
+      rdfs:subPropertyOf LogiCO:hasStatus ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 8249  Equipment status code   
+Desc: Code specifying the status of equipment.""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred8249.htm> .
+
+LogiCO:hasFullEmptyIndicator
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain
+              [ rdf:type owl:Class ;
+                owl:unionOf (LogiCO:MoveableEquipment LogiCO:Package LogiCO:StaticEquipment LogiCO:TransportMeans)
+              ] ;
+      rdfs:range xsd:string ;
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred8169.htmhttp://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred8260.htm> , """UN/EDIFACT D.12B Data Element 8169  Full or empty indicator code
+ Desc: Code indicating whether an object is full or empty.""" .
+
+LogiCO:hasGovernmentAgencyID
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:GovernmentAgency ;
+      rdfs:range xsd:int ;
+      rdfs:subPropertyOf LogiCO:hasActorID ;
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred9415.htm> , """UN/EDIFACT D.12B Data Element  9415  Government agency identification code
+Desc: Code identifying a government agency.""" .
+
+LogiCO:hasHeightValue
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:HeightUnit ;
+      rdfs:range
+              [ rdf:type rdfs:Datatype ;
+                owl:unionOf (xsd:decimal xsd:integer)
+              ] ;
+      rdfs:subPropertyOf LogiCO:hasValue .
+
+LogiCO:hasID
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:Object ;
+      rdfs:range
+              [ rdf:type rdfs:Datatype ;
+                owl:unionOf (xsd:int xsd:string)
+              ] .
+
+LogiCO:hasLenghtValue
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:LenghtUnith ;
+      rdfs:range
+              [ rdf:type rdfs:Datatype ;
+                owl:unionOf (xsd:decimal xsd:integer)
+              ] ;
+      rdfs:subPropertyOf LogiCO:hasValue .
+
+LogiCO:hasLocation
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Entity ;
+      rdfs:range LogiCO:Entity ;
+      owl:inverseOf LogiCO:isLocationOf .
+
+LogiCO:hasLocationID
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:Location ;
+      rdfs:range
+              [ rdf:type rdfs:Datatype ;
+                owl:unionOf (xsd:int xsd:string)
+              ] ;
+      rdfs:subPropertyOf LogiCO:hasID ;
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3225.htm> , """UN/EDIFACT D.12B Data Element 3225  Location identifier       
+Desc: To identify a location.""" .
+
+LogiCO:hasPackageID
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:Package ;
+      rdfs:range xsd:string ;
+      rdfs:subPropertyOf LogiCO:hasID ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 8260  Equipment identifier      
+Desc: To identify equipment.""" .
+
+LogiCO:hasPart
+      rdf:type owl:TransitiveProperty , owl:ObjectProperty ;
+      rdfs:comment "from DUL ontology" ;
+      rdfs:domain LogiCO:Entity ;
+      rdfs:range LogiCO:Entity .
+
+LogiCO:hasPhysicalAttribute
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Object ;
+      rdfs:range LogiCO:PhysicalAttribute .
+
+LogiCO:hasPhysicalState
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:ProductClass ;
+      rdfs:range LogiCO:PhysicalState .
+
+LogiCO:hasPostalCode
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:Address ;
+      rdfs:range xsd:string ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element  3251  Postal identification code     
+Desc: Code specifying the postal zone or address.""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3251.htm> .
+
+LogiCO:hasQuantity
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Object ;
+      rdfs:range LogiCO:Amount ;
+      rdfs:subPropertyOf owl:topObjectProperty .
+
+LogiCO:hasRegion
+      rdf:type owl:ObjectProperty ;
+      rdfs:range LogiCO:Region ;
+      rdfs:subPropertyOf LogiCO:hasLocation .
+
+LogiCO:hasRegionName
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:Region ;
+      rdfs:range xsd:string .
+
+LogiCO:hasRequirement
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Entity ;
+      rdfs:range LogiCO:Requirement .
+
+LogiCO:hasSize
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:PhysicalResource ;
+      rdfs:range LogiCO:Size ;
+      rdfs:subPropertyOf LogiCO:hasPhysicalAttribute .
+
+LogiCO:hasSizeValue
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:SizeUnit ;
+      rdfs:range
+              [ rdf:type rdfs:Datatype ;
+                owl:unionOf (xsd:decimal xsd:integer xsd:string)
+              ] ;
+      rdfs:subPropertyOf LogiCO:hasValue .
+
+LogiCO:hasSpecialRequirement
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:MoveableResource ;
+      rdfs:range
+              [ rdf:type rdfs:Datatype ;
+                owl:unionOf (xsd:boolean xsd:int)
+              ] .
+
+LogiCO:hasStatus
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:Entity ;
+      rdfs:range
+              [ rdf:type rdfs:Datatype ;
+                owl:unionOf (xsd:int xsd:string)
+              ] .
+
+LogiCO:hasStatusDescription
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:MonetaryUnit ;
+      rdfs:range xsd:int ;
+      rdfs:subPropertyOf LogiCO:hasStatus ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 4405  Status description code         
+Desc: Code specifying a status.""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred4405.htm> .
+
+LogiCO:hasStreet
+      rdf:type owl:ObjectProperty ;
+      rdfs:range LogiCO:Street ;
+      rdfs:subPropertyOf LogiCO:hasLocation .
+
+LogiCO:hasStreetName
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:Street ;
+      rdfs:range xsd:string .
+
+LogiCO:hasStreetNumber
+      rdf:type owl:DatatypeProperty ;
+      rdfs:range xsd:string .
+
+LogiCO:hasSupplier
+      rdf:type owl:DatatypeProperty , owl:ObjectProperty ;
+      rdfs:domain
+              [ rdf:type owl:Class ;
+                owl:unionOf (LogiCO:MoveableEquipment LogiCO:Package LogiCO:StaticEquipment LogiCO:TransportMeans)
+              ] ;
+      rdfs:domain
+              [ rdf:type owl:Class ;
+                owl:unionOf (LogiCO:MoveableEquipment LogiCO:Package LogiCO:StaticEquipment LogiCO:TransportMeans)
+              ] ;
+      rdfs:range xsd:string , LogiCO:Actor ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 8077  Equipment supplier code 
+Desc: Code specifying the party that is the supplier of the equipment.""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred8077.htm> ;
+      owl:inverseOf LogiCO:isSupplierOf .
+
+LogiCO:hasTemperature
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:PhysicalResource ;
+      rdfs:range LogiCO:Temperature ;
+      rdfs:subPropertyOf LogiCO:hasPhysicalAttribute .
+
+LogiCO:hasTemperatureValue
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:TemperatureUnit ;
+      rdfs:range xsd:decimal ;
+      rdfs:subPropertyOf LogiCO:hasValue .
+
+LogiCO:hasTransportMeansID
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:TransportMeans ;
+      rdfs:range xsd:string ;
+      rdfs:subPropertyOf LogiCO:hasID ;
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 8260  Equipment identifier      
+Desc: To identify equipment.""" .
+
+LogiCO:hasTrigger
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Activity ;
+      rdfs:range LogiCO:Event .
+
+LogiCO:hasValue
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:UnitOfMeasure ;
+      rdfs:range
+              [ rdf:type rdfs:Datatype ;
+                owl:unionOf (xsd:decimal xsd:integer xsd:string)
+              ] .
+
+LogiCO:hasVolumeValue
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:VolumeUnit ;
+      rdfs:range
+              [ rdf:type rdfs:Datatype ;
+                owl:unionOf (xsd:decimal xsd:integer)
+              ] ;
+      rdfs:subPropertyOf LogiCO:hasValue .
+
+LogiCO:hasWeightValue
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:WeightUnit ;
+      rdfs:subPropertyOf LogiCO:hasValue .
+
+LogiCO:hasWidthValue
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:WidthUnit ;
+      rdfs:range
+              [ rdf:type rdfs:Datatype ;
+                owl:unionOf (xsd:decimal xsd:integer)
+              ] ;
+      rdfs:subPropertyOf LogiCO:hasValue .
+
+LogiCO:hosts
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:StaticResource ;
+      rdfs:range LogiCO:StaticResource .
+
+LogiCO:identifies
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Address ;
+      rdfs:range LogiCO:GeoPoint .
+
+LogiCO:isBuildingOf
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Building ;
+      rdfs:subPropertyOf LogiCO:isLocationOf .
+
+LogiCO:isCityOf
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:City ;
+      rdfs:subPropertyOf LogiCO:isLocationOf ;
+      owl:inverseOf LogiCO:hasCity .
+
+LogiCO:isComponentOf
+      rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf LogiCO:isPartOf .
+
+LogiCO:isConstituentOf
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Entity ;
+      rdfs:range LogiCO:Entity ;
+      rdfs:subPropertyOf owl:topObjectProperty ;
+      owl:inverseOf LogiCO:hasConstituent .
+
+LogiCO:isContainedIn
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:MoveableResource ;
+      rdfs:range LogiCO:MoveableResource ;
+      owl:inverseOf LogiCO:contains .
+
+LogiCO:isCountryOf
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Country ;
+      rdfs:subPropertyOf LogiCO:isLocationOf .
+
+LogiCO:isDangerous
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:ProductClass ;
+      rdfs:range xsd:boolean ;
+      rdfs:subPropertyOf LogiCO:hasSpecialRequirement .
+
+LogiCO:isFull
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain
+              [ rdf:type owl:Class ;
+                owl:unionOf (LogiCO:MoveableEquipment LogiCO:TransportMeans)
+              ] ;
+      rdfs:range xsd:int ;
+      rdfs:subPropertyOf LogiCO:hasSpecialRequirement .
+
+LogiCO:isLocationOf
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Entity ;
+      rdfs:range LogiCO:Entity .
+
+LogiCO:isMeasuredIn
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Abstract ;
+      rdfs:range LogiCO:UnitOfMeasure ;
+      owl:inverseOf LogiCO:measures .
+
+LogiCO:isMovedBy
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:MoveableResource ;
+      rdfs:range LogiCO:MoveableResource .
+
+LogiCO:isOpenTop
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:MoveableEquipment ;
+      rdfs:range xsd:boolean ;
+      rdfs:subPropertyOf LogiCO:hasSpecialRequirement .
+
+LogiCO:isOversize
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:ProductClass ;
+      rdfs:range xsd:boolean ;
+      rdfs:subPropertyOf LogiCO:hasSpecialRequirement .
+
+LogiCO:isPackagedIn
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:ProductClass ;
+      rdfs:range LogiCO:Package ;
+      rdfs:subPropertyOf LogiCO:isContainedIn .
+
+LogiCO:isPacked
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:ProductClass ;
+      rdfs:range xsd:boolean ;
+      rdfs:subPropertyOf LogiCO:hasSpecialRequirement .
+
+LogiCO:isPartOf
+      rdf:type owl:TransitiveProperty , owl:ObjectProperty ;
+      rdfs:domain LogiCO:Entity ;
+      rdfs:range LogiCO:Entity ;
+      owl:inverseOf LogiCO:hasPart .
+
+LogiCO:isRefeer
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain LogiCO:ProductClass ;
+      rdfs:range xsd:boolean ;
+      rdfs:subPropertyOf LogiCO:hasSpecialRequirement .
+
+LogiCO:isRegionOf
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Region ;
+      rdfs:subPropertyOf LogiCO:isLocationOf ;
+      owl:inverseOf LogiCO:hasRegion .
+
+LogiCO:isStreetOf
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Street ;
+      rdfs:subPropertyOf LogiCO:isLocationOf ;
+      owl:inverseOf LogiCO:hasStreet .
+
+LogiCO:isSupplierOf
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Actor ;
+      rdfs:range
+              [ rdf:type owl:Class ;
+                owl:unionOf (LogiCO:MoveableEquipment LogiCO:Package LogiCO:StaticEquipment LogiCO:TransportMeans)
+              ] .
+
+LogiCO:isTriggerOf
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Event ;
+      rdfs:range LogiCO:Activity ;
+      owl:inverseOf LogiCO:hasTrigger .
+
+LogiCO:isUsedIn
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:Object .
+
+LogiCO:mappingToEDI
+      rdf:type owl:AnnotationProperty .
+
+LogiCO:measures
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:UnitOfMeasure ;
+      rdfs:range LogiCO:Abstract .
+
+LogiCO:moves
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain LogiCO:MoveableResource ;
+      rdfs:range LogiCO:MoveableResource ;
+      rdfs:subPropertyOf owl:topObjectProperty ;
+      owl:inverseOf LogiCO:isMovedBy .
+
+LogiCO:publisher
+      rdf:type owl:AnnotationProperty .
+
+<http://tno-logistics.nl/Pallet>
+      rdf:type owl:Class ;
+      rdfs:subClassOf LogiCO:Package ;
+      owl:equivalentClass LogiCO:Pallet .
+
+<http://www.w3.org/2006/time#DateTimeDescription>
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred2379.htm> , """UN/EDIFACT D.12B Data Element  2379  Date or time or period format code
+Desc: Code specifying the representation of a date, time or period.
+
+D.12B Core Component Library UN02000153""" .
+
+<http://www.w3.org/2006/time#DurationDescription>
+      LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred2379.htm> , """UN/EDIFACT D.12B Data Element  2379  Date or time or period format code
+Desc: Code specifying the representation of a date, time or period.
+
+D.12B Core Component Library UN02000153""" .
+
+<http://www.w3.org/2006/time#TemporalEntity>
+      LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 2005  Date or time or period function code qualifier
+Desc: Code qualifying the function of a date, time or period.
+
+D.12B Core Component Library UN02000162""" , <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred2005.htm> .
+
+[]    rdf:type owl:AllDisjointClasses ;
+      owl:members (LogiCO:NormalTruck LogiCO:SemiTrailer LogiCO:Tractor) .
+
+[]    rdf:type owl:AllDisjointClasses ;
+      owl:members (LogiCO:AirTransport LogiCO:InlandWaterTransport LogiCO:RailwayTransport LogiCO:RoadTransport) .
+
+[]    rdf:type owl:AllDisjointClasses ;
+      owl:members (LogiCO:Airplane LogiCO:Barge LogiCO:Train LogiCO:Truck LogiCO:Van LogiCO:Vessel) .
