@@ -69,11 +69,11 @@ LogiCO:isTriggerOf
 LogiServ is an extension of LogiCO (Logistics Core Ontology). Therefore, LogiServ imports LogiCO.
 
 """ ;
-      <http://http://tno-logistics.nl/LogiServ#creator>
+      <http://tno-logistics.nl/LogiServ#creator>
               "Laura Daniele" ;
-      <http://http://tno-logistics.nl/LogiServ#date>
+      <http://tno-logistics.nl/LogiServ#date>
               "29-10-2013" ;
-      <http://http://tno-logistics.nl/LogiServl#publisher>
+      <http://tno-logistics.nl/LogiServl#publisher>
               "TNO" ;
       owl:versionIRI <http://tno-logistics.nl/LogiServ> .
 
@@ -539,7 +539,7 @@ Desc: Code specifying the priority of a transport service""" .
 <http://tno-logistics.nl/LogiCO#hasID>
       rdf:type owl:DatatypeProperty .
 
-<http://http://tno-logistics.nl/MultimodalRoadSeaTransport>
+<http://tno-logistics.nl/LogiServ#MultimodalRoadSeaTransport>
       rdf:type owl:Class ;
       rdfs:subClassOf LogiServ:ComplexActivity .
 
