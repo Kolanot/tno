@@ -496,7 +496,6 @@ LogiServ:hasServiceRequirement
 .
 LogiServ:hasTime
   rdf:type owl:ObjectProperty ;
-  rdfs:domain LogiServ:Activity ;
   rdfs:range LogiCO:TemporalRegion ;
 .
 LogiServ:hasTransportRequirement

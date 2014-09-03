@@ -1,8 +1,12 @@
 # baseURI: http://tno-logistics.nl/LogiCO
+# imports: http://www.w3.org/2003/01/geo/wgs84_pos#
 # imports: http://www.w3.org/2006/time
 
 # c14n-version: 3
 @prefix LogiCO: <http://tno-logistics.nl/LogiCO#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -10,18 +14,18 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 <http://tno-logistics.nl/LogiCO>
   rdf:type owl:Ontology ;
-  LogiCO:creator "Laura Daniele" ;
-  LogiCO:date "29-10-2013" ;
-  LogiCO:publisher "TNO" ;
-  rdfs:comment """LogiCO (Logistics Core Ontology) contains:
-- core concepts and properties used in the Logistics domain, and 
-- mappings (as annotations) to UN/EDIFACTS Data elements. 
-
-""" ;
+  dcterms:created "29-10-2013"^^xsd:string ;
+  dcterms:creator "Laura Daniele (laura.daniele@tno.nl)"^^xsd:string ;
+  dcterms:description "LogiCO contains the core concepts and properties used in the Logistics domain, and mappings (as annotations) to UN/EDIFACTS Data elements. "^^xsd:string ;
+  dcterms:issued "04-06-2014"^^xsd:string ;
+  dcterms:publisher "TNO"^^xsd:string ;
+  dcterms:title "LogiCO: Logistics Core Ontology"^^xsd:string ;
   rdfs:comment "LogiCO imports the W3C Time ontology in described in http://www.w3.org/TR/owl-time/" ;
   rdfs:label "LogiCO"@en ;
+  owl:imports geo: ;
   owl:imports <http://www.w3.org/2006/time> ;
   owl:versionIRI <http://tno-logistics.nl/LogiCO> ;
+  owl:versionInfo "1.0"^^xsd:string ;
 .
 LogiCO:Abstract
   rdf:type owl:Class ;
@@ -370,7 +374,7 @@ Specialization of the concept of Physical Place in:
       rdf:type owl:Restriction ;
       owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
       owl:onClass LogiCO:FacilityStructure ;
-      owl:onProperty LogiCO:isPartOf ;
+      owl:onProperty dul:isPartOf ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -440,6 +444,7 @@ LogiCO:GeoArea
 LogiCO:GeoCoordinateSystem
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:SpaceRegionUnit ;
+  rdfs:subClassOf geo:SpatialThing ;
 .
 LogiCO:GeoPoint
   rdf:type owl:Class ;
@@ -1049,12 +1054,6 @@ LogiCO:contains
   rdfs:domain LogiCO:Object ;
   rdfs:range LogiCO:MoveableResource ;
 .
-LogiCO:creator
-  rdf:type owl:AnnotationProperty ;
-.
-LogiCO:date
-  rdf:type owl:AnnotationProperty ;
-.
 LogiCO:hasActorID
   rdf:type owl:DatatypeProperty ;
   LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3039.htm> ;
@@ -1117,22 +1116,11 @@ LogiCO:hasCode
   rdf:type owl:DatatypeProperty ;
   rdfs:range xsd:string ;
 .
-LogiCO:hasComponent
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment """from DUL ontology
-
-is the hasPart property, but without transitivity""" ;
-  rdfs:domain LogiCO:Entity ;
-  rdfs:range LogiCO:Entity ;
-  rdfs:subPropertyOf LogiCO:hasPart ;
-  owl:inverseOf LogiCO:isComponentOf ;
-.
 LogiCO:hasConstituent
   rdf:type owl:ObjectProperty ;
   rdfs:comment "from DUL ontology" ;
   rdfs:domain LogiCO:Entity ;
   rdfs:range LogiCO:Entity ;
-  rdfs:subPropertyOf owl:topObjectProperty ;
 .
 LogiCO:hasContainerSize
   rdf:type owl:ObjectProperty ;
@@ -1273,7 +1261,6 @@ LogiCO:hasLenghtValue
 .
 LogiCO:hasLocation
   rdf:type owl:ObjectProperty ;
-  rdfs:domain LogiCO:Entity ;
   rdfs:range LogiCO:Location ;
   owl:inverseOf LogiCO:isLocationOf ;
 .
@@ -1300,13 +1287,6 @@ Desc: To identify equipment.""" ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf LogiCO:hasID ;
 .
-LogiCO:hasPart
-  rdf:type owl:ObjectProperty ;
-  rdf:type owl:TransitiveProperty ;
-  rdfs:comment "from DUL ontology" ;
-  rdfs:domain LogiCO:Entity ;
-  rdfs:range LogiCO:Entity ;
-.
 LogiCO:hasPhysicalAttribute
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:Object ;
@@ -1322,14 +1302,12 @@ LogiCO:hasPostalCode
   LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3251.htm> ;
   LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element  3251  Postal identification code     
 Desc: Code specifying the postal zone or address.""" ;
-  rdfs:domain LogiCO:Address ;
   rdfs:range xsd:string ;
 .
 LogiCO:hasQuantity
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:Object ;
   rdfs:range LogiCO:Amount ;
-  rdfs:subPropertyOf owl:topObjectProperty ;
 .
 LogiCO:hasRegion
   rdf:type owl:ObjectProperty ;
@@ -1343,7 +1321,6 @@ LogiCO:hasRegionName
 .
 LogiCO:hasRequirement
   rdf:type owl:ObjectProperty ;
-  rdfs:domain LogiCO:Entity ;
   rdfs:range LogiCO:Requirement ;
 .
 LogiCO:hasSize
@@ -1378,7 +1355,6 @@ LogiCO:hasSpecialRequirement
 .
 LogiCO:hasStatus
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain LogiCO:Entity ;
   rdfs:range [
       rdf:type rdfs:Datatype ;
       owl:unionOf (
@@ -1525,15 +1501,10 @@ LogiCO:isCityOf
   rdfs:subPropertyOf LogiCO:isLocationOf ;
   owl:inverseOf LogiCO:hasCity ;
 .
-LogiCO:isComponentOf
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf LogiCO:isPartOf ;
-.
 LogiCO:isConstituentOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:Entity ;
   rdfs:range LogiCO:Entity ;
-  rdfs:subPropertyOf owl:topObjectProperty ;
   owl:inverseOf LogiCO:hasConstituent ;
 .
 LogiCO:isContainedIn
@@ -1567,8 +1538,7 @@ LogiCO:isFull
 .
 LogiCO:isLocationOf
   rdf:type owl:ObjectProperty ;
-  rdfs:domain LogiCO:Entity ;
-  rdfs:range LogiCO:Entity ;
+  rdfs:domain LogiCO:Location ;
 .
 LogiCO:isMeasuredIn
   rdf:type owl:ObjectProperty ;
@@ -1604,13 +1574,6 @@ LogiCO:isPacked
   rdfs:domain LogiCO:ProductClass ;
   rdfs:range xsd:boolean ;
   rdfs:subPropertyOf LogiCO:hasSpecialRequirement ;
-.
-LogiCO:isPartOf
-  rdf:type owl:ObjectProperty ;
-  rdf:type owl:TransitiveProperty ;
-  rdfs:domain LogiCO:Entity ;
-  rdfs:range LogiCO:Entity ;
-  owl:inverseOf LogiCO:hasPart ;
 .
 LogiCO:isRefeer
   rdf:type owl:DatatypeProperty ;
@@ -1665,11 +1628,31 @@ LogiCO:moves
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:MoveableResource ;
   rdfs:range LogiCO:MoveableResource ;
-  rdfs:subPropertyOf owl:topObjectProperty ;
   owl:inverseOf LogiCO:isMovedBy ;
 .
-LogiCO:publisher
-  rdf:type owl:AnnotationProperty ;
+dul:hasComponent
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment """from DUL ontology
+
+is the hasPart property, but without transitivity""" ;
+  rdfs:subPropertyOf dul:hasPart ;
+  owl:inverseOf dul:isComponentOf ;
+.
+dul:hasPart
+  rdf:type owl:ObjectProperty ;
+  rdf:type owl:TransitiveProperty ;
+  rdfs:comment "from DUL ontology" ;
+.
+dul:isComponentOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf dul:isPartOf ;
+.
+dul:isPartOf
+  rdf:type owl:ObjectProperty ;
+  rdf:type owl:TransitiveProperty ;
+  rdfs:domain LogiCO:Entity ;
+  rdfs:range LogiCO:Entity ;
+  owl:inverseOf dul:hasPart ;
 .
 <http://www.w3.org/2006/time#DateTimeDescription>
   LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred2379.htm> ;
