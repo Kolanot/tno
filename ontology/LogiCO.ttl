@@ -1115,14 +1115,7 @@ LogiCO:hasCityName
 .
 LogiCO:hasCode
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain LogiCO:Entity ;
-  rdfs:range [
-      rdf:type rdfs:Datatype ;
-      owl:unionOf (
-          xsd:int
-          xsd:string
-        ) ;
-    ] ;
+  rdfs:range xsd:string ;
 .
 LogiCO:hasComponent
   rdf:type owl:ObjectProperty ;

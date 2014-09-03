@@ -1,0 +1,246 @@
+# baseURI: http://www.tno.org/PaperlessTransport
+# imports: http://tno-logistics.nl/LogiServ
+
+# c14n-version: 3
+@prefix : <http://www.tno.org/PaperlessTransport#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+<http://www.tno.org/PaperlessTransport>
+  rdf:type owl:Ontology ;
+  owl:imports <http://tno-logistics.nl/LogiServ> ;
+  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
+.
+:Address
+  rdf:type owl:Class ;
+  rdfs:label "Address"^^xsd:string ;
+  owl:equivalentClass <http://tno-logistics.nl/LogiCO#Address> ;
+.
+:Attachment
+  rdf:type owl:Class ;
+  rdfs:label "Attachment"^^xsd:string ;
+.
+:Consignment
+  rdf:type owl:Class ;
+  rdfs:label "Consignment"^^xsd:string ;
+.
+:Contact
+  rdf:type owl:Class ;
+  rdfs:label "Contact"^^xsd:string ;
+.
+:DeliveryTerms
+  rdf:type owl:Class ;
+  rdfs:label "Delivery terms"^^xsd:string ;
+.
+:DocumentReference
+  rdf:type owl:Class ;
+  rdfs:label "Document reference"^^xsd:string ;
+.
+:GoodsItem
+  rdf:type owl:Class ;
+  rdfs:label "Goods item"^^xsd:string ;
+.
+:Location
+  rdf:type owl:Class ;
+  rdfs:label "Location"^^xsd:string ;
+  rdfs:subClassOf <http://tno-logistics.nl/LogiCO#Location> ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :id ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :name ;
+    ] ;
+.
+:MeasurementDimension
+  rdf:type owl:Class ;
+  rdfs:label "Measurement dimension"^^xsd:string ;
+.
+:Package
+  rdf:type owl:Class ;
+  rdfs:label "Package"^^xsd:string ;
+.
+:Party
+  rdf:type owl:Class ;
+  rdfs:label "Party"^^xsd:string ;
+  rdfs:subClassOf <http://tno-logistics.nl/LogiCO#Actor> ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom xsd:string ;
+      owl:onProperty :id ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :name ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :physicalLocation ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :postalAddress ;
+    ] ;
+.
+:Party_1
+  rdf:type :Party ;
+  rdfs:label "Party 1"^^xsd:string ;
+.
+:Period
+  rdf:type owl:Class ;
+  rdfs:label "Period"^^xsd:string ;
+.
+:TaxTotal
+  rdf:type owl:Class ;
+  rdfs:label "Tax total"^^xsd:string ;
+.
+:TransportEquipment
+  rdf:type owl:Class ;
+  rdfs:label "Transport equipment"^^xsd:string ;
+.
+:TransportEvent
+  rdf:type owl:Class ;
+  rdfs:label "Transport event"^^xsd:string ;
+.
+:TransportExecutionPlan
+  rdf:type owl:Class ;
+  rdfs:label "Transport execution plan"^^xsd:string ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :id ;
+    ] ;
+.
+:TransportHandlingUnit
+  rdf:type owl:Class ;
+  rdfs:label "Transport handling unit"^^xsd:string ;
+.
+:conditions
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Location ;
+  rdfs:label "conditions"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:consignment
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :TransportExecutionPlan ;
+  rdfs:label "consignment"^^xsd:string ;
+  rdfs:range :Consignment ;
+.
+:contact
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Party ;
+  rdfs:label "contact"^^xsd:string ;
+  rdfs:range :Contact ;
+.
+:description
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Location ;
+  rdfs:label "description"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:documentStatusCode
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :TransportExecutionPlan ;
+  rdfs:label "document status code"^^xsd:string ;
+  rdfs:range [
+      rdf:type rdfs:Datatype ;
+      owl:oneOf (
+          "Confirmed"^^xsd:string
+          "Unknown"^^xsd:string
+        ) ;
+    ] ;
+.
+:eMail
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Contact ;
+  rdfs:label "e mail"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:fax
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Contact ;
+  rdfs:label "fax"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:id
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "id"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:issueDate
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :TransportExecutionPlan ;
+  rdfs:label "issue date"^^xsd:string ;
+  rdfs:range xsd:date ;
+.
+:name
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "name"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:note
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Contact ;
+  rdfs:label "note"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:physicalLocation
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Party ;
+  rdfs:label "physical location"^^xsd:string ;
+  rdfs:range :Location ;
+.
+:postalAddress
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Party ;
+  rdfs:label "postal address"^^xsd:string ;
+  rdfs:range :Address ;
+  rdfs:subPropertyOf <http://tno-logistics.nl/LogiCO#hasAddress> ;
+.
+:registrationAddress
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Party ;
+  rdfs:label "registration address"^^xsd:string ;
+  rdfs:range :Address ;
+  rdfs:subPropertyOf <http://tno-logistics.nl/LogiCO#hasAddress> ;
+.
+:telephone
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Contact ;
+  rdfs:label "telephone"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:transportServiceProviderParty
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :TransportExecutionPlan ;
+  rdfs:label "transport service provider party"^^xsd:string ;
+  rdfs:range :Party ;
+  rdfs:subPropertyOf <http://tno-logistics.nl/LogiServ#hasProvider> ;
+.
+:transportUserParty
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :TransportExecutionPlan ;
+  rdfs:label "transport user party"^^xsd:string ;
+  rdfs:range :Party ;
+  rdfs:subPropertyOf <http://tno-logistics.nl/LogiServ#hasConsumer> ;
+.
+:uuid
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :TransportExecutionPlan ;
+  rdfs:label "uuid"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:websiteURI
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Party ;
+  rdfs:label "website URI"^^xsd:string ;
+  rdfs:range xsd:anyURI ;
+.
