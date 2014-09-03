@@ -1304,8 +1304,6 @@ LogiCO:hasPart
   rdf:type owl:ObjectProperty ;
   rdf:type owl:TransitiveProperty ;
   rdfs:comment "from DUL ontology" ;
-  rdfs:domain LogiCO:Entity ;
-  rdfs:range LogiCO:Entity ;
 .
 LogiCO:hasPhysicalAttribute
   rdf:type owl:ObjectProperty ;
