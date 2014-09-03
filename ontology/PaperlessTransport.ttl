@@ -24,10 +24,139 @@
 :Consignment
   rdf:type owl:Class ;
   rdfs:label "Consignment"^^xsd:string ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom :Party ;
+      owl:onProperty :carrier ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom :Party ;
+      owl:onProperty :finalDeliveryParty ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom :Party ;
+      owl:onProperty :notifyParty ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom :TransportEvent ;
+      owl:onProperty :transportEvent ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :consignee ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :consignor ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :hasID ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :carrier ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :carrierAssignedID ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :consigneeAssignedID ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :consignorAssignedID ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :finalDeliveryParty ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :notifyParty ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :plannedDelivery ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :plannedPickup ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :requestedDelivery ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :requestedPickup ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :transportHandlingUnit ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty :consignee ;
+      owl:someValuesFrom :Party ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty :consignor ;
+      owl:someValuesFrom :Party ;
+    ] ;
 .
 :Contact
   rdf:type owl:Class ;
   rdfs:label "Contact"^^xsd:string ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :name ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :eMail ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :fax ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :note ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :telephone ;
+    ] ;
+.
+:Coordinates
+  rdf:type owl:Class ;
+  rdfs:label "Coordinates"^^xsd:string ;
 .
 :DeliveryTerms
   rdf:type owl:Class ;
@@ -41,14 +170,54 @@
   rdf:type owl:Class ;
   rdfs:label "Goods item"^^xsd:string ;
 .
+:Identification
+  rdf:type owl:Class ;
+  rdfs:label "Identification"^^xsd:string ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom xsd:string ;
+      owl:onProperty :schemeAgencyName ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :id ;
+    ] ;
+.
 :Location
   rdf:type owl:Class ;
+  rdfs:comment "A class to describe a location."^^xsd:string ;
   rdfs:label "Location"^^xsd:string ;
   rdfs:subClassOf <http://tno-logistics.nl/LogiCO#Location> ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:allValuesFrom :Period ;
+      owl:onProperty :validityPeriod ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom xsd:string ;
+      owl:onProperty :conditions ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :id ;
+      owl:onProperty :address ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :coordinates ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :description ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :hasID ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -70,13 +239,18 @@
   rdfs:subClassOf <http://tno-logistics.nl/LogiCO#Actor> ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:allValuesFrom xsd:string ;
-      owl:onProperty :id ;
+      owl:allValuesFrom :Identification ;
+      owl:onProperty :hasID ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty :name ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :contact ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -87,6 +261,16 @@
       rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty :postalAddress ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :registrationAddress ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :websiteURI ;
     ] ;
 .
 :Party_1
@@ -117,10 +301,54 @@
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty :id ;
     ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :issueDate ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :statusCode ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :transportServiceProviderParty ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :transportUserParty ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :uuid ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :consignment ;
+    ] ;
 .
 :TransportHandlingUnit
   rdf:type owl:Class ;
   rdfs:label "Transport handling unit"^^xsd:string ;
+.
+:address
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "address"^^xsd:string ;
+  rdfs:range :Address ;
+.
+:carrier
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "carrier"^^xsd:string ;
+.
+:carrierAssignedID
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "carrier assigned ID"^^xsd:string ;
+  rdfs:range :Identification ;
 .
 :conditions
   rdf:type owl:DatatypeProperty ;
@@ -128,11 +356,29 @@
   rdfs:label "conditions"^^xsd:string ;
   rdfs:range xsd:string ;
 .
+:consignee
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "consignee"^^xsd:string ;
+.
+:consigneeAssignedID
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "consignee assigned ID"^^xsd:string ;
+  rdfs:range :Identification ;
+.
 :consignment
   rdf:type owl:ObjectProperty ;
   rdfs:domain :TransportExecutionPlan ;
   rdfs:label "consignment"^^xsd:string ;
   rdfs:range :Consignment ;
+.
+:consignor
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "consignor"^^xsd:string ;
+.
+:consignorAssignedID
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "consignor assigned ID"^^xsd:string ;
+  rdfs:range :Identification ;
 .
 :contact
   rdf:type owl:ObjectProperty ;
@@ -140,23 +386,15 @@
   rdfs:label "contact"^^xsd:string ;
   rdfs:range :Contact ;
 .
+:coordinates
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "coordinates"^^xsd:string ;
+  rdfs:range :Coordinates ;
+.
 :description
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Location ;
   rdfs:label "description"^^xsd:string ;
   rdfs:range xsd:string ;
-.
-:documentStatusCode
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :TransportExecutionPlan ;
-  rdfs:label "document status code"^^xsd:string ;
-  rdfs:range [
-      rdf:type rdfs:Datatype ;
-      owl:oneOf (
-          "Confirmed"^^xsd:string
-          "Unknown"^^xsd:string
-        ) ;
-    ] ;
 .
 :eMail
   rdf:type owl:DatatypeProperty ;
@@ -170,8 +408,18 @@
   rdfs:label "fax"^^xsd:string ;
   rdfs:range xsd:string ;
 .
+:finalDeliveryParty
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "final delivery party"^^xsd:string ;
+.
+:hasID
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "has ID"^^xsd:string ;
+  rdfs:range :Identification ;
+.
 :id
   rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Identification ;
   rdfs:label "id"^^xsd:string ;
   rdfs:range xsd:string ;
 .
@@ -192,31 +440,82 @@
   rdfs:label "note"^^xsd:string ;
   rdfs:range xsd:string ;
 .
+:notifyParty
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "notify party"^^xsd:string ;
+.
 :physicalLocation
   rdf:type owl:ObjectProperty ;
-  rdfs:domain :Party ;
   rdfs:label "physical location"^^xsd:string ;
   rdfs:range :Location ;
 .
+:plannedDelivery
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "planned delivery"^^xsd:string ;
+  rdfs:range :TransportEvent ;
+.
+:plannedPickup
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "planned pickup"^^xsd:string ;
+  rdfs:range :TransportEvent ;
+.
 :postalAddress
   rdf:type owl:ObjectProperty ;
-  rdfs:domain :Party ;
   rdfs:label "postal address"^^xsd:string ;
   rdfs:range :Address ;
   rdfs:subPropertyOf <http://tno-logistics.nl/LogiCO#hasAddress> ;
 .
 :registrationAddress
   rdf:type owl:ObjectProperty ;
-  rdfs:domain :Party ;
   rdfs:label "registration address"^^xsd:string ;
   rdfs:range :Address ;
   rdfs:subPropertyOf <http://tno-logistics.nl/LogiCO#hasAddress> ;
+.
+:requestedDelivery
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "requested delivery"^^xsd:string ;
+  rdfs:range :TransportEvent ;
+.
+:requestedPickup
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "requested pickup"^^xsd:string ;
+  rdfs:range :TransportEvent ;
+.
+:schemeAgencyName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Identification ;
+  rdfs:label "scheme agency name"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:statusCode
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :TransportExecutionPlan ;
+  rdfs:label "status code"^^xsd:string ;
+  rdfs:range [
+      rdf:type rdfs:Datatype ;
+      owl:oneOf (
+          "Cancelled"^^xsd:string
+          "Confirmed"^^xsd:string
+          "NotConfirmed"^^xsd:string
+          "Rejected"^^xsd:string
+        ) ;
+    ] ;
 .
 :telephone
   rdf:type owl:DatatypeProperty ;
   rdfs:domain :Contact ;
   rdfs:label "telephone"^^xsd:string ;
   rdfs:range xsd:string ;
+.
+:transportEvent
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "transport event"^^xsd:string ;
+  rdfs:range :TransportEvent ;
+.
+:transportHandlingUnit
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "transport handling unit"^^xsd:string ;
+  rdfs:range :TransportHandlingUnit ;
 .
 :transportServiceProviderParty
   rdf:type owl:ObjectProperty ;
@@ -238,9 +537,13 @@
   rdfs:label "uuid"^^xsd:string ;
   rdfs:range xsd:string ;
 .
+:validityPeriod
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "validity period"^^xsd:string ;
+  rdfs:range :Period ;
+.
 :websiteURI
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Party ;
   rdfs:label "website URI"^^xsd:string ;
   rdfs:range xsd:anyURI ;
 .
