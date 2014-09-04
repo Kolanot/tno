@@ -3,6 +3,7 @@
 
 # c14n-version: 3
 @prefix : <http://www.tno.org/PaperlessTransport#> .
+@prefix LogiCO: <http://tno-logistics.nl/LogiCO#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -15,11 +16,63 @@
 :Address
   rdf:type owl:Class ;
   rdfs:label "Address"^^xsd:string ;
-  owl:equivalentClass <http://tno-logistics.nl/LogiCO#Address> ;
+  owl:equivalentClass LogiCO:Address ;
+.
+:Address_1
+  rdf:type :Address ;
+  LogiCO:hasCity :Zoetermeer ;
+  LogiCO:hasCountry :Nederland ;
+  LogiCO:hasPostalCode "2719DA"^^xsd:string ;
+  LogiCO:hasPostbox "Postbus 3008"^^xsd:string ;
+  rdfs:label "Address 1"^^xsd:string ;
+.
+:Address_2
+  rdf:type :Address ;
+  LogiCO:hasCity :Zoetermeer ;
+  LogiCO:hasCountry :Nederland ;
+  LogiCO:hasPostalCode "2719DA"^^xsd:string ;
+  LogiCO:hasStreet :Boris_Pasternaklaan_22 ;
+  rdfs:label "Address 2"^^xsd:string ;
+.
+:Address_3
+  rdf:type :Address ;
+  LogiCO:hasCity :Zoetermeer ;
+  LogiCO:hasCountry :Nederland ;
+  LogiCO:hasPostalCode "2719DA"^^xsd:string ;
+  LogiCO:hasStreet :Boris_Pasternaklaan_23 ;
+  rdfs:label "Address 3"^^xsd:string ;
 .
 :Attachment
   rdf:type owl:Class ;
   rdfs:label "Attachment"^^xsd:string ;
+.
+:Boris_Pasternaklaan_22
+  rdf:type LogiCO:Street ;
+  LogiCO:hasStreetName "Boris Pasternaklaan"^^xsd:string ;
+  LogiCO:hasStreetNumber "22"^^xsd:string ;
+  rdfs:label "Boris Pasternaklaan"^^xsd:string ;
+.
+:Boris_Pasternaklaan_23
+  rdf:type LogiCO:Street ;
+  LogiCO:hasStreetName "Boris Pasternaklaan"^^xsd:string ;
+  LogiCO:hasStreetNumber "23"^^xsd:string ;
+  rdfs:label "Boris Pasternaklaan 23"^^xsd:string ;
+.
+:Company_x
+  rdf:type :Party ;
+  :contact :Contact_1 ;
+  :hasID :Identification1 ;
+  :hasID :Identification2 ;
+  :name "Company x"^^xsd:string ;
+  :physicalLocation :Location_1 ;
+  :postalAddress :Address_1 ;
+  :registrationAddress :Address_3 ;
+  :websiteURI "http://www.company-x.nl"^^xsd:anyURI ;
+  rdfs:label "Company x"^^xsd:string ;
+.
+:Company_y
+  rdf:type :Party ;
+  rdfs:label "Company y"^^xsd:string ;
 .
 :Consignment
   rdf:type owl:Class ;
@@ -154,6 +207,15 @@
       owl:onProperty :telephone ;
     ] ;
 .
+:Contact_1
+  rdf:type :Contact ;
+  :eMail "info@x.nl"^^xsd:string ;
+  :fax "0031884567200"^^xsd:string ;
+  :name "Algemeen"^^xsd:string ;
+  :note "A free text note"^^xsd:string ;
+  :telephone "0031884567111"^^xsd:string ;
+  rdfs:label "Contact 1"^^xsd:string ;
+.
 :Coordinates
   rdf:type owl:Class ;
   rdfs:label "Coordinates"^^xsd:string ;
@@ -184,11 +246,38 @@
       owl:onProperty :id ;
     ] ;
 .
+:Identification1
+  rdf:type :Identification ;
+  :id "11112222"^^xsd:string ;
+  :schemeAgencyName "KVK"^^xsd:string ;
+  rdfs:label "Identification1"^^xsd:string ;
+.
+:Identification2
+  rdf:type :Identification ;
+  :id "NL001234567B01"^^xsd:string ;
+  :schemeAgencyName "BTW"^^xsd:string ;
+  rdfs:label "Identification2"^^xsd:string ;
+.
+:Identification_A123789
+  rdf:type :Identification ;
+  :id "A123789"^^xsd:string ;
+  rdfs:label "Identification A123789"^^xsd:string ;
+.
+:Identification_XYZ987
+  rdf:type :Identification ;
+  :id "XYZ987"^^xsd:string ;
+  rdfs:label "Identification XYZ987"^^xsd:string ;
+.
+:Identification_Z987321
+  rdf:type :Identification ;
+  :id "Z987321"^^xsd:string ;
+  rdfs:label "Identification Z987321"^^xsd:string ;
+.
 :Location
   rdf:type owl:Class ;
   rdfs:comment "A class to describe a location."^^xsd:string ;
   rdfs:label "Location"^^xsd:string ;
-  rdfs:subClassOf <http://tno-logistics.nl/LogiCO#Location> ;
+  rdfs:subClassOf LogiCO:Location ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:allValuesFrom :Period ;
@@ -225,9 +314,20 @@
       owl:onProperty :name ;
     ] ;
 .
+:Location_1
+  rdf:type :Location ;
+  :address :Address_2 ;
+  rdfs:label "Location 1"^^xsd:string ;
+.
 :MeasurementDimension
   rdf:type owl:Class ;
   rdfs:label "Measurement dimension"^^xsd:string ;
+.
+:Nederland
+  rdf:type LogiCO:Country ;
+  LogiCO:hasCountryName "Nederland"^^xsd:string ;
+  LogiCO:hasID "NL" ;
+  rdfs:label "Nederland"^^xsd:string ;
 .
 :Package
   rdf:type owl:Class ;
@@ -236,7 +336,7 @@
 :Party
   rdf:type owl:Class ;
   rdfs:label "Party"^^xsd:string ;
-  rdfs:subClassOf <http://tno-logistics.nl/LogiCO#Actor> ;
+  rdfs:subClassOf LogiCO:Actor ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:allValuesFrom :Identification ;
@@ -273,13 +373,13 @@
       owl:onProperty :websiteURI ;
     ] ;
 .
-:Party_1
-  rdf:type :Party ;
-  rdfs:label "Party 1"^^xsd:string ;
-.
 :Period
   rdf:type owl:Class ;
   rdfs:label "Period"^^xsd:string ;
+.
+:RequestedPickupTransportEvent
+  rdf:type :TransportEvent ;
+  rdfs:label "Requested pickup transport event"^^xsd:string ;
 .
 :TaxTotal
   rdf:type owl:Class ;
@@ -332,9 +432,33 @@
       owl:onProperty :consignment ;
     ] ;
 .
+:TransportExecutionPlan_1
+  rdf:type :TransportExecutionPlan ;
+  :consignment :XYZ987 ;
+  :id "TEP-20130924-1"^^xsd:string ;
+  :issueDate "2013-10-17"^^xsd:date ;
+  :statusCode "Confirmed"^^xsd:string ;
+  :transportServiceProviderParty :Company_y ;
+  :transportUserParty :Company_x ;
+  :uuid "6feca890-51e8-11e3-8f96-0800200c9a66"^^xsd:string ;
+  rdfs:label "Transport execution plan 1"^^xsd:string ;
+.
 :TransportHandlingUnit
   rdf:type owl:Class ;
   rdfs:label "Transport handling unit"^^xsd:string ;
+.
+:XYZ987
+  rdf:type :Consignment ;
+  :consigneeAssignedID :Identification_A123789 ;
+  :consignorAssignedID :Identification_Z987321 ;
+  :hasID :Identification_XYZ987 ;
+  :requestedPickup :RequestedPickupTransportEvent ;
+  rdfs:label "XYZ987"^^xsd:string ;
+.
+:Zoetermeer
+  rdf:type LogiCO:City ;
+  LogiCO:hasCityName "Zoetermeer"^^xsd:string ;
+  rdfs:label "Zoetermeer"^^xsd:string ;
 .
 :address
   rdf:type owl:ObjectProperty ;
@@ -463,13 +587,13 @@
   rdf:type owl:ObjectProperty ;
   rdfs:label "postal address"^^xsd:string ;
   rdfs:range :Address ;
-  rdfs:subPropertyOf <http://tno-logistics.nl/LogiCO#hasAddress> ;
+  rdfs:subPropertyOf LogiCO:hasAddress ;
 .
 :registrationAddress
   rdf:type owl:ObjectProperty ;
   rdfs:label "registration address"^^xsd:string ;
   rdfs:range :Address ;
-  rdfs:subPropertyOf <http://tno-logistics.nl/LogiCO#hasAddress> ;
+  rdfs:subPropertyOf LogiCO:hasAddress ;
 .
 :requestedDelivery
   rdf:type owl:ObjectProperty ;

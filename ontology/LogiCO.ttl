@@ -75,6 +75,11 @@ Desc: Unstructured name and address: one to five lines""" ;
   rdfs:subClassOf LogiCO:Object ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty LogiCO:hasPostbox ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
       owl:onClass LogiCO:Building ;
       owl:onProperty LogiCO:hasBuilding ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -1302,6 +1307,10 @@ LogiCO:hasPostalCode
   LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3251.htm> ;
   LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element  3251  Postal identification code     
 Desc: Code specifying the postal zone or address.""" ;
+  rdfs:range xsd:string ;
+.
+LogiCO:hasPostbox
+  rdf:type owl:DatatypeProperty ;
   rdfs:range xsd:string ;
 .
 LogiCO:hasQuantity
