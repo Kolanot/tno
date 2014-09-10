@@ -127,6 +127,11 @@ LogiCO:Amount
 Equivalent to the concept of Amount in DOLCE UltraLite (DUL) ontology.""" ;
   rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
   rdfs:subClassOf LogiCO:Abstract ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty LogiCO:isMeasuredIn ;
+      owl:someValuesFrom LogiCO:AmountUnit ;
+    ] ;
 .
 LogiCO:AmountUnit
   rdf:type owl:Class ;
@@ -242,6 +247,35 @@ Desc: Name of a city.""" ;
       rdf:type owl:Restriction ;
       owl:onProperty LogiCO:hasCityName ;
       owl:someValuesFrom xsd:string ;
+    ] ;
+.
+LogiCO:CodeIssuingAgency
+  rdf:type owl:Class ;
+  rdfs:subClassOf LogiCO:Actor ;
+  rdfs:subClassOf [
+      rdf:type owl:Class ;
+      owl:unionOf (
+          [
+            rdf:type owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty LogiCO:hasAgencyCode ;
+          ]
+          [
+            rdf:type owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty LogiCO:hasAgencyName ;
+          ]
+        ) ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty LogiCO:hasAgencyCode ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty LogiCO:hasAgencyName ;
     ] ;
 .
 LogiCO:Consignee
@@ -455,10 +489,6 @@ LogiCO:GeoPoint
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:SpaceRegion ;
 .
-LogiCO:GovernmentAgency
-  rdf:type owl:Class ;
-  rdfs:subClassOf LogiCO:Actor ;
-.
 LogiCO:GrossVolume
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Volume ;
@@ -483,6 +513,20 @@ LogiCO:Hub
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Facility ;
 .
+LogiCO:Identifier
+  rdf:type owl:Class ;
+  rdfs:label "Identifier"^^xsd:string ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty LogiCO:id ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty LogiCO:hasAgency ;
+    ] ;
+.
 LogiCO:InlandTerminalOperator
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TerminalOperator ;
@@ -494,7 +538,7 @@ LogiCO:InlandWaterTransport
 LogiCO:Instant
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TemporalRegion ;
-  owl:equivalentClass <http://www.w3.org/2006/time#Instant> ;
+  rdfs:subClassOf <http://www.w3.org/2006/time#Instant> ;
 .
 LogiCO:Insurer
   rdf:type owl:Class ;
@@ -503,7 +547,7 @@ LogiCO:Insurer
 LogiCO:Interval
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TemporalRegion ;
-  owl:equivalentClass <http://www.w3.org/2006/time#Interval> ;
+  rdfs:subClassOf <http://www.w3.org/2006/time#Interval> ;
 .
 LogiCO:Lenght
   rdf:type owl:Class ;
@@ -526,6 +570,11 @@ Equivalent to the concept of Place in:
 - DOLCE UltraLite (DUL) ontology:  'A location, in a very generic sense: a political geographic entity (Roma, Lesotho), a non-material location determined by the presence of other entities ('the area close to Roma'), pivot events or signs ('the area where the helicopter fell'), complements of other entities ('the area under the table'), etc. 
 In this generic sense, a Place is a relative location. For an absolute location, see the class SpaceRegion.""" ;
   rdfs:subClassOf LogiCO:Object ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom LogiCO:Address ;
+      owl:onProperty LogiCO:hasAddress ;
+    ] ;
 .
 LogiCO:Modality
   rdf:type owl:Class ;
@@ -1078,6 +1127,27 @@ LogiCO:hasAddress
   rdf:type owl:ObjectProperty ;
   rdfs:range LogiCO:Address ;
 .
+LogiCO:hasAgency
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "has agency"^^xsd:string ;
+  rdfs:range LogiCO:CodeIssuingAgency ;
+.
+LogiCO:hasAgencyCode
+  rdf:type owl:DatatypeProperty ;
+  LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred9415.htm> ;
+  LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element  9415  Government agency identification code
+Desc: Code identifying a government agency.""" ;
+  rdfs:domain LogiCO:CodeIssuingAgency ;
+  rdfs:range xsd:int ;
+.
+LogiCO:hasAgencyName
+  rdf:type owl:DatatypeProperty ;
+  LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred9415.htm> ;
+  LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element  9415  Government agency identification code
+Desc: Code identifying a government agency.""" ;
+  rdfs:domain LogiCO:CodeIssuingAgency ;
+  rdfs:range xsd:string ;
+.
 LogiCO:hasAmountValue
   rdf:type owl:DatatypeProperty ;
   rdfs:domain LogiCO:AmountUnit ;
@@ -1220,15 +1290,6 @@ LogiCO:hasFullEmptyIndicator
     ] ;
   rdfs:range xsd:string ;
 .
-LogiCO:hasGovernmentAgencyID
-  rdf:type owl:DatatypeProperty ;
-  LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred9415.htm> ;
-  LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element  9415  Government agency identification code
-Desc: Code identifying a government agency.""" ;
-  rdfs:domain LogiCO:GovernmentAgency ;
-  rdfs:range xsd:int ;
-  rdfs:subPropertyOf LogiCO:hasActorID ;
-.
 LogiCO:hasHeightValue
   rdf:type owl:DatatypeProperty ;
   rdfs:domain LogiCO:HeightUnit ;
@@ -1242,15 +1303,9 @@ LogiCO:hasHeightValue
   rdfs:subPropertyOf LogiCO:hasValue ;
 .
 LogiCO:hasID
-  rdf:type owl:DatatypeProperty ;
+  rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:Object ;
-  rdfs:range [
-      rdf:type rdfs:Datatype ;
-      owl:unionOf (
-          xsd:int
-          xsd:string
-        ) ;
-    ] ;
+  rdfs:range LogiCO:Identifier ;
 .
 LogiCO:hasLenghtValue
   rdf:type owl:DatatypeProperty ;
@@ -1284,6 +1339,11 @@ Desc: To identify a location.""" ;
     ] ;
   rdfs:subPropertyOf LogiCO:hasID ;
 .
+LogiCO:hasName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "has name"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
 LogiCO:hasPackageID
   rdf:type owl:DatatypeProperty ;
   LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 8260  Equipment identifier      
@@ -1314,9 +1374,9 @@ LogiCO:hasPostbox
   rdfs:range xsd:string ;
 .
 LogiCO:hasQuantity
-  rdf:type owl:ObjectProperty ;
+  rdf:type owl:DatatypeProperty ;
   rdfs:domain LogiCO:Object ;
-  rdfs:range LogiCO:Amount ;
+  rdfs:range xsd:integer ;
 .
 LogiCO:hasRegion
   rdf:type owl:ObjectProperty ;
@@ -1493,6 +1553,11 @@ LogiCO:hosts
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:StaticResource ;
   rdfs:range LogiCO:StaticResource ;
+.
+LogiCO:id
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "id"^^xsd:string ;
+  rdfs:range xsd:string ;
 .
 LogiCO:identifies
   rdf:type owl:ObjectProperty ;

@@ -17,11 +17,7 @@ LogiCO:Activity
 LogiCO:Amount
   rdf:type owl:Class ;
 .
-LogiCO:Event
-  rdf:type owl:Class ;
-  owl:equivalentClass LogiServ:Event ;
-.
-LogiCO:GovernmentAgency
+LogiCO:CodeIssuingAgency
   rdf:type owl:Class ;
 .
 LogiCO:MonetaryUnit
@@ -61,7 +57,6 @@ LogiCO:hasConstituent
   rdfs:comment "from DUL ontology" ;
   rdfs:domain LogiServ:ComplexActivity ;
   rdfs:range LogiServ:Activity ;
-  rdfs:subPropertyOf owl:topObjectProperty ;
 .
 LogiCO:hasID
   rdf:type owl:DatatypeProperty ;
@@ -79,7 +74,6 @@ LogiCO:isConstituentOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiServ:AtomicActivity ;
   rdfs:range LogiServ:ComplexActivity ;
-  rdfs:subPropertyOf owl:topObjectProperty ;
   owl:inverseOf LogiCO:hasConstituent ;
 .
 LogiCO:isTriggerOf
@@ -239,6 +233,12 @@ With the definition above, we specialize the concept of Event defined in a gener
 Properties:
 An event can be trigger of an activity (Event isTriggerOf Activity) 
 An activity can have as trigger an event (Activity hasTrigge Event)""" ;
+  rdfs:subClassOf LogiCO:Event ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty LogiServ:hasStatus ;
+    ] ;
 .
 LogiServ:GovernmentalRequirement
   rdf:type owl:Class ;
@@ -283,10 +283,6 @@ LogiServ:LoadTransportDischarge
           ]
         ) ;
     ] ;
-.
-LogiServ:MonetaryAmount
-  rdf:type owl:Class ;
-  rdfs:subClassOf LogiCO:Amount ;
 .
 LogiServ:MultimodalRoadSeaTransport
   rdf:type owl:Class ;
@@ -463,7 +459,6 @@ Desc: Code qualifying the type of currency.""" ;
 LogiServ:hasDestination
   rdf:type owl:ObjectProperty ;
   rdfs:range LogiCO:SpaceRegion ;
-  rdfs:subPropertyOf owl:topObjectProperty ;
 .
 LogiServ:hasGoodsItemID
   rdf:type owl:DatatypeProperty ;
@@ -476,12 +471,11 @@ Desc: To specify a goods item within a consignment.""" ;
 .
 LogiServ:hasGovernmentAgency
   rdf:type owl:ObjectProperty ;
-  rdfs:range LogiCO:GovernmentAgency ;
+  rdfs:range LogiCO:CodeIssuingAgency ;
 .
 LogiServ:hasOrigin
   rdf:type owl:ObjectProperty ;
   rdfs:range LogiCO:SpaceRegion ;
-  rdfs:subPropertyOf owl:topObjectProperty ;
 .
 LogiServ:hasProvider
   rdf:type owl:ObjectProperty ;
@@ -493,6 +487,18 @@ LogiServ:hasServiceRequirement
   rdfs:domain LogiServ:Activity ;
   rdfs:range LogiServ:ServiceRequirement ;
   rdfs:subPropertyOf LogiCO:hasRequirement ;
+.
+LogiServ:hasStatus
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "has status"^^xsd:string ;
+  rdfs:range [
+      rdf:type rdfs:Datatype ;
+      owl:oneOf (
+          "Requested"^^xsd:string
+          "Planned"^^xsd:string
+          "Actual"^^xsd:string
+        ) ;
+    ] ;
 .
 LogiServ:hasTime
   rdf:type owl:ObjectProperty ;
