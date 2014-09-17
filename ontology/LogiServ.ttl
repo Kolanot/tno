@@ -20,7 +20,7 @@ LogiCO:Amount
 LogiCO:CodeIssuingAgency
   rdf:type owl:Class ;
 .
-LogiCO:MonetaryUnit
+LogiCO:Currency
   rdf:type owl:Class ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -445,7 +445,7 @@ LogiServ:hasConsumer
 .
 LogiServ:hasCurrency
   rdf:type owl:ObjectProperty ;
-  rdfs:domain LogiCO:MonetaryUnit ;
+  rdfs:domain LogiCO:Currency ;
   rdfs:range LogiServ:Currency ;
 .
 LogiServ:hasCurrencyType

@@ -133,6 +133,11 @@
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty LogiCO:hasInvoiceTotalAmount ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty :carrier ;
     ] ;
   rdfs:subClassOf [
@@ -174,11 +179,6 @@
       rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty :plannedPickup ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :totalInvoiceAmount ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -275,7 +275,7 @@
   rdfs:label "Delivery terms"^^xsd:string ;
 .
 :EUR
-  rdf:type LogiCO:MonetaryUnit ;
+  rdf:type LogiCO:Currency ;
   LogiCO:hasAmountValue "300.00" ;
   rdfs:label "EUR"^^xsd:string ;
 .
@@ -341,7 +341,7 @@
   rdfs:label "Goods item 1"^^xsd:string ;
 .
 :HeightUnit_MTR
-  rdf:type LogiCO:HeightUnit ;
+  rdf:type LogiCO:HeightLenghtWidthUnit ;
   LogiCO:hasHeightValue "2.44" ;
   rdfs:label "Height unit MTR"^^xsd:string ;
 .
@@ -435,6 +435,12 @@
 :InsuranceValueAmount_1
   rdf:type LogiCO:MonetaryAmount ;
   rdfs:label "Insurance value amount 1"^^xsd:string ;
+.
+:InvoiceTotalAmount_1
+  rdf:type LogiCO:InvoiceTotalAmount ;
+  LogiCO:hasAmountValue "300"^^xsd:float ;
+  LogiCO:isMeasuredIn LogiCO:EUR ;
+  rdfs:label "Invoice total amount 1"^^xsd:string ;
 .
 :Kerkstraat20
   rdf:type LogiCO:Street ;
@@ -893,7 +899,9 @@
 :TransportHandlingUnit_1
   rdf:type :TransportHandlingUnit ;
   LogiCO:contains :TransportEquipment_00007141415555555551 ;
+  LogiCO:hasEquipmentID :Identification_00007141415555555551 ;
   LogiCO:hasID :Identifier_THU1 ;
+  LogiCO:isDangerous "false"^^xsd:boolean ;
   :handlingInstructions "Handle with care"^^xsd:string ;
   :hazardousRiskIndicator "false"^^xsd:boolean ;
   rdfs:label "Transport handling unit 1"^^xsd:string ;
@@ -901,6 +909,7 @@
 :XYZ987
   rdf:type :Consignment ;
   LogiCO:hasID :Identification_XYZ987 ;
+  LogiCO:hasInvoiceTotalAmount :InvoiceTotalAmount_1 ;
   :consignee :CompanyB ;
   :consigneeAssignedID :Identification_A123789 ;
   :consignor :CompanyA ;
@@ -1213,11 +1222,6 @@
   rdfs:domain :Contact ;
   rdfs:label "telephone"^^xsd:string ;
   rdfs:range xsd:string ;
-.
-:totalInvoiceAmount
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "total invoice amount"^^xsd:string ;
-  rdfs:range LogiCO:Amount ;
 .
 :transportEquipment
   rdf:type owl:ObjectProperty ;

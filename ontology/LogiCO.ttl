@@ -143,17 +143,6 @@ LogiCO:AmountUnit
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:hasAmountValue ;
-      owl:someValuesFrom [
-          rdf:type rdfs:Datatype ;
-          owl:unionOf (
-              xsd:integer
-              xsd:string
-            ) ;
-        ] ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
       owl:onProperty LogiCO:measures ;
       owl:someValuesFrom LogiCO:Amount ;
     ] ;
@@ -215,6 +204,10 @@ LogiCO:Buyer
   rdfs:comment "Who is paying " ;
   rdfs:subClassOf LogiCO:Actor ;
 .
+LogiCO:CLS
+  rdf:type LogiCO:TemperatureUnit ;
+  rdfs:label "CLS"^^xsd:string ;
+.
 LogiCO:Capacity
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:PhysicalAttribute ;
@@ -231,10 +224,6 @@ LogiCO:Carton
 LogiCO:Case
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Package ;
-.
-LogiCO:Celsius
-  rdf:type owl:Class ;
-  rdfs:subClassOf LogiCO:TemperatureUnit ;
 .
 LogiCO:City
   rdf:type owl:Class ;
@@ -315,6 +304,9 @@ LogiCO:ContainerSizeUnit
       owl:onProperty LogiCO:measures ;
       owl:someValuesFrom LogiCO:ContainerSize ;
     ] ;
+  owl:oneOf (
+      LogiCO:feet
+    ) ;
 .
 LogiCO:Country
   rdf:type owl:Class ;
@@ -337,6 +329,23 @@ LogiCO:Crate
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Package ;
 .
+LogiCO:Currency
+  rdf:type owl:Class ;
+  LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred5004.htm> ;
+  LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 5004  Monetary amount   
+Desc: To specify a monetary amount.""" ;
+  rdfs:subClassOf LogiCO:AmountUnit ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty LogiCO:measures ;
+      owl:someValuesFrom LogiCO:MonetaryAmount ;
+    ] ;
+  owl:oneOf (
+      LogiCO:EUR
+      LogiCO:USD
+      LogiCO:GBP
+    ) ;
+.
 LogiCO:CustomsAuthorithy
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Actor ;
@@ -353,6 +362,10 @@ LogiCO:Document
 LogiCO:Drum
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Package ;
+.
+LogiCO:EUR
+  rdf:type LogiCO:Currency ;
+  rdfs:label "EUR"^^xsd:string ;
 .
 LogiCO:Electronics
   rdf:type owl:Class ;
@@ -459,14 +472,6 @@ Specialization of the concept of Physical Place in:
       owl:someValuesFrom LogiCO:GeoArea ;
     ] ;
 .
-LogiCO:Fahrenheit
-  rdf:type owl:Class ;
-  rdfs:subClassOf LogiCO:TemperatureUnit ;
-.
-LogiCO:Feet
-  rdf:type owl:Class ;
-  rdfs:subClassOf LogiCO:ContainerSizeUnit ;
-.
 LogiCO:Flammable
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:ProductClass ;
@@ -475,6 +480,10 @@ LogiCO:Forwarder
   rdf:type owl:Class ;
   rdfs:comment "Who is handling/organizing the shipment on behalf of somebody else that owns the goods. This organization sometimes is hust about having a phone and a desk, maybe a computer, and booking resources. In other cases, for example DHL, the forwarder also executes some parts because he owns resources (airplanes, trucks), but the forwarder never own the goods himself. " ;
   rdfs:subClassOf LogiCO:Actor ;
+.
+LogiCO:GBP
+  rdf:type LogiCO:Currency ;
+  rdfs:label "GBP"^^xsd:string ;
 .
 LogiCO:GeoArea
   rdf:type owl:Class ;
@@ -505,9 +514,25 @@ LogiCO:Height
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:PhysicalAttribute ;
 .
-LogiCO:HeightUnit
+LogiCO:HeightLenghtWidthUnit
   rdf:type owl:Class ;
+  rdfs:label "Height lenght width unit"^^xsd:string ;
   rdfs:subClassOf LogiCO:PhysicalAttributeUnit ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty LogiCO:measures ;
+      owl:someValuesFrom [
+          rdf:type owl:Class ;
+          owl:unionOf (
+              LogiCO:Height
+              LogiCO:Lenght
+              LogiCO:Width
+            ) ;
+        ] ;
+    ] ;
+  owl:oneOf (
+      LogiCO:MTR
+    ) ;
 .
 LogiCO:Hub
   rdf:type owl:Class ;
@@ -549,13 +574,19 @@ LogiCO:Interval
   rdfs:subClassOf LogiCO:TemporalRegion ;
   rdfs:subClassOf <http://www.w3.org/2006/time#Interval> ;
 .
+LogiCO:InvoiceTotalAmount
+  rdf:type owl:Class ;
+  rdfs:comment "Amount, debited by the seller and being the total of related article item amounts in a commercial invoice."^^xsd:string ;
+  rdfs:label "Invoice total amount"^^xsd:string ;
+  rdfs:subClassOf LogiCO:MonetaryAmount ;
+.
+LogiCO:KG
+  rdf:type LogiCO:WeightUnit ;
+  rdfs:label "KG"^^xsd:string ;
+.
 LogiCO:Lenght
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:PhysicalAttribute ;
-.
-LogiCO:LenghtUnith
-  rdf:type owl:Class ;
-  rdfs:subClassOf LogiCO:PhysicalAttributeUnit ;
 .
 LogiCO:Location
   rdf:type owl:Class ;
@@ -576,6 +607,15 @@ In this generic sense, a Place is a relative location. For an absolute location,
       owl:onProperty LogiCO:hasAddress ;
     ] ;
 .
+LogiCO:MTQ
+  rdf:type LogiCO:VolumeUnit ;
+  rdfs:label "MTQ"^^xsd:string ;
+.
+LogiCO:MTR
+  rdf:type LogiCO:HeightLenghtWidthUnit ;
+  rdf:type LogiCO:PhysicalAttributeUnit ;
+  rdfs:label "MTR"^^xsd:string ;
+.
 LogiCO:Modality
   rdf:type owl:Class ;
   rdfs:comment """A modality is an abstract that denotes the specific mode in which an entity is used.
@@ -589,23 +629,6 @@ LogiCO:MonetaryAmount
   LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 5025  Monetary amount type code qualifier
 Desc: Code qualifying the type of monetary amount.""" ;
   rdfs:subClassOf LogiCO:Amount ;
-.
-LogiCO:MonetaryUnit
-  rdf:type owl:Class ;
-  LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred5004.htm> ;
-  LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 5004  Monetary amount   
-Desc: To specify a monetary amount.""" ;
-  rdfs:subClassOf LogiCO:AmountUnit ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:hasAmountValue ;
-      owl:someValuesFrom xsd:string ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:measures ;
-      owl:someValuesFrom LogiCO:MonetaryAmount ;
-    ] ;
 .
 LogiCO:MoveableEquipment
   rdf:type owl:Class ;
@@ -646,15 +669,6 @@ LogiCO:NormalTruck
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Truck ;
 .
-LogiCO:Number
-  rdf:type owl:Class ;
-  rdfs:subClassOf LogiCO:AmountUnit ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:hasAmountValue ;
-      owl:someValuesFrom xsd:integer ;
-    ] ;
-.
 LogiCO:Object
   rdf:type owl:Class ;
   rdfs:comment """Any physical, social, or mental object, or a substance
@@ -692,8 +706,9 @@ Desc: Number and type of individual parts of a shipment.""" ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:integer ;
       owl:onProperty LogiCO:hasQuantity ;
-      owl:someValuesFrom LogiCO:Number ;
     ] ;
 .
 LogiCO:Pallet
@@ -710,15 +725,6 @@ The difference between an Abstract and a Parameter is that abstracts represent s
 Equivalent to the concept of Parameter in DOLCE UltraLite (DUL) ontology.""" ;
   rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
   rdfs:subClassOf LogiCO:Object ;
-.
-LogiCO:Percentage
-  rdf:type owl:Class ;
-  rdfs:subClassOf LogiCO:AmountUnit ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:hasAmountValue ;
-      owl:someValuesFrom xsd:string ;
-    ] ;
 .
 LogiCO:Perishable
   rdf:type owl:Class ;
@@ -981,14 +987,12 @@ LogiCO:TemperatureUnit
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:hasTemperatureValue ;
-      owl:someValuesFrom xsd:decimal ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
       owl:onProperty LogiCO:measures ;
       owl:someValuesFrom LogiCO:Temperature ;
     ] ;
+  owl:oneOf (
+      LogiCO:CLS
+    ) ;
 .
 LogiCO:TemporalRegion
   rdf:type owl:Class ;
@@ -1055,6 +1059,10 @@ LogiCO:Truck
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TransportMeans ;
 .
+LogiCO:USD
+  rdf:type LogiCO:Currency ;
+  rdfs:label "USD"^^xsd:string ;
+.
 LogiCO:UniformLoadDevice
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:MoveableEquipment ;
@@ -1082,6 +1090,19 @@ LogiCO:Volume
 LogiCO:VolumeUnit
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:PhysicalAttributeUnit ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom LogiCO:Volume ;
+      owl:onProperty LogiCO:measures ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty LogiCO:measures ;
+      owl:someValuesFrom LogiCO:Volume ;
+    ] ;
+  owl:oneOf (
+      LogiCO:MTQ
+    ) ;
 .
 LogiCO:Warehouse
   rdf:type owl:Class ;
@@ -1094,33 +1115,40 @@ LogiCO:Weight
 LogiCO:WeightUnit
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:PhysicalAttributeUnit ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom LogiCO:Weight ;
+      owl:onProperty LogiCO:measures ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty LogiCO:measures ;
+      owl:someValuesFrom LogiCO:Weight ;
+    ] ;
+  owl:oneOf (
+      LogiCO:KG
+    ) ;
 .
 LogiCO:Width
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:PhysicalAttribute ;
-.
-LogiCO:WidthUnit
-  rdf:type owl:Class ;
-  rdfs:subClassOf LogiCO:PhysicalAttributeUnit ;
 .
 LogiCO:contains
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:Object ;
   rdfs:range LogiCO:MoveableResource ;
 .
+LogiCO:feet
+  rdf:type LogiCO:ContainerSizeUnit ;
+  rdfs:label "feet"^^xsd:string ;
+.
 LogiCO:hasActorID
-  rdf:type owl:DatatypeProperty ;
+  rdf:type owl:ObjectProperty ;
   LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3039.htm> ;
   LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 3039  Party identifier
 Desc: Code specifying the identity of a party.""" ;
   rdfs:domain LogiCO:Actor ;
-  rdfs:range [
-      rdf:type rdfs:Datatype ;
-      owl:unionOf (
-          xsd:int
-          xsd:string
-        ) ;
-    ] ;
+  rdfs:range LogiCO:Identifier ;
   rdfs:subPropertyOf LogiCO:hasID ;
 .
 LogiCO:hasAddress
@@ -1148,18 +1176,16 @@ Desc: Code identifying a government agency.""" ;
   rdfs:domain LogiCO:CodeIssuingAgency ;
   rdfs:range xsd:string ;
 .
+LogiCO:hasAmount
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "has amount"^^xsd:string ;
+  rdfs:range LogiCO:Amount ;
+.
 LogiCO:hasAmountValue
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain LogiCO:AmountUnit ;
-  rdfs:range [
-      rdf:type rdfs:Datatype ;
-      owl:unionOf (
-          xsd:decimal
-          xsd:integer
-          xsd:string
-        ) ;
-    ] ;
-  rdfs:subPropertyOf LogiCO:hasValue ;
+  rdfs:domain LogiCO:Amount ;
+  rdfs:range xsd:float ;
+  rdfs:subPropertyOf LogiCO:hasParameterValue ;
 .
 LogiCO:hasBuilding
   rdf:type owl:ObjectProperty ;
@@ -1176,6 +1202,12 @@ LogiCO:hasBuildingNumber
   rdf:type owl:DatatypeProperty ;
   rdfs:domain LogiCO:Building ;
   rdfs:range xsd:int ;
+.
+LogiCO:hasCapacity
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "has capacity"^^xsd:string ;
+  rdfs:range LogiCO:Capacity ;
+  rdfs:subPropertyOf LogiCO:hasPhysicalAttribute ;
 .
 LogiCO:hasCity
   rdf:type owl:ObjectProperty ;
@@ -1225,8 +1257,8 @@ LogiCO:hasDescription
   rdfs:range xsd:string ;
 .
 LogiCO:hasEquipmentID
-  rdf:type owl:DatatypeProperty ;
   rdf:type owl:FunctionalProperty ;
+  rdf:type owl:ObjectProperty ;
   LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred8260.htm> ;
   LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 8260  Equipment identifier      
 Desc: To identify equipment.""" ;
@@ -1237,7 +1269,7 @@ Desc: To identify equipment.""" ;
           LogiCO:StaticEquipment
         ) ;
     ] ;
-  rdfs:range xsd:string ;
+  rdfs:range LogiCO:Identifier ;
   rdfs:subPropertyOf LogiCO:hasID ;
 .
 LogiCO:hasEquipmentRequirement
@@ -1290,34 +1322,40 @@ LogiCO:hasFullEmptyIndicator
     ] ;
   rdfs:range xsd:string ;
 .
+LogiCO:hasHeight
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "has height"^^xsd:string ;
+  rdfs:range LogiCO:Height ;
+  rdfs:subPropertyOf LogiCO:hasPhysicalAttribute ;
+.
 LogiCO:hasHeightValue
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain LogiCO:HeightUnit ;
-  rdfs:range [
-      rdf:type rdfs:Datatype ;
-      owl:unionOf (
-          xsd:decimal
-          xsd:integer
-        ) ;
-    ] ;
-  rdfs:subPropertyOf LogiCO:hasValue ;
+  rdfs:domain LogiCO:Height ;
+  rdfs:range xsd:float ;
+  rdfs:subPropertyOf LogiCO:hasParameterValue ;
 .
 LogiCO:hasID
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:Object ;
   rdfs:range LogiCO:Identifier ;
 .
+LogiCO:hasInvoiceTotalAmount
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "has invoice total amount"^^xsd:string ;
+  rdfs:range LogiCO:InvoiceTotalAmount ;
+  rdfs:subPropertyOf LogiCO:hasAmount ;
+.
+LogiCO:hasLenght
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "has lenght"^^xsd:string ;
+  rdfs:range LogiCO:Lenght ;
+  rdfs:subPropertyOf LogiCO:hasPhysicalAttribute ;
+.
 LogiCO:hasLenghtValue
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain LogiCO:LenghtUnith ;
-  rdfs:range [
-      rdf:type rdfs:Datatype ;
-      owl:unionOf (
-          xsd:decimal
-          xsd:integer
-        ) ;
-    ] ;
-  rdfs:subPropertyOf LogiCO:hasValue ;
+  rdfs:domain LogiCO:Lenght ;
+  rdfs:range xsd:float ;
+  rdfs:subPropertyOf LogiCO:hasParameterValue ;
 .
 LogiCO:hasLocation
   rdf:type owl:ObjectProperty ;
@@ -1325,18 +1363,12 @@ LogiCO:hasLocation
   owl:inverseOf LogiCO:isLocationOf ;
 .
 LogiCO:hasLocationID
-  rdf:type owl:DatatypeProperty ;
+  rdf:type owl:ObjectProperty ;
   LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred3225.htm> ;
   LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 3225  Location identifier       
 Desc: To identify a location.""" ;
   rdfs:domain LogiCO:Location ;
-  rdfs:range [
-      rdf:type rdfs:Datatype ;
-      owl:unionOf (
-          xsd:int
-          xsd:string
-        ) ;
-    ] ;
+  rdfs:range LogiCO:Identifier ;
   rdfs:subPropertyOf LogiCO:hasID ;
 .
 LogiCO:hasName
@@ -1345,12 +1377,15 @@ LogiCO:hasName
   rdfs:range xsd:string ;
 .
 LogiCO:hasPackageID
-  rdf:type owl:DatatypeProperty ;
+  rdf:type owl:ObjectProperty ;
   LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 8260  Equipment identifier      
 Desc: To identify equipment.""" ;
   rdfs:domain LogiCO:Package ;
-  rdfs:range xsd:string ;
+  rdfs:range LogiCO:Identifier ;
   rdfs:subPropertyOf LogiCO:hasID ;
+.
+LogiCO:hasParameterValue
+  rdf:type owl:DatatypeProperty ;
 .
 LogiCO:hasPhysicalAttribute
   rdf:type owl:ObjectProperty ;
@@ -1400,27 +1435,13 @@ LogiCO:hasSize
 .
 LogiCO:hasSizeValue
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain LogiCO:SizeUnit ;
-  rdfs:range [
-      rdf:type rdfs:Datatype ;
-      owl:unionOf (
-          xsd:decimal
-          xsd:integer
-          xsd:string
-        ) ;
-    ] ;
-  rdfs:subPropertyOf LogiCO:hasValue ;
+  rdfs:domain LogiCO:Size ;
+  rdfs:range xsd:float ;
+  rdfs:subPropertyOf LogiCO:hasParameterValue ;
 .
 LogiCO:hasSpecialRequirement
   rdf:type owl:DatatypeProperty ;
   rdfs:domain LogiCO:MoveableResource ;
-  rdfs:range [
-      rdf:type rdfs:Datatype ;
-      owl:unionOf (
-          xsd:boolean
-          xsd:int
-        ) ;
-    ] ;
 .
 LogiCO:hasStatus
   rdf:type owl:DatatypeProperty ;
@@ -1437,7 +1458,7 @@ LogiCO:hasStatusDescription
   LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred4405.htm> ;
   LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 4405  Status description code         
 Desc: Code specifying a status.""" ;
-  rdfs:domain LogiCO:MonetaryUnit ;
+  rdfs:domain LogiCO:Currency ;
   rdfs:range xsd:int ;
   rdfs:subPropertyOf LogiCO:hasStatus ;
 .
@@ -1491,16 +1512,16 @@ LogiCO:hasTemperature
 .
 LogiCO:hasTemperatureValue
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain LogiCO:TemperatureUnit ;
-  rdfs:range xsd:decimal ;
-  rdfs:subPropertyOf LogiCO:hasValue ;
+  rdfs:domain LogiCO:Temperature ;
+  rdfs:range xsd:float ;
+  rdfs:subPropertyOf LogiCO:hasParameterValue ;
 .
 LogiCO:hasTransportMeansID
-  rdf:type owl:DatatypeProperty ;
+  rdf:type owl:ObjectProperty ;
   LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 8260  Equipment identifier      
 Desc: To identify equipment.""" ;
   rdfs:domain LogiCO:TransportMeans ;
-  rdfs:range xsd:string ;
+  rdfs:range LogiCO:Identifier ;
   rdfs:subPropertyOf LogiCO:hasID ;
 .
 LogiCO:hasTrigger
@@ -1508,46 +1529,41 @@ LogiCO:hasTrigger
   rdfs:domain LogiCO:Activity ;
   rdfs:range LogiCO:Event ;
 .
-LogiCO:hasValue
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain LogiCO:UnitOfMeasure ;
-  rdfs:range [
-      rdf:type rdfs:Datatype ;
-      owl:unionOf (
-          xsd:decimal
-          xsd:integer
-          xsd:string
-        ) ;
-    ] ;
+LogiCO:hasVolume
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "has volume"^^xsd:string ;
+  rdfs:range LogiCO:Volume ;
+  rdfs:subPropertyOf LogiCO:hasPhysicalAttribute ;
 .
 LogiCO:hasVolumeValue
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain LogiCO:VolumeUnit ;
-  rdfs:range [
-      rdf:type rdfs:Datatype ;
-      owl:unionOf (
-          xsd:decimal
-          xsd:integer
-        ) ;
-    ] ;
-  rdfs:subPropertyOf LogiCO:hasValue ;
+  rdfs:domain LogiCO:Volume ;
+  rdfs:range xsd:float ;
+  rdfs:subPropertyOf LogiCO:hasParameterValue ;
+.
+LogiCO:hasWeight
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "has weight"^^xsd:string ;
+  rdfs:range LogiCO:Weight ;
+  rdfs:subPropertyOf LogiCO:hasPhysicalAttribute ;
 .
 LogiCO:hasWeightValue
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain LogiCO:WeightUnit ;
-  rdfs:subPropertyOf LogiCO:hasValue ;
+  rdfs:domain LogiCO:Weight ;
+  rdfs:range xsd:float ;
+  rdfs:subPropertyOf LogiCO:hasParameterValue ;
+.
+LogiCO:hasWidth
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "has width"^^xsd:string ;
+  rdfs:range LogiCO:Width ;
+  rdfs:subPropertyOf LogiCO:hasPhysicalAttribute ;
 .
 LogiCO:hasWidthValue
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain LogiCO:WidthUnit ;
-  rdfs:range [
-      rdf:type rdfs:Datatype ;
-      owl:unionOf (
-          xsd:decimal
-          xsd:integer
-        ) ;
-    ] ;
-  rdfs:subPropertyOf LogiCO:hasValue ;
+  rdfs:domain LogiCO:Width ;
+  rdfs:range xsd:float ;
+  rdfs:subPropertyOf LogiCO:hasParameterValue ;
 .
 LogiCO:hosts
   rdf:type owl:ObjectProperty ;
@@ -1594,7 +1610,7 @@ LogiCO:isCountryOf
 .
 LogiCO:isDangerous
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain LogiCO:ProductClass ;
+  rdfs:domain LogiCO:MoveableResource ;
   rdfs:range xsd:boolean ;
   rdfs:subPropertyOf LogiCO:hasSpecialRequirement ;
 .
@@ -1633,7 +1649,7 @@ LogiCO:isOpenTop
 .
 LogiCO:isOversize
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain LogiCO:ProductClass ;
+  rdfs:domain LogiCO:MoveableResource ;
   rdfs:range xsd:boolean ;
   rdfs:subPropertyOf LogiCO:hasSpecialRequirement ;
 .
@@ -1651,7 +1667,7 @@ LogiCO:isPacked
 .
 LogiCO:isRefeer
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain LogiCO:ProductClass ;
+  rdfs:domain LogiCO:MoveableResource ;
   rdfs:range xsd:boolean ;
   rdfs:subPropertyOf LogiCO:hasSpecialRequirement ;
 .
