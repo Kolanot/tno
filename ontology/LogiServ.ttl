@@ -159,12 +159,7 @@ LogiServ:Cargo
 Desc: Code specifying the classification of a type of cargo.
 
 D.12B Core Component Library UN02000049""" ;
-  rdfs:subClassOf LogiCO:Object ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:contains ;
-      owl:someValuesFrom LogiCO:MoveableResource ;
-    ] ;
+  rdfs:subClassOf LogiCO:MoveableResource ;
 .
 LogiServ:ComplexActivity
   rdf:type owl:Class ;
@@ -461,12 +456,12 @@ LogiServ:hasDestination
   rdfs:range LogiCO:SpaceRegion ;
 .
 LogiServ:hasGoodsItemID
-  rdf:type owl:DatatypeProperty ;
+  rdf:type owl:ObjectProperty ;
   LogiServ:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred1496.htm> ;
   LogiServ:mappingToEDI """UN/EDIFACT D.12B Data Element 1496  Goods item number     
 Desc: To specify a goods item within a consignment.""" ;
   rdfs:domain LogiServ:Cargo ;
-  rdfs:range xsd:string ;
+  rdfs:range LogiCO:Identifier ;
   rdfs:subPropertyOf LogiCO:hasID ;
 .
 LogiServ:hasGovernmentAgency
