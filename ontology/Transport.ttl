@@ -286,10 +286,6 @@ LogiCO:Package
   rdf:type owl:Class ;
   rdfs:label "Coordinates"^^xsd:string ;
 .
-:DeliveryTerms
-  rdf:type owl:Class ;
-  rdfs:label "Delivery terms"^^xsd:string ;
-.
 :EUR
   rdf:type LogiCO:Currency ;
   LogiCO:hasAmountValue "300.00" ;
@@ -297,6 +293,7 @@ LogiCO:Package
 .
 :GoodsItem
   rdf:type owl:Class ;
+  rdfs:comment "A Goods Item specifies goods or products to be transported."^^xsd:string ;
   rdfs:label "Goods item"^^xsd:string ;
   rdfs:subClassOf LogiCO:ProductClass ;
   rdfs:subClassOf [
@@ -606,6 +603,7 @@ LogiCO:Package
 .
 :TransportActivity
   rdf:type owl:Class ;
+  rdfs:comment "A Transport Activity is an Activity in which Cargo is moved from Origin to Destination using Resources by a Carrier."^^xsd:string ;
   rdfs:label "Transport activity"^^xsd:string ;
   rdfs:subClassOf LogiServ:Activity ;
   rdfs:subClassOf [
@@ -711,7 +709,7 @@ LogiCO:Package
 .
 :TransportLocation
   rdf:type owl:Class ;
-  rdfs:comment "A class to describe a transport location."^^xsd:string ;
+  rdfs:comment "A Transport Location is both a logical and a geographical Location to or from which Cargo can be transported."^^xsd:string ;
   rdfs:label "Transport Location"^^xsd:string ;
   rdfs:subClassOf LogiCO:Location ;
   rdfs:subClassOf [
@@ -737,11 +735,6 @@ LogiCO:Package
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty LogiCO:hasDescription ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty LogiCO:hasID ;
     ] ;
   rdfs:subClassOf [
@@ -757,6 +750,7 @@ LogiCO:Package
 .
 :TransportParty
   rdf:type owl:Class ;
+  rdfs:comment "A Transport Party is an Actor that can act as a legal entity in the execution of transport activities."^^xsd:string ;
   rdfs:label "Transport Party"^^xsd:string ;
   rdfs:subClassOf LogiCO:Actor ;
   rdfs:subClassOf [
@@ -792,6 +786,7 @@ LogiCO:Package
 .
 :TransportPlan
   rdf:type owl:Class ;
+  rdfs:comment "A Transport Plan a Transport Service Provider's response to a Transport Request of a Transport Service Consumer. It specifies the planned pickup and delivery."^^xsd:string ;
   rdfs:label "Transport plan"^^xsd:string ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -866,6 +861,7 @@ LogiCO:Package
 .
 :TransportRequest
   rdf:type owl:Class ;
+  rdfs:comment "In a Transport Request a Transport Service Consumer specifies to a Transport Service Provider which Cargo he wants to have transported from some Origin at a Requested Pickup to some Destination at a Requested Delivery."^^xsd:string ;
   rdfs:label "Transport Request"^^xsd:string ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
