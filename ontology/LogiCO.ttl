@@ -80,33 +80,49 @@ Desc: Unstructured name and address: one to five lines""" ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onClass LogiCO:Building ;
-      owl:onProperty LogiCO:hasBuilding ;
-      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
       owl:onClass LogiCO:City ;
       owl:onProperty LogiCO:hasCity ;
-      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
       owl:onClass LogiCO:Country ;
       owl:onProperty LogiCO:hasCountry ;
-      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
       owl:onClass LogiCO:Street ;
       owl:onProperty LogiCO:hasStreet ;
-      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string ;
       owl:onProperty LogiCO:hasPostalCode ;
-      owl:someValuesFrom xsd:string ;
     ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty LogiCO:hasStreetNumber ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onClass LogiCO:Building ;
+      owl:onProperty LogiCO:hasBuilding ;
+    ] ;
+.
+LogiCO:AddressDenHaagCentralStation
+  rdf:type LogiCO:Address ;
+  LogiCO:hasCity LogiCO:DenHaag ;
+  LogiCO:hasCountry LogiCO:Netherlands ;
+  LogiCO:hasPostalCode "2595DH"^^xsd:string ;
+  LogiCO:hasStreet LogiCO:AnnaVanBuerenPlein ;
+  LogiCO:hasStreetNumber "1"^^xsd:string ;
+  rdfs:label "Address 1"^^xsd:string ;
 .
 LogiCO:AirTransport
   rdf:type owl:Class ;
@@ -147,6 +163,10 @@ LogiCO:AmountUnit
       owl:someValuesFrom LogiCO:Amount ;
     ] ;
 .
+LogiCO:AnnaVanBuerenPlein
+  rdf:type LogiCO:Street ;
+  rdfs:label "Anna van bueren plein"^^xsd:string ;
+.
 LogiCO:Bag
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Package ;
@@ -182,18 +202,6 @@ LogiCO:Bucket
 LogiCO:Building
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:GeoPoint ;
-  rdfs:subClassOf LogiCO:Location ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onDataRange xsd:integer ;
-      owl:onProperty LogiCO:hasBuildingNumber ;
-      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:hasBuildingName ;
-      owl:someValuesFrom xsd:string ;
-    ] ;
 .
 LogiCO:Bulk
   rdf:type owl:Class ;
@@ -231,12 +239,6 @@ LogiCO:City
   LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element 3164  City name                  
 Desc: Name of a city.""" ;
   rdfs:subClassOf LogiCO:GeoArea ;
-  rdfs:subClassOf LogiCO:Location ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:hasCityName ;
-      owl:someValuesFrom xsd:string ;
-    ] ;
 .
 LogiCO:CodeIssuingAgency
   rdf:type owl:Class ;
@@ -314,12 +316,6 @@ LogiCO:Country
   LogiCO:mappingToEDI """UN/EDIFACT D.12B Data Element  3207  Country identifier                       
 Desc: Identification of the name of the country or other geographical entity as defined in ISO 3166-1 and UN/ECE Recommendation 3.""" ;
   rdfs:subClassOf LogiCO:GeoArea ;
-  rdfs:subClassOf LogiCO:Location ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:hasCountryName ;
-      owl:someValuesFrom xsd:string ;
-    ] ;
 .
 LogiCO:Crane
   rdf:type owl:Class ;
@@ -354,6 +350,24 @@ LogiCO:CustomsBroker
   rdf:type owl:Class ;
   rdfs:comment "who is acting on behalf of an importer (who can be the buyer) or exporter (who can be the seller) for customs related issues" ;
   rdfs:subClassOf LogiCO:Actor ;
+.
+LogiCO:DenHaag
+  rdf:type LogiCO:City ;
+  rdfs:label "Den haag"^^xsd:string ;
+.
+LogiCO:DenHaagCentralStation
+  rdf:type LogiCO:RailwayStation ;
+  LogiCO:hasLocation LogiCO:DenHaagCentralStationLocation ;
+  rdfs:label "Railway station Den haag"^^xsd:string ;
+.
+LogiCO:DenHaagCentralStationLocation
+  rdf:type LogiCO:Location ;
+  LogiCO:hasAddress LogiCO:AddressDenHaagCentralStation ;
+  rdfs:label "Den haag central station location"^^xsd:string ;
+.
+LogiCO:DenHaagHS
+  rdf:type LogiCO:RailwayStation ;
+  rdfs:label "Den haag HS"^^xsd:string ;
 .
 LogiCO:Document
   rdf:type owl:Class ;
@@ -421,6 +435,7 @@ A facility has a location of type GeoPoint (in contrast to facility structures, 
 
 Specialization of the concept of Physical Place in:
 - DOLCE UltraLite (DUL) ontology: 'A physical object that is inherently located; for example, a water area.'""" ;
+  rdfs:subClassOf LogiCO:GeoPoint ;
   rdfs:subClassOf LogiCO:StaticResource ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -433,11 +448,6 @@ Specialization of the concept of Physical Place in:
       owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
       owl:onClass LogiCO:StaticEquipment ;
       owl:onProperty LogiCO:hosts ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:hasLocation ;
-      owl:someValuesFrom LogiCO:GeoPoint ;
     ] ;
   owl:disjointWith [
       rdf:type owl:Class ;
@@ -459,17 +469,13 @@ A facility structure has a location of type GeoArea (in contrast to a facility, 
 
 Specialization of the concept of Physical Place in:
 - DOLCE UltraLite (DUL) ontology: 'A physical object that is inherently located; for example, a water area.'""" ;
+  rdfs:subClassOf LogiCO:GeoArea ;
   rdfs:subClassOf LogiCO:StaticResource ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
       owl:onClass LogiCO:StaticEquipment ;
       owl:onProperty LogiCO:hosts ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:hasLocation ;
-      owl:someValuesFrom LogiCO:GeoArea ;
     ] ;
 .
 LogiCO:Flammable
@@ -489,14 +495,10 @@ LogiCO:GeoArea
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:SpaceRegion ;
 .
-LogiCO:GeoCoordinateSystem
-  rdf:type owl:Class ;
-  rdfs:subClassOf LogiCO:SpaceRegionUnit ;
-  rdfs:subClassOf geo:SpatialThing ;
-.
 LogiCO:GeoPoint
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:SpaceRegion ;
+  rdfs:subClassOf geo:Point ;
 .
 LogiCO:GrossVolume
   rdf:type owl:Class ;
@@ -541,6 +543,7 @@ LogiCO:Hub
 LogiCO:Identifier
   rdf:type owl:Class ;
   rdfs:label "Identifier"^^xsd:string ;
+  rdfs:subClassOf LogiCO:Object ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
@@ -603,8 +606,8 @@ In this generic sense, a Place is a relative location. For an absolute location,
   rdfs:subClassOf LogiCO:Object ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:allValuesFrom LogiCO:Address ;
       owl:onProperty LogiCO:hasAddress ;
+      owl:someValuesFrom LogiCO:Address ;
     ] ;
 .
 LogiCO:MTQ
@@ -615,6 +618,10 @@ LogiCO:MTR
   rdf:type LogiCO:HeightLenghtWidthUnit ;
   rdf:type LogiCO:PhysicalAttributeUnit ;
   rdfs:label "MTR"^^xsd:string ;
+.
+LogiCO:MainBuildingDenHaagCentralStation
+  rdf:type LogiCO:Building ;
+  rdfs:label "Main building den haag central station"^^xsd:string ;
 .
 LogiCO:Modality
   rdf:type owl:Class ;
@@ -664,6 +671,10 @@ LogiCO:MoveableResource
 LogiCO:NetWeight
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Weight ;
+.
+LogiCO:Netherlands
+  rdf:type LogiCO:Country ;
+  rdfs:label "Netherlands"^^xsd:string ;
 .
 LogiCO:NormalTruck
   rdf:type owl:Class ;
@@ -737,6 +748,11 @@ LogiCO:PhysicalAttribute
 Equivalent to the concept of Physical Attribute in DOLCE UltraLite (DUL) ontology.""" ;
   rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
   rdfs:subClassOf LogiCO:Abstract ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty LogiCO:isMeasuredIn ;
+      owl:someValuesFrom LogiCO:PhysicalAttributeUnit ;
+    ] ;
 .
 LogiCO:PhysicalAttributeUnit
   rdf:type owl:Class ;
@@ -754,7 +770,7 @@ Equivalent to the concept of PhysicalObject in:
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onProperty LogiCO:hasLocation ;
-      owl:someValuesFrom LogiCO:SpaceRegion ;
+      owl:someValuesFrom LogiCO:Location ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -846,12 +862,6 @@ LogiCO:Region
   LogiCO:mappingToEDI """UN/EDIFACT D.12B Composite Data Element C819 COUNTRY SUBDIVISION DETAILS
 Desc: To specify a country subdivision, such as state, canton, county, prefecture.""" ;
   rdfs:subClassOf LogiCO:GeoArea ;
-  rdfs:subClassOf LogiCO:Location ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:hasRegionName ;
-      owl:someValuesFrom xsd:string ;
-    ] ;
 .
 LogiCO:Regular
   rdf:type owl:Class ;
@@ -864,6 +874,15 @@ LogiCO:Requirement
 LogiCO:RoadTransport
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TransportMode ;
+.
+LogiCO:Schiphol
+  rdf:type LogiCO:Location ;
+  rdfs:label "Schiphol"^^xsd:string ;
+.
+LogiCO:SchipholAirport
+  rdf:type LogiCO:Airport ;
+  LogiCO:hasLocation LogiCO:Schiphol ;
+  rdfs:label "Schiphol airport"^^xsd:string ;
 .
 LogiCO:SeaTerminalOperator
   rdf:type owl:Class ;
@@ -909,10 +928,7 @@ Equivalent to the concept of Space Region in:
 - DOLCE UltraLite (DUL) ontology:  'Any Region in a dimensional space that is used to localize an Entity'""" ;
   rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
   rdfs:subClassOf LogiCO:Abstract ;
-.
-LogiCO:SpaceRegionUnit
-  rdf:type owl:Class ;
-  rdfs:subClassOf LogiCO:UnitOfMeasure ;
+  rdfs:subClassOf geo:SpatialThing ;
 .
 LogiCO:Standard
   rdf:type owl:Class ;
@@ -952,17 +968,6 @@ LogiCO:Street
   LogiCO:mappingToEDI """UN/EDIFACT D.12B Composite Data Element C059 STREET               
 Desc: Street address and/or PO Box number in a structur address: one to four lines.""" ;
   rdfs:subClassOf LogiCO:GeoArea ;
-  rdfs:subClassOf LogiCO:Location ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:hasStreetName ;
-      owl:someValuesFrom xsd:string ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:hasStreetNumber ;
-      owl:someValuesFrom xsd:string ;
-    ] ;
 .
 LogiCO:Tank
   rdf:type owl:Class ;
@@ -1190,7 +1195,6 @@ LogiCO:hasAmountValue
 LogiCO:hasBuilding
   rdf:type owl:ObjectProperty ;
   rdfs:range LogiCO:Building ;
-  rdfs:subPropertyOf LogiCO:hasLocation ;
   owl:inverseOf LogiCO:isBuildingOf ;
 .
 LogiCO:hasBuildingName
@@ -1201,7 +1205,7 @@ LogiCO:hasBuildingName
 LogiCO:hasBuildingNumber
   rdf:type owl:DatatypeProperty ;
   rdfs:domain LogiCO:Building ;
-  rdfs:range xsd:int ;
+  rdfs:range xsd:string ;
 .
 LogiCO:hasCapacity
   rdf:type owl:ObjectProperty ;
@@ -1212,7 +1216,6 @@ LogiCO:hasCapacity
 LogiCO:hasCity
   rdf:type owl:ObjectProperty ;
   rdfs:range LogiCO:City ;
-  rdfs:subPropertyOf LogiCO:hasLocation ;
 .
 LogiCO:hasCityName
   rdf:type owl:DatatypeProperty ;
@@ -1223,28 +1226,15 @@ LogiCO:hasCode
   rdf:type owl:DatatypeProperty ;
   rdfs:range xsd:string ;
 .
-LogiCO:hasConstituent
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "from DUL ontology" ;
-  rdfs:domain LogiCO:Entity ;
-  rdfs:range LogiCO:Entity ;
-.
 LogiCO:hasContainerSize
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:Container ;
   rdfs:range LogiCO:ContainerSize ;
   rdfs:subPropertyOf LogiCO:hasSize ;
 .
-LogiCO:hasCoordinates
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain LogiCO:GeoArea ;
-  rdfs:domain LogiCO:GeoPoint ;
-  rdfs:range LogiCO:GeoCoordinateSystem ;
-.
 LogiCO:hasCountry
   rdf:type owl:ObjectProperty ;
   rdfs:range LogiCO:Country ;
-  rdfs:subPropertyOf LogiCO:hasLocation ;
   owl:inverseOf LogiCO:isCountryOf ;
 .
 LogiCO:hasCountryName
@@ -1416,7 +1406,6 @@ LogiCO:hasQuantity
 LogiCO:hasRegion
   rdf:type owl:ObjectProperty ;
   rdfs:range LogiCO:Region ;
-  rdfs:subPropertyOf LogiCO:hasLocation ;
 .
 LogiCO:hasRegionName
   rdf:type owl:DatatypeProperty ;
@@ -1465,7 +1454,6 @@ Desc: Code specifying a status.""" ;
 LogiCO:hasStreet
   rdf:type owl:ObjectProperty ;
   rdfs:range LogiCO:Street ;
-  rdfs:subPropertyOf LogiCO:hasLocation ;
 .
 LogiCO:hasStreetName
   rdf:type owl:DatatypeProperty ;
@@ -1474,6 +1462,7 @@ LogiCO:hasStreetName
 .
 LogiCO:hasStreetNumber
   rdf:type owl:DatatypeProperty ;
+  rdfs:domain LogiCO:Street ;
   rdfs:range xsd:string ;
 .
 LogiCO:hasSupplier
@@ -1568,34 +1557,28 @@ LogiCO:hasWidthValue
 LogiCO:hosts
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:StaticResource ;
-  rdfs:range LogiCO:StaticResource ;
+  rdfs:range [
+      rdf:type owl:Class ;
+      owl:unionOf (
+          LogiCO:StaticResource
+          LogiCO:MoveableResource
+        ) ;
+    ] ;
 .
 LogiCO:id
   rdf:type owl:DatatypeProperty ;
   rdfs:label "id"^^xsd:string ;
   rdfs:range xsd:string ;
 .
-LogiCO:identifies
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain LogiCO:Address ;
-  rdfs:range LogiCO:GeoPoint ;
-.
 LogiCO:isBuildingOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:Building ;
-  rdfs:subPropertyOf LogiCO:isLocationOf ;
+  owl:inverseOf LogiCO:hasBuilding ;
 .
 LogiCO:isCityOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:City ;
-  rdfs:subPropertyOf LogiCO:isLocationOf ;
   owl:inverseOf LogiCO:hasCity ;
-.
-LogiCO:isConstituentOf
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain LogiCO:Entity ;
-  rdfs:range LogiCO:Entity ;
-  owl:inverseOf LogiCO:hasConstituent ;
 .
 LogiCO:isContainedIn
   rdf:type owl:ObjectProperty ;
@@ -1606,7 +1589,7 @@ LogiCO:isContainedIn
 LogiCO:isCountryOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:Country ;
-  rdfs:subPropertyOf LogiCO:isLocationOf ;
+  owl:inverseOf LogiCO:hasCountry ;
 .
 LogiCO:isDangerous
   rdf:type owl:DatatypeProperty ;
@@ -1629,10 +1612,10 @@ LogiCO:isFull
 LogiCO:isLocationOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:Location ;
+  owl:inverseOf LogiCO:hasLocation ;
 .
 LogiCO:isMeasuredIn
   rdf:type owl:ObjectProperty ;
-  rdfs:domain LogiCO:Abstract ;
   rdfs:range LogiCO:UnitOfMeasure ;
   owl:inverseOf LogiCO:measures ;
 .
@@ -1674,13 +1657,11 @@ LogiCO:isRefeer
 LogiCO:isRegionOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:Region ;
-  rdfs:subPropertyOf LogiCO:isLocationOf ;
   owl:inverseOf LogiCO:hasRegion ;
 .
 LogiCO:isStreetOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:Street ;
-  rdfs:subPropertyOf LogiCO:isLocationOf ;
   owl:inverseOf LogiCO:hasStreet ;
 .
 LogiCO:isSupplierOf
@@ -1712,7 +1693,6 @@ LogiCO:mappingToEDI
 LogiCO:measures
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:UnitOfMeasure ;
-  rdfs:range LogiCO:Abstract ;
 .
 LogiCO:moves
   rdf:type owl:ObjectProperty ;
@@ -1728,6 +1708,10 @@ is the hasPart property, but without transitivity""" ;
   rdfs:subPropertyOf dul:hasPart ;
   owl:inverseOf dul:isComponentOf ;
 .
+dul:hasConstituent
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "from DUL ontology" ;
+.
 dul:hasPart
   rdf:type owl:ObjectProperty ;
   rdf:type owl:TransitiveProperty ;
@@ -1737,11 +1721,13 @@ dul:isComponentOf
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf dul:isPartOf ;
 .
+dul:isConstituentOf
+  rdf:type owl:ObjectProperty ;
+  owl:inverseOf dul:hasConstituent ;
+.
 dul:isPartOf
   rdf:type owl:ObjectProperty ;
   rdf:type owl:TransitiveProperty ;
-  rdfs:domain LogiCO:Entity ;
-  rdfs:range LogiCO:Entity ;
   owl:inverseOf dul:hasPart ;
 .
 <http://www.w3.org/2006/time#DateTimeDescription>

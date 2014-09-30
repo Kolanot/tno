@@ -52,12 +52,6 @@ LogiCO:contains
 LogiCO:hasCode
   rdf:type owl:DatatypeProperty ;
 .
-LogiCO:hasConstituent
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "from DUL ontology" ;
-  rdfs:domain LogiServ:ComplexActivity ;
-  rdfs:range LogiServ:Activity ;
-.
 LogiCO:hasID
   rdf:type owl:DatatypeProperty ;
 .
@@ -69,12 +63,6 @@ LogiCO:hasTrigger
   rdfs:domain LogiServ:Activity ;
   rdfs:range LogiServ:Event ;
   owl:inverseOf LogiCO:isTriggerOf ;
-.
-LogiCO:isConstituentOf
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain LogiServ:AtomicActivity ;
-  rdfs:range LogiServ:ComplexActivity ;
-  owl:inverseOf LogiCO:hasConstituent ;
 .
 LogiCO:isTriggerOf
   rdf:type owl:ObjectProperty ;
@@ -148,7 +136,7 @@ An atomic activity isConstituentOf some complex activty""" ;
   rdfs:subClassOf LogiServ:Activity ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty LogiCO:isConstituentOf ;
+      owl:onProperty <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isConstituentOf> ;
       owl:someValuesFrom LogiServ:ComplexActivity ;
     ] ;
 .
@@ -177,7 +165,7 @@ Properties:
       rdf:type owl:Restriction ;
       owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
       owl:onClass LogiServ:Activity ;
-      owl:onProperty LogiCO:hasConstituent ;
+      owl:onProperty <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasConstituent> ;
     ] ;
 .
 LogiServ:Consolidation
@@ -273,7 +261,7 @@ LogiServ:LoadTransportDischarge
           LogiServ:Load
           [
             rdf:type owl:Restriction ;
-            owl:onProperty LogiCO:hasConstituent ;
+            owl:onProperty <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasConstituent> ;
             owl:someValuesFrom LogiServ:Discharge ;
           ]
         ) ;
@@ -327,12 +315,12 @@ LogiServ:Transport
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onProperty LogiServ:hasDestination ;
-      owl:someValuesFrom LogiCO:SpaceRegion ;
+      owl:someValuesFrom LogiCO:Location ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onProperty LogiServ:hasOrigin ;
-      owl:someValuesFrom LogiCO:SpaceRegion ;
+      owl:someValuesFrom LogiCO:Location ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -453,7 +441,7 @@ Desc: Code qualifying the type of currency.""" ;
 .
 LogiServ:hasDestination
   rdf:type owl:ObjectProperty ;
-  rdfs:range LogiCO:SpaceRegion ;
+  rdfs:range LogiCO:Location ;
 .
 LogiServ:hasGoodsItemID
   rdf:type owl:ObjectProperty ;
@@ -470,7 +458,7 @@ LogiServ:hasGovernmentAgency
 .
 LogiServ:hasOrigin
   rdf:type owl:ObjectProperty ;
-  rdfs:range LogiCO:SpaceRegion ;
+  rdfs:range LogiCO:Location ;
 .
 LogiServ:hasProvider
   rdf:type owl:ObjectProperty ;
@@ -547,6 +535,18 @@ Desc: Code specifying the priority of a transport service""" ;
   rdfs:domain LogiServ:TransportRequirement ;
   rdfs:range xsd:int ;
   rdfs:subPropertyOf LogiCO:hasCode ;
+.
+<http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasConstituent>
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "from DUL ontology" ;
+  rdfs:domain LogiServ:ComplexActivity ;
+  rdfs:range LogiServ:Activity ;
+.
+<http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isConstituentOf>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain LogiServ:AtomicActivity ;
+  rdfs:range LogiServ:ComplexActivity ;
+  owl:inverseOf <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasConstituent> ;
 .
 time:Instant
   rdf:type owl:Class ;
