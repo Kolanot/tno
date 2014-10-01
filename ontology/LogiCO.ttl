@@ -20,7 +20,7 @@
   dcterms:issued "04-06-2014"^^xsd:string ;
   dcterms:publisher "TNO"^^xsd:string ;
   dcterms:title "LogiCO: Logistics Core Ontology"^^xsd:string ;
-  rdfs:comment "LogiCO imports the W3C Time ontology in described in http://www.w3.org/TR/owl-time/" ;
+  rdfs:comment "LogiCO imports the W3C Time and Geo ontologies"^^xsd:string ;
   rdfs:label "LogiCO"@en ;
   owl:imports geo: ;
   owl:imports <http://www.w3.org/2006/time> ;
@@ -37,14 +37,9 @@ Equivalent to the concept of Abstract in DOLCE UltraLite (DUL) ontology.""" ;
 .
 LogiCO:Activity
   rdf:type owl:Class ;
-  rdfs:comment """An Activity denotes an action that is relevant for the purpose of logistics and provides value for a potential customer.
-An Activity can be Atomic or Complex. Atomic activities can be used to compose more complex activities. 
-
-Activities and their properties are further specialized in the Logistics Service Ontology.
-
-Properties:
-An activity can have as trigger an event (Activity hasTrigger Event)
-An event can be trigger of an activity (Event isTriggerOf Activity) """ ;
+  rdfs:comment """An Activity denotes an action that is relevant for the purpose of logistics and provides value for a potential customer. 
+The Activity concept is further specialised in the LogiServ ontology with URL https://raw.githubusercontent.com/danielelm/tno/master/ontology/LogiServ.tt)
+"""^^xsd:string ;
   rdfs:subClassOf LogiCO:Entity ;
 .
 LogiCO:Actor
@@ -54,18 +49,31 @@ LogiCO:Actor
 Desc: Code giving specific meaning to a party.
 
 D.12B Core Component Library UN02000044""" ;
-  rdfs:comment """An actor represents a company, an authority or an individual that provides or requests activities and operates on physical resources 
-
+  rdfs:comment """An actor represents a company, an authority or an individual that provides or requests activities and operates on physical resources. 
 We have identified a number of Actor types that are relevant for logistics, but the list can be further extended.
 
 Equivalent to the concept of Agent in:
-DOLCE UltraLite (DUL) ontology: 'Any agentive Object , either physical (e.g. a whale, a robot, an oak), or social (e.g. a corporation, an institution, a community)'.""" ;
+DOLCE UltraLite (DUL) ontology: 'Any agentive Object , either physical (e.g. a whale, a robot, an oak), or social (e.g. a corporation, an institution, a community)'."""^^xsd:string ;
   rdfs:subClassOf LogiCO:Object ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty LogiCO:hasEmail ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty LogiCO:hasPhoneNr ;
+    ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onProperty LogiCO:hasAddress ;
       owl:someValuesFrom LogiCO:Address ;
     ] ;
+.
+LogiCO:Actor_1
+  rdf:type LogiCO:Actor ;
+  rdfs:label "Actor 1"^^xsd:string ;
 .
 LogiCO:Address
   rdf:type owl:Class ;
@@ -89,6 +97,12 @@ Desc: Unstructured name and address: one to five lines""" ;
       owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
       owl:onClass LogiCO:Country ;
       owl:onProperty LogiCO:hasCountry ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass LogiCO:Region ;
+      owl:onProperty LogiCO:hasRegion ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -410,15 +424,9 @@ Desc: Code and or name identifying size and type of equipment. Code preferred.""
 .
 LogiCO:Event
   rdf:type owl:Class ;
-  rdfs:comment """An event is a trigger that can be used to synchronize two or more activities. Events and their properties are further specialized in the Logistics Service Ontology.
+  rdfs:comment """An event is a trigger that can be used to synchronize two or more activities. Events and their properties are further specialized in the LogiServ ontology with URL https://raw.githubusercontent.com/danielelm/tno/master/ontology/LogiServ.tt
 
-For example, consider an activity of road transport by truck, which is followed by the activity of discharge of this truck at destination. In this case, the departure of the truck can be regarded as a trigger for the activity of transport, while the arrival of this truck to its destination can be regarded as a trigger for the activity of discharge.
-
-Properties:
-An event can be trigger of an activity (Event isTriggerOf Activity) 
-An activity can have as trigger an event (Activity hasTrigger Event)
-
-With the definition above, we specialize the concept of Event defined in a general way (on purpose) in the DOLCE UltraLite (DUL) ontology. According to the DUL definition, an event consists of any physical, social, or mental process, event, or state.""" ;
+With this definition of event in LogiCO, we specialize the concept of Event defined in a general way (on purpose) in the DOLCE UltraLite (DUL) ontology. According to the DUL definition, an event consists of any physical, social, or mental process, event, or state."""^^xsd:string ;
   rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
   rdfs:subClassOf LogiCO:Entity ;
 .
@@ -598,11 +606,11 @@ LogiCO:Location
 Desc: Code identifying the function of a location.
 
 D.12B Core Component Library UN02000041""" ;
-  rdfs:comment """It represents the relative location used to define the place(s) relevant for logistics activities
+  rdfs:comment """It represents the relative location used to define the place(s) relevant for logistics activities.
 
 Equivalent to the concept of Place in:
 - DOLCE UltraLite (DUL) ontology:  'A location, in a very generic sense: a political geographic entity (Roma, Lesotho), a non-material location determined by the presence of other entities ('the area close to Roma'), pivot events or signs ('the area where the helicopter fell'), complements of other entities ('the area under the table'), etc. 
-In this generic sense, a Place is a relative location. For an absolute location, see the class SpaceRegion.""" ;
+In this generic sense, a Place is a relative location. For an absolute location, see the class SpaceRegion."""^^xsd:string ;
   rdfs:subClassOf LogiCO:Object ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -761,11 +769,10 @@ LogiCO:PhysicalAttributeUnit
 LogiCO:PhysicalResource
   rdf:type owl:Class ;
   rdfs:comment """Physical objects that are used in logistics activities, such as, for example, the moveable resources used during the activity of transport, i.e., the transport means and equipment used to move items to their destination.
-
 A physical resource is further specialized in a Moveable Resource, which is characterized by the capability of moving on its own or being contained for the purpose of transportation, and a Static Resource, which is used to handle moveable objects in a facility prior to their transportation.
 
 Equivalent to the concept of PhysicalObject in:
-- DOLCE UltraLite (DUL) ontology: 'Any Object that has a proper space region. The prototypical physical object has also an associated mass, but the nature of its mass can greatly vary based on the epistemological status of the object (scientifically measured, subjectively possible, imaginary)'""" ;
+- DOLCE UltraLite (DUL) ontology: 'Any Object that has a proper space region. The prototypical physical object has also an associated mass, but the nature of its mass can greatly vary based on the epistemological status of the object (scientifically measured, subjectively possible, imaginary)'"""^^xsd:string ;
   rdfs:subClassOf LogiCO:Object ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -1246,6 +1253,11 @@ LogiCO:hasDescription
   rdf:type owl:DatatypeProperty ;
   rdfs:range xsd:string ;
 .
+LogiCO:hasEmail
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "has email"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
 LogiCO:hasEquipmentID
   rdf:type owl:FunctionalProperty ;
   rdf:type owl:ObjectProperty ;
@@ -1376,6 +1388,11 @@ Desc: To identify equipment.""" ;
 .
 LogiCO:hasParameterValue
   rdf:type owl:DatatypeProperty ;
+.
+LogiCO:hasPhoneNr
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "has phone nr"^^xsd:string ;
+  rdfs:range xsd:string ;
 .
 LogiCO:hasPhysicalAttribute
   rdf:type owl:ObjectProperty ;
