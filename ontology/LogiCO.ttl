@@ -57,6 +57,11 @@ DOLCE UltraLite (DUL) ontology: 'Any agentive Object , either physical (e.g. a w
   rdfs:subClassOf LogiCO:Object ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty LogiCO:hasWebsiteURI ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
       owl:minCardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty LogiCO:hasEmail ;
     ] ;
@@ -226,9 +231,9 @@ LogiCO:Buyer
   rdfs:comment "Who is paying " ;
   rdfs:subClassOf LogiCO:Actor ;
 .
-LogiCO:CLS
+LogiCO:CEL
   rdf:type LogiCO:TemperatureUnit ;
-  rdfs:label "CLS"^^xsd:string ;
+  rdfs:label "CELSIUS"^^xsd:string ;
 .
 LogiCO:Capacity
   rdf:type owl:Class ;
@@ -499,6 +504,20 @@ LogiCO:GBP
   rdf:type LogiCO:Currency ;
   rdfs:label "GBP"^^xsd:string ;
 .
+LogiCO:GS1PalletCodeList
+  rdf:type owl:Class ;
+  rdfs:label "GS1Pallet code list"^^xsd:string ;
+  rdfs:subClassOf LogiCO:PalletSize ;
+  owl:oneOf (
+      LogiCO:Oneway
+      LogiCO:Returnable
+      LogiCO:ISO0_halfEURO
+      LogiCO:ISO1_oneEURO
+      LogiCO:ISO2
+      LogiCO:quarterEURO
+      LogiCO:one-eighthEURO
+    ) ;
+.
 LogiCO:GeoArea
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:SpaceRegion ;
@@ -548,6 +567,18 @@ LogiCO:Hub
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Facility ;
 .
+LogiCO:ISO0_halfEURO
+  rdf:type LogiCO:GS1PalletCodeList ;
+  rdfs:label "ISO0 half EURO"^^xsd:string ;
+.
+LogiCO:ISO1_oneEURO
+  rdf:type LogiCO:GS1PalletCodeList ;
+  rdfs:label "ISO1 one EURO"^^xsd:string ;
+.
+LogiCO:ISO2
+  rdf:type LogiCO:GS1PalletCodeList ;
+  rdfs:label "ISO2"^^xsd:string ;
+.
 LogiCO:Identifier
   rdf:type owl:Class ;
   rdfs:label "Identifier"^^xsd:string ;
@@ -555,7 +586,7 @@ LogiCO:Identifier
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty LogiCO:id ;
+      owl:onProperty LogiCO:hasIDValue ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -631,6 +662,16 @@ LogiCO:MainBuildingDenHaagCentralStation
   rdf:type LogiCO:Building ;
   rdfs:label "Main building den haag central station"^^xsd:string ;
 .
+LogiCO:MaxTemperature
+  rdf:type owl:Class ;
+  rdfs:label "Max temperature"^^xsd:string ;
+  rdfs:subClassOf LogiCO:Temperature ;
+.
+LogiCO:MinTemperature
+  rdf:type owl:Class ;
+  rdfs:label "Min temperature"^^xsd:string ;
+  rdfs:subClassOf LogiCO:Temperature ;
+.
 LogiCO:Modality
   rdf:type owl:Class ;
   rdfs:comment """A modality is an abstract that denotes the specific mode in which an entity is used.
@@ -696,6 +737,10 @@ Equivalent to the concept of Object in DOLCE UltraLite (DUL) ontology.""" ;
   rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
   rdfs:subClassOf LogiCO:Entity ;
 .
+LogiCO:Oneway
+  rdf:type LogiCO:GS1PalletCodeList ;
+  rdfs:label "Oneway"^^xsd:string ;
+.
 LogiCO:OpenTop
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Container ;
@@ -735,6 +780,11 @@ LogiCO:Pallet
   rdfs:subClassOf LogiCO:MoveableEquipment ;
   rdfs:subClassOf LogiCO:Package ;
   owl:equivalentClass LogiCO:Pallet ;
+.
+LogiCO:PalletSize
+  rdf:type owl:Class ;
+  rdfs:label "Pallet size"^^xsd:string ;
+  rdfs:subClassOf LogiCO:EquipmentSize ;
 .
 LogiCO:Parameter
   rdf:type owl:Class ;
@@ -878,6 +928,10 @@ LogiCO:Requirement
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Object ;
 .
+LogiCO:Returnable
+  rdf:type LogiCO:GS1PalletCodeList ;
+  rdfs:label "Returnable"^^xsd:string ;
+.
 LogiCO:RoadTransport
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TransportMode ;
@@ -1003,7 +1057,7 @@ LogiCO:TemperatureUnit
       owl:someValuesFrom LogiCO:Temperature ;
     ] ;
   owl:oneOf (
-      LogiCO:CLS
+      LogiCO:CEL
     ) ;
 .
 LogiCO:TemporalRegion
@@ -1190,6 +1244,7 @@ Desc: Code identifying a government agency.""" ;
 .
 LogiCO:hasAmount
   rdf:type owl:ObjectProperty ;
+  rdfs:domain LogiCO:Object ;
   rdfs:label "has amount"^^xsd:string ;
   rdfs:range LogiCO:Amount ;
 .
@@ -1308,6 +1363,11 @@ Desc: Code specifying the status of equipment.""" ;
     ] ;
   rdfs:subPropertyOf LogiCO:hasStatus ;
 .
+LogiCO:hasFaxNr
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "has fax nr"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
 LogiCO:hasFullEmptyIndicator
   rdf:type owl:DatatypeProperty ;
   LogiCO:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred8169.htmhttp://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred8260.htm> ;
@@ -1340,6 +1400,11 @@ LogiCO:hasID
   rdf:type owl:ObjectProperty ;
   rdfs:domain LogiCO:Object ;
   rdfs:range LogiCO:Identifier ;
+.
+LogiCO:hasIDValue
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "id"^^xsd:string ;
+  rdfs:range xsd:string ;
 .
 LogiCO:hasInvoiceTotalAmount
   rdf:type owl:ObjectProperty ;
@@ -1547,6 +1612,11 @@ LogiCO:hasVolumeValue
   rdfs:range xsd:float ;
   rdfs:subPropertyOf LogiCO:hasParameterValue ;
 .
+LogiCO:hasWebsiteURI
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "has website URI"^^xsd:string ;
+  rdfs:range xsd:anyURI ;
+.
 LogiCO:hasWeight
   rdf:type owl:ObjectProperty ;
   rdfs:label "has weight"^^xsd:string ;
@@ -1581,11 +1651,6 @@ LogiCO:hosts
           LogiCO:MoveableResource
         ) ;
     ] ;
-.
-LogiCO:id
-  rdf:type owl:DatatypeProperty ;
-  rdfs:label "id"^^xsd:string ;
-  rdfs:range xsd:string ;
 .
 LogiCO:isBuildingOf
   rdf:type owl:ObjectProperty ;
@@ -1716,6 +1781,14 @@ LogiCO:moves
   rdfs:domain LogiCO:MoveableResource ;
   rdfs:range LogiCO:MoveableResource ;
   owl:inverseOf LogiCO:isMovedBy ;
+.
+LogiCO:one-eighthEURO
+  rdf:type LogiCO:GS1PalletCodeList ;
+  rdfs:label "one-eighth EURO"^^xsd:string ;
+.
+LogiCO:quarterEURO
+  rdf:type LogiCO:GS1PalletCodeList ;
+  rdfs:label "quarter EURO"^^xsd:string ;
 .
 dul:hasComponent
   rdf:type owl:ObjectProperty ;

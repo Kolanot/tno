@@ -6,6 +6,7 @@
 @prefix : <http://www.tno.nl/Transport#> .
 @prefix LogiCO: <http://tno-logistics.nl/LogiCO#> .
 @prefix LogiServ: <http://tno-logistics.nl/LogiServ#> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -79,67 +80,78 @@ LogiCO:Package
   LogiCO:hasAgencyName "SSCC"^^xsd:string ;
   rdfs:label "Code issuing agency SSCC"^^xsd:string ;
 .
-:CompanyA
+:Company_A
   rdf:type :TransportParty ;
-  LogiCO:hasID :Identification_58263657 ;
+  LogiCO:hasID :ConsignorIdentification_58263657 ;
   LogiCO:hasName "Company A"^^xsd:string ;
+  LogiCO:hasWebsiteURI "http://www.a.nl"^^xsd:anyURI ;
   :hasContactDetails :Contact_CompanyA ;
-  :hasPhysicalLocation :pickupLocation ;
-  :hasPostalAddress :PostalAddressCompanyA ;
-  :hasRegistrationAddress :RegistrationAddressCompanyA ;
-  :websiteURI "http://www.a.nl"^^xsd:anyURI ;
+  :hasPhysicalLocation :PhysicalAddress_CompanyA ;
+  :hasPostalAddress :PostalAddress_CompanyA ;
+  :hasRegistrationAddress :RegistrationAddress_CompanyA ;
   rdfs:label "Company a"^^xsd:string ;
 .
-:CompanyB
+:Company_B
   rdf:type :TransportParty ;
-  LogiCO:hasID :Identification_56846846 ;
+  LogiCO:hasID :ConsigneeIdentification_56846846 ;
   LogiCO:hasName "CompanyB"^^xsd:string ;
-  :hasContactDetails :Contact_B ;
+  :hasContactDetails :Contact_CompanyB ;
   rdfs:label "Company b"^^xsd:string ;
 .
 :Company_x
   rdf:type :TransportParty ;
-  LogiCO:hasID :Identification1 ;
-  LogiCO:hasID :Identification2 ;
+  LogiCO:hasID :PartyIdentification_1 ;
+  LogiCO:hasID :PartyIdentification_2 ;
   LogiCO:hasName "Company x"^^xsd:string ;
-  :hasContactDetails :Contact_1 ;
-  :hasPhysicalLocation :PhysicalLocation_CompanyX ;
+  LogiCO:hasWebsiteURI "http://www.company-x.nl"^^xsd:anyURI ;
+  :hasContactDetails :Contact_CompanyX ;
+  :hasPhysicalLocation :PhysicalAddress_CompanyX ;
   :hasPostalAddress :PostalAddress_CompanyX ;
   :hasRegistrationAddress :RegistrationAddress_CompanyX ;
-  :websiteURI "http://www.company-x.nl"^^xsd:anyURI ;
   rdfs:label "Company x"^^xsd:string ;
 .
 :Company_y
   rdf:type :TransportParty ;
+  LogiCO:hasID :PartyIdentification_3 ;
+  LogiCO:hasID :PartyIdentification_4 ;
+  LogiCO:hasName "Company y"^^xsd:string ;
+  :hasContactDetails :Contact_CompanyY ;
+  :hasPostalAddress :PostalAddress_CompanyY ;
   rdfs:label "Company y"^^xsd:string ;
+.
+:ConsigneeAssignedIdentification_A123789
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasIDValue "A123789"^^xsd:string ;
+  rdfs:label " Consignee assigned Identification A123789"^^xsd:string ;
+.
+:ConsigneeIdentification_56846846
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_KVK ;
+  LogiCO:hasIDValue "56846846"^^xsd:string ;
+  rdfs:label "Consignee Identification 56846846"^^xsd:string ;
 .
 :Consignment
   rdf:type owl:Class ;
   rdfs:label "Consignment"^^xsd:string ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:allValuesFrom xsd:string ;
-      owl:onProperty :remarks ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :hasConsignee ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :consignee ;
+      owl:onProperty :hasConsignor ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :consignor ;
+      owl:onProperty :hasRequestedDelivery ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :requestedDelivery ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :requestedPickup ;
+      owl:onProperty :hasRequestedPickup ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -149,27 +161,22 @@ LogiCO:Package
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :carrier ;
+      owl:onProperty :hasConsigneeAssignedID ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :carrierAssignedID ;
+      owl:onProperty :hasConsignorAssignedID ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :consigneeAssignedID ;
+      owl:onProperty :hasPlannedDelivery ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :consignorAssignedID ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :finalDeliveryParty ;
+      owl:onProperty :hasPlannedPickup ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -178,40 +185,47 @@ LogiCO:Package
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :notifyParty ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :plannedDelivery ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :plannedPickup ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
       owl:minCardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty LogiCO:hasID ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty :consignee ;
-      owl:someValuesFrom [
-          rdf:type owl:Class ;
-          owl:intersectionOf (
-              LogiCO:Consignee
-              :TransportParty
-            ) ;
-        ] ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty :transportHandlingUnit ;
+      owl:onProperty :hasTransportHandlingUnit ;
       owl:someValuesFrom LogiServ:Cargo ;
     ] ;
+.
+:ConsignmentIdentification_XYZ987
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasIDValue "XYZ987"^^xsd:string ;
+  rdfs:label " Consignment Identification XYZ987"^^xsd:string ;
+.
+:Consignment_XYZ987
+  rdf:type :Consignment ;
+  LogiCO:hasID :ConsignmentIdentification_XYZ987 ;
+  LogiCO:hasInvoiceTotalAmount :InvoiceTotalAmount_1 ;
+  :hasConsignee :Company_B ;
+  :hasConsigneeAssignedID :ConsigneeAssignedIdentification_A123789 ;
+  :hasConsignor :Company_A ;
+  :hasConsignorAssignedID :ConsignorAssignedIdentification_Z987321 ;
+  :hasPlannedDelivery :PlannedDeliveryTransportEvent ;
+  :hasPlannedPickup :PlannedPickupTransportEvent ;
+  :hasRequestedDelivery :RequestedDeliveryTransportEvent ;
+  :hasRequestedPickup :RequestedPickupTransportEvent ;
+  :hasTransportContract :TransportContract_1 ;
+  :hasTransportHandlingUnit :TransportHandlingUnit_THU1 ;
+  :hasTransportHandlingUnit :TransportHandlingUnit_THU2 ;
+  rdfs:label "Consignment_XYZ987"^^xsd:string ;
+.
+:ConsignorAssignedIdentification_Z987321
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasIDValue "Z987321"^^xsd:string ;
+  rdfs:label "Consignor assigned Identification Z987321"^^xsd:string ;
+.
+:ConsignorIdentification_58263657
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_KVK ;
+  LogiCO:hasIDValue "58263657"^^xsd:string ;
+  rdfs:label "Consignor Identification 58263657"^^xsd:string ;
 .
 :Contact
   rdf:type owl:Class ;
@@ -224,48 +238,62 @@ LogiCO:Package
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :eMail ;
+      owl:onProperty LogiCO:hasEmail ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :fax ;
+      owl:onProperty LogiCO:hasFaxNr ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :note ;
+      owl:onProperty LogiCO:hasPhoneNr ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :telephone ;
+      owl:onProperty :hasNote ;
     ] ;
-.
-:Contact_1
-  rdf:type :Contact ;
-  LogiCO:hasName "Algemeen"^^xsd:string ;
-  :eMail "info@x.nl"^^xsd:string ;
-  :fax "0031884567200"^^xsd:string ;
-  :note "A free text note"^^xsd:string ;
-  :telephone "0031884567111"^^xsd:string ;
-  rdfs:label "Contact 1"^^xsd:string ;
-.
-:Contact_B
-  rdf:type :Contact ;
-  LogiCO:hasName "Delivery manager"^^xsd:string ;
-  :eMail "delivery@companyB.nl"^^xsd:string ;
-  :telephone "0031384657000"^^xsd:string ;
-  rdfs:label "Contact B"^^xsd:string ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onProperty :hasOtherCommunication ;
+    ] ;
 .
 :Contact_CompanyA
   rdf:type :Contact ;
+  LogiCO:hasEmail "info@a.nl"^^xsd:string ;
+  LogiCO:hasFaxNr "0031384567222"^^xsd:string ;
   LogiCO:hasName "Algemeen"^^xsd:string ;
-  :eMail "info@a.nl"^^xsd:string ;
-  :fax "0031384567222"^^xsd:string ;
-  :note "A free text note"^^xsd:string ;
-  :telephone "0031384567222"^^xsd:string ;
+  LogiCO:hasPhoneNr "0031384567222"^^xsd:string ;
+  :hasNote "A free text note"^^xsd:string ;
+  :hasOtherCommunication "Twitter @ACompany"^^xsd:string ;
   rdfs:label "Contact Company a"^^xsd:string ;
+.
+:Contact_CompanyB
+  rdf:type :Contact ;
+  LogiCO:hasEmail "delivery@companyB.nl"^^xsd:string ;
+  LogiCO:hasName "Delivery manager"^^xsd:string ;
+  LogiCO:hasPhoneNr "0031384657000"^^xsd:string ;
+  rdfs:label "Contact company B"^^xsd:string ;
+.
+:Contact_CompanyX
+  rdf:type :Contact ;
+  LogiCO:hasEmail "info@x.nl"^^xsd:string ;
+  LogiCO:hasFaxNr "0031884567200"^^xsd:string ;
+  LogiCO:hasName "Algemeen"^^xsd:string ;
+  LogiCO:hasPhoneNr "0031884567111"^^xsd:string ;
+  :hasNote "A free text note"^^xsd:string ;
+  :hasOtherCommunication "Twitter @Xnews"^^xsd:string ;
+  rdfs:label "Contact company x"^^xsd:string ;
+.
+:Contact_CompanyY
+  rdf:type :Contact ;
+  LogiCO:hasEmail "logistics@companyY.nl"^^xsd:string ;
+  LogiCO:hasName "Logistics manager"^^xsd:string ;
+  LogiCO:hasPhoneNr "0031450557000"^^xsd:string ;
+  rdfs:label "Contact Company y"^^xsd:string ;
 .
 :Contract
   rdf:type owl:Class ;
@@ -282,30 +310,16 @@ LogiCO:Package
       owl:onProperty :hasDocumentType ;
     ] ;
 .
-:Coordinates
-  rdf:type owl:Class ;
-  rdfs:label "Coordinates"^^xsd:string ;
-.
-:EUR
-  rdf:type LogiCO:Currency ;
-  LogiCO:hasAmountValue "300.00" ;
-  rdfs:label "EUR"^^xsd:string ;
+:ContractIdentifier_FW-2013-12345
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasIDValue "FW-2013-12345"^^xsd:string ;
+  rdfs:label "Contract Identifier FW-2013-12345"^^xsd:string ;
 .
 :GoodsItem
   rdf:type owl:Class ;
   rdfs:comment "A Goods Item specifies goods or products to be transported."^^xsd:string ;
   rdfs:label "Goods item"^^xsd:string ;
   rdfs:subClassOf LogiCO:ProductClass ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:allValuesFrom LogiCO:GrossVolume ;
-      owl:onProperty LogiCO:hasVolume ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:allValuesFrom LogiCO:GrossWeight ;
-      owl:onProperty LogiCO:hasWeight ;
-    ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
@@ -318,167 +332,143 @@ LogiCO:Package
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty LogiCO:hasID ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass LogiCO:GrossVolume ;
       owl:onProperty LogiCO:hasVolume ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass LogiCO:GrossWeight ;
       owl:onProperty LogiCO:hasWeight ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :insuranceValueAmount ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass LogiCO:MaxTemperature ;
+      owl:onProperty LogiCO:hasTemperature ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :maximumTemperature ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass LogiCO:MinTemperature ;
+      owl:onProperty LogiCO:hasTemperature ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :minimumTemperature ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass LogiCO:MonetaryAmount ;
+      owl:onProperty LogiCO:hasAmount ;
     ] ;
 .
-:GoodsItem_1
+:GoodsItem_10Aubergine
   rdf:type :GoodsItem ;
+  LogiCO:hasAmount :InsuranceValueAmount_100EUR ;
+  LogiCO:hasDescription "Aubergines"^^xsd:string ;
+  LogiCO:hasQuantity 10 ;
+  LogiCO:hasVolume <http://www.tno.nl/Transport#GrossVolume_0.24MTQ> ;
+  LogiCO:hasWeight :GrossWeight_30KGM ;
+  LogiCO:isPackagedIn :Package_40carton ;
+  LogiCO:isPacked "true"^^xsd:boolean ;
+  rdfs:label "Goods item 10 aubergine"^^xsd:string ;
+.
+:GoodsItem_34Cucumber
+  rdf:type :GoodsItem ;
+  LogiCO:hasAmount :InsuranceValueAmount_300EUR ;
   LogiCO:hasDescription "Cucumbers"^^xsd:string ;
   LogiCO:hasQuantity 34 ;
-  LogiCO:hasVolume :GrossVolume_1 ;
-  LogiCO:hasWeight :GrossWeight_1 ;
-  :insuranceValueAmount :InsuranceValueAmount_1 ;
-  :maximumTemperature :Temperature_2 ;
-  :minimumTemperature :Temperature_1 ;
-  rdfs:label "Goods item 1"^^xsd:string ;
+  LogiCO:hasTemperature :MaxTemperature_20CEL ;
+  LogiCO:hasTemperature :MinTemperature_5CEL ;
+  LogiCO:hasVolume <http://www.tno.nl/Transport#GrossVolume_1.05MTQ> ;
+  LogiCO:hasWeight <http://www.tno.nl/Transport#GrossWeight_80.5KGM> ;
+  LogiCO:isPackagedIn :Package_77carton ;
+  LogiCO:isPacked "true"^^xsd:boolean ;
+  rdfs:label "Goods item 34 cucumber"^^xsd:string ;
 .
-:GoodsItem_2
-  rdf:type :GoodsItem ;
-  LogiCO:hasDescription "Cucumbers"^^xsd:string ;
-  LogiCO:hasQuantity 34 ;
-  LogiCO:hasVolume :GrossVolume_1 ;
-  LogiCO:hasWeight :GrossWeight_1 ;
-  :insuranceValueAmount :InsuranceValueAmount_1 ;
-  :maximumTemperature :Temperature_2 ;
-  :minimumTemperature :Temperature_1 ;
-  rdfs:label "Goods item 2"^^xsd:string ;
+<http://www.tno.nl/Transport#GrossVolume_0.24MTQ>
+  rdf:type LogiCO:GrossVolume ;
+  LogiCO:hasVolumeValue "0.24"^^xsd:float ;
+  LogiCO:isMeasuredIn LogiCO:MTQ ;
+  rdfs:label "Gross Volume 0.24 MTQ"^^xsd:string ;
 .
-:GrossVolume_1
+<http://www.tno.nl/Transport#GrossVolume_1.05MTQ>
   rdf:type LogiCO:GrossVolume ;
   LogiCO:hasVolumeValue "1.05"^^xsd:float ;
   LogiCO:isMeasuredIn LogiCO:MTQ ;
-  rdfs:label "Gross Volume 1"^^xsd:string ;
+  rdfs:label "Gross Volume 1.05 MTQ"^^xsd:string ;
 .
-:GrossWeight_1
+:GrossWeight_30KGM
+  rdf:type LogiCO:GrossWeight ;
+  LogiCO:hasWeightValue "30.0"^^xsd:float ;
+  LogiCO:isMeasuredIn LogiCO:KG ;
+  rdfs:label "Gross Weight 30 kgm"^^xsd:string ;
+.
+<http://www.tno.nl/Transport#GrossWeight_80.5KGM>
   rdf:type LogiCO:GrossWeight ;
   LogiCO:hasWeightValue "80.5"^^xsd:float ;
   LogiCO:isMeasuredIn LogiCO:KG ;
-  rdfs:label "Gross Weight 1"^^xsd:string ;
-.
-:HeightUnit_MTR
-  rdf:type LogiCO:HeightLenghtWidthUnit ;
-  LogiCO:hasHeightValue "2.44" ;
-  rdfs:label "Height unit MTR"^^xsd:string ;
-.
-:Height_1
-  rdf:type LogiCO:Height ;
-  LogiCO:hasHeightValue "2.44"^^xsd:float ;
-  LogiCO:isMeasuredIn :HeightUnit_MTR ;
-  rdfs:label "Height 1"^^xsd:string ;
-.
-:Identification1
-  rdf:type LogiCO:Identifier ;
-  LogiCO:hasAgency :CodeIssuingAgency_KVK ;
-  LogiCO:id "11112222"^^xsd:string ;
-  rdfs:label "Identification1"^^xsd:string ;
-.
-:Identification2
-  rdf:type LogiCO:Identifier ;
-  LogiCO:hasAgency :CodeIssuingAgency_BTW ;
-  LogiCO:id "NL001234567B01"^^xsd:string ;
-  rdfs:label "Identification2"^^xsd:string ;
-.
-:Identification_00007141415555555551
-  rdf:type LogiCO:Identifier ;
-  LogiCO:hasAgency :CodeIssuingAgency_SSCC ;
-  LogiCO:id "00007141415555555551"^^xsd:string ;
-  rdfs:label "Identification 00007141415555555551"^^xsd:string ;
-.
-:Identification_4058673827000
-  rdf:type LogiCO:Identifier ;
-  LogiCO:hasAgency :CodeIssuingAgency_GLN ;
-  LogiCO:id "4058673827000"^^xsd:string ;
-  rdfs:label "Identification 4058673827000"^^xsd:string ;
-.
-:Identification_4058673827003
-  rdf:type LogiCO:Identifier ;
-  LogiCO:hasAgency :CodeIssuingAgency_GLN ;
-  LogiCO:id "4058673827003"^^xsd:string ;
-  rdfs:label "Identification 4058673827003"^^xsd:string ;
-.
-:Identification_56846846
-  rdf:type LogiCO:Identifier ;
-  LogiCO:hasAgency :CodeIssuingAgency_KVK ;
-  LogiCO:id "56846846"^^xsd:string ;
-  rdfs:label "Identification 56846846"^^xsd:string ;
-.
-:Identification_58263657
-  rdf:type LogiCO:Identifier ;
-  LogiCO:hasAgency :CodeIssuingAgency_KVK ;
-  LogiCO:id "58263657"^^xsd:string ;
-  rdfs:label "Identification 58263657"^^xsd:string ;
-.
-:Identification_A123789
-  rdf:type LogiCO:Identifier ;
-  LogiCO:id "A123789"^^xsd:string ;
-  rdfs:label "Identification A123789"^^xsd:string ;
-.
-:Identification_XYZ987
-  rdf:type LogiCO:Identifier ;
-  LogiCO:id "XYZ987"^^xsd:string ;
-  rdfs:label "Identification XYZ987"^^xsd:string ;
-.
-:Identification_Z987321
-  rdf:type LogiCO:Identifier ;
-  LogiCO:id "Z987321"^^xsd:string ;
-  rdfs:label "Identification Z987321"^^xsd:string ;
-.
-:Identifier_FW-2013-12345
-  rdf:type LogiCO:Identifier ;
-  LogiCO:id "FW-2013-12345"^^xsd:string ;
-  rdfs:label "Identifier FW-2013-12345"^^xsd:string ;
+  rdfs:label "Gross Weight 80.5 kgm"^^xsd:string ;
 .
 :Identifier_TEP-20130924-1
   rdf:type LogiCO:Identifier ;
-  LogiCO:id "TEP-20130924-1"^^xsd:string ;
+  LogiCO:hasIDValue "TEP-20130924-1"^^xsd:string ;
   rdfs:label "Identifier TEP-20130924-1"^^xsd:string ;
 .
-:Identifier_THU1
-  rdf:type LogiCO:Identifier ;
-  LogiCO:id "THU1"^^xsd:string ;
-  rdfs:label "Identifier THU1"^^xsd:string ;
+:Instant_PlanendPickupEnd
+  rdf:type time:Instant ;
+  rdfs:label "Instant Planend pickup end"^^xsd:string ;
+  time:inXSDDateTime "2013-11-05T10:30:10+01:00"^^xsd:dateTime ;
 .
-:Instant_PickupEndTime
-  rdf:type LogiCO:Instant ;
-  rdfs:label "Instant Pickup end time"^^xsd:string ;
-  time:inXSDDateTime "2013-11-05T12:30:10+01:00"^^xsd:dateTime ;
-.
-:Instant_PickupStartTime
-  rdf:type LogiCO:Instant ;
-  rdfs:label "Instant Pickup start time"^^xsd:string ;
+:Instant_PlanendPickupStart
+  rdf:type time:Instant ;
+  rdfs:label "Instant Planend pickup start"^^xsd:string ;
   time:inXSDDateTime "2013-11-05T09:30:10+01:00"^^xsd:dateTime ;
 .
-:InsuranceValueAmount_1
+:Instant_PlannedDeliveryEnd
+  rdf:type time:Instant ;
+  rdfs:label "Instant Planned delivery end"^^xsd:string ;
+  time:inXSDDateTime "2013-11-06T15:45:10+01:00"^^xsd:dateTime ;
+.
+:Instant_PlannedDeliveryStart
+  rdf:type time:Instant ;
+  rdfs:label "Instant Planned delivery start"^^xsd:string ;
+  time:inXSDDateTime "2013-11-06T13:45:10+01:00"^^xsd:dateTime ;
+.
+:Instant_PlannedPickupStart
+  rdf:type time:Instant ;
+  rdfs:label "Instant Planned pickup start"^^xsd:string ;
+.
+:Instant_RequestedDeliveryEnd
+  rdf:type time:Instant ;
+  rdfs:label "Instant Requested delivery end"^^xsd:string ;
+  time:inXSDDateTime "2013-11-06T15:30:10+01:00"^^xsd:dateTime ;
+.
+:Instant_RequestedDeliveryStart
+  rdf:type time:Instant ;
+  rdfs:label "Instant Requested delivery start"^^xsd:string ;
+  time:inXSDDateTime "2013-11-06T12:30:10+01:00"^^xsd:dateTime ;
+.
+:Instant_RequestedPickupEnd
+  rdf:type LogiCO:Instant ;
+  rdfs:label "Instant requested Pickup end "^^xsd:string ;
+  time:inXSDDateTime "2013-11-05T12:30:10+01:00"^^xsd:dateTime ;
+.
+:Instant_RequestedPickupStart
+  rdf:type LogiCO:Instant ;
+  rdfs:label "Instant requested  Pickup start "^^xsd:string ;
+  time:inXSDDateTime "2013-11-05T09:30:10+01:00"^^xsd:dateTime ;
+.
+:InsuranceValueAmount_100EUR
+  rdf:type LogiCO:MonetaryAmount ;
+  LogiCO:hasAmountValue "100"^^xsd:float ;
+  LogiCO:isMeasuredIn LogiCO:EUR ;
+  rdfs:label "Insurance value amount 100 EUR"^^xsd:string ;
+.
+:InsuranceValueAmount_300EUR
   rdf:type LogiCO:MonetaryAmount ;
   LogiCO:hasAmountValue "300"^^xsd:float ;
   LogiCO:isMeasuredIn LogiCO:EUR ;
-  rdfs:label "Insurance value amount 1"^^xsd:string ;
+  rdfs:label "Insurance value amount 300 EUR"^^xsd:string ;
 .
 :InvoiceTotalAmount_1
   rdf:type LogiCO:InvoiceTotalAmount ;
@@ -504,6 +494,34 @@ LogiCO:Package
   LogiCO:hasStreetNumber "198"^^xsd:string ;
   rdfs:label "Kloosterlaan198"^^xsd:string ;
 .
+:LocationIdentification_4048623000003
+  rdf:type LogiCO:Identifier ;
+  rdfs:label "Location identification 4048623000003"^^xsd:string ;
+.
+:LocationIdentification_4058673827000
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_GLN ;
+  LogiCO:hasIDValue "4058673827000"^^xsd:string ;
+  rdfs:label "Location Identification 4058673827000"^^xsd:string ;
+.
+:LocationIdentification_4058673827003
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_GLN ;
+  LogiCO:hasIDValue "4058673827003"^^xsd:string ;
+  rdfs:label "LocationIdentification 4058673827003"^^xsd:string ;
+.
+:MaxTemperature_20CEL
+  rdf:type LogiCO:Temperature ;
+  LogiCO:hasTemperatureValue "20"^^xsd:float ;
+  LogiCO:isMeasuredIn LogiCO:CEL ;
+  rdfs:label "Max Temperature  20 CEL"^^xsd:string ;
+.
+:MinTemperature_5CEL
+  rdf:type LogiCO:MinTemperature ;
+  LogiCO:hasTemperatureValue "5"^^xsd:float ;
+  LogiCO:isMeasuredIn LogiCO:CEL ;
+  rdfs:label "Min Temperature 5 CEL"^^xsd:string ;
+.
 :Nederland
   rdf:type LogiCO:Country ;
   LogiCO:hasCountryName "Nederland"^^xsd:string ;
@@ -515,19 +533,49 @@ LogiCO:Package
   LogiCO:hasAmountValue "77" ;
   rdfs:label "Number 1"^^xsd:string ;
 .
-:Package_1
+:Package_40carton
   rdf:type LogiCO:Carton ;
-  LogiCO:contains :GoodsItem_1 ;
-  LogiCO:hasQuantity 77 ;
-  rdfs:label "Package 1"^^xsd:string ;
+  LogiCO:contains :GoodsItem_10Aubergine ;
+  LogiCO:hasQuantity 40 ;
+  rdfs:label "Package 40 carton"^^xsd:string ;
 .
-:PhysicalAddressCompanyA
+:Package_77carton
+  rdf:type LogiCO:Carton ;
+  LogiCO:contains :GoodsItem_34Cucumber ;
+  LogiCO:hasQuantity 77 ;
+  rdfs:label "Package carton"^^xsd:string ;
+.
+:PartyIdentification_1
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_KVK ;
+  LogiCO:hasIDValue "11112222"^^xsd:string ;
+  rdfs:label "Party Identification 1"^^xsd:string ;
+.
+:PartyIdentification_2
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_BTW ;
+  LogiCO:hasIDValue "NL001234567B01"^^xsd:string ;
+  rdfs:label "Party Identification 2"^^xsd:string ;
+.
+:PartyIdentification_3
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_KVK ;
+  LogiCO:hasIDValue "45670011"^^xsd:string ;
+  rdfs:label "Party identification 3"^^xsd:string ;
+.
+:PartyIdentification_4
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_BTW ;
+  LogiCO:hasIDValue "NL876543210B01"^^xsd:string ;
+  rdfs:label "Party identification 4"^^xsd:string ;
+.
+:PhysicalAddress_CompanyA
   rdf:type LogiCO:Address ;
   LogiCO:hasCity :Zwolle ;
   LogiCO:hasCountry :Nederland ;
   LogiCO:hasPostalCode "8032PH"^^xsd:string ;
   LogiCO:hasStreet :Kerkstraat20 ;
-  rdfs:label "PhysicalAddressCompanyA"^^xsd:string ;
+  rdfs:label "Physical Address Company A"^^xsd:string ;
 .
 :PhysicalAddress_CompanyX
   rdf:type LogiCO:Address ;
@@ -542,7 +590,69 @@ LogiCO:Package
   LogiCO:hasAddress :PhysicalAddress_CompanyX ;
   rdfs:label "Physical location CompanyX"^^xsd:string ;
 .
-:PostalAddressCompanyA
+:PickupLocationStartTime
+  rdf:type time:Instant ;
+  rdfs:label "Pickup location start time"^^xsd:string ;
+.
+:PlannedDeliveryLocation
+  rdf:type LogiCO:Location ;
+  LogiCO:hasAddress :deliveryAddress ;
+  rdfs:label "Planned delivery location"^^xsd:string ;
+.
+:PlannedDeliveryPeriod
+  rdf:type LogiCO:Interval ;
+  rdfs:label "Planned Delivery Period"^^xsd:string ;
+  time:hasBeginning :Instant_PlannedDeliveryStart ;
+  time:hasEnd :Instant_PlannedDeliveryEnd ;
+.
+:PlannedDeliveryTransportEvent
+  rdf:type :TransportEvent ;
+  LogiCO:hasDescription "Pallets ruilen"@nl ;
+  LogiCO:hasLocation :PlannedDeliveryLocation ;
+  LogiServ:hasStatus "Planned"^^xsd:string ;
+  LogiServ:hasTime :PlannedDeliveryPeriod ;
+  :hasTransportEventTypeCode "TE1001"^^xsd:string ;
+  rdfs:label "Planned delivery transport event"^^xsd:string ;
+.
+:PlannedPickupLocation
+  rdf:type :TransportLocation ;
+  LogiCO:hasAddress :PhysicalAddress_CompanyA ;
+  LogiCO:hasID :LocationIdentification_4048623000003 ;
+  LogiCO:hasName "Opslag Company A"^^xsd:string ;
+  :hasConditions "Hoogte voertuig max 3 meter"^^xsd:string ;
+  :hasValidityPeriodEndTime "17:30:10+01:00"^^xsd:time ;
+  :hasValidityPeriodStartTime "07:30:10+01:00"^^xsd:time ;
+  rdfs:label "planned pickup location"^^xsd:string ;
+.
+:PlannedPickupPeriod
+  rdf:type LogiCO:Interval ;
+  rdfs:label "Planned pickup period"^^xsd:string ;
+  time:hasBeginning :Instant_PlanendPickupStart ;
+  time:hasEnd :Instant_PlanendPickupEnd ;
+.
+:PlannedPickupTransportEvent
+  rdf:type :TransportEvent ;
+  LogiCO:hasDescription "text descrbing this location"^^xsd:string ;
+  LogiCO:hasLocation :PlannedPickupLocation ;
+  LogiServ:hasStatus "Planned"^^xsd:string ;
+  LogiServ:hasTime :PlannedPickupPeriod ;
+  :hasTransportEventTypeCode "TE1000"^^xsd:string ;
+  rdfs:label "Planned pickup transport event"^^xsd:string ;
+.
+:PlannedTransportActivity_1
+  rdf:type :TransportActivity ;
+  LogiServ:hasConsumer :Company_x ;
+  LogiServ:hasDestination :PlannedDeliveryLocation ;
+  LogiServ:hasOrigin :PlannedPickupLocation ;
+  LogiServ:hasProvider :Company_y ;
+  LogiServ:hasStatus "Planned"^^xsd:string ;
+  dul:hasConstituent :PlannedTransportActivity_1 ;
+  dul:isConstituentOf :PlannedTransportActivity_1 ;
+  rdfs:label "Planned Transport activity 1"^^xsd:string ;
+  time:hasBeginning :Instant_PlannedPickupStart ;
+  time:hasEnd :Instant_PlannedDeliveryEnd ;
+.
+:PostalAddress_CompanyA
   rdf:type LogiCO:Address ;
   LogiCO:hasCity :Zwolle ;
   LogiCO:hasCountry :Nederland ;
@@ -558,7 +668,15 @@ LogiCO:Package
   LogiCO:hasPostbox "Postbus 3008"^^xsd:string ;
   rdfs:label "PostalAddress_CompanyX"^^xsd:string ;
 .
-:RegistrationAddressCompanyA
+:PostalAddress_CompanyY
+  rdf:type LogiCO:Address ;
+  LogiCO:hasCity :Rotterdam ;
+  LogiCO:hasCountry :Nederland ;
+  LogiCO:hasPostalCode "1357PW"^^xsd:string ;
+  LogiCO:hasPostbox "Postbus 2546"^^xsd:string ;
+  rdfs:label "Postal address Company y"^^xsd:string ;
+.
+:RegistrationAddress_CompanyA
   rdf:type LogiCO:Address ;
   LogiCO:hasCity :Zwolle ;
   LogiCO:hasCountry :Nederland ;
@@ -574,88 +692,68 @@ LogiCO:Package
   LogiCO:hasStreet :Boris_Pasternaklaan_23 ;
   rdfs:label "RegistrationAddress_CompanyX"^^xsd:string ;
 .
+:RequestedDeliveryLocation
+  rdf:type :TransportLocation ;
+  LogiCO:hasAddress :deliveryAddress ;
+  LogiCO:hasID :LocationIdentification_4058673827000 ;
+  LogiCO:hasName "Company B storage"^^xsd:string ;
+  rdfs:label "Requested delivery location"^^xsd:string ;
+.
+:RequestedDeliveryPeriod
+  rdf:type LogiCO:Interval ;
+  rdfs:label "Requested delivery period"^^xsd:string ;
+  time:hasBeginning :Instant_RequestedDeliveryStart ;
+  time:hasEnd :Instant_RequestedDeliveryEnd ;
+.
 :RequestedDeliveryTransportEvent
   rdf:type :TransportEvent ;
-  LogiCO:hasDescription "Pallets ruilen"^^xsd:string ;
-  :location :deliveryLocation ;
-  :period :deliveryPeriod ;
-  :transportEventTypeCode "TE1001"^^xsd:string ;
+  LogiCO:hasDescription "Pallets ruilen"@nl ;
+  LogiCO:hasLocation :RequestedDeliveryLocation ;
+  LogiServ:hasStatus "Requested"^^xsd:string ;
+  LogiServ:hasTime :RequestedDeliveryPeriod ;
+  :hasTransportEventTypeCode "TE1001"^^xsd:string ;
   rdfs:label "Requested delivery transport event"^^xsd:string ;
+.
+:RequestedPickupLocation
+  rdf:type :TransportLocation ;
+  LogiCO:hasAddress :PhysicalAddress_CompanyA ;
+  LogiCO:hasID :LocationIdentification_4058673827003 ;
+  LogiCO:hasName "Opslag Company A"^^xsd:string ;
+  :hasConditions "Hoogte voertuig max 3 meter"^^xsd:string ;
+  :hasValidityPeriodEndTime "17:30:10+01:00"^^xsd:time ;
+  :hasValidityPeriodStartTime "07:30:10+01:00"^^xsd:time ;
+  rdfs:label "requested pickup location"^^xsd:string ;
+.
+:RequestedPickupPeriod
+  rdf:type LogiCO:Interval ;
+  rdfs:label "requested pickup period"^^xsd:string ;
+  time:hasBeginning :Instant_PlannedPickupStart ;
+  time:hasBeginning :Instant_RequestedPickupStart ;
+  time:hasEnd :Instant_RequestedPickupEnd ;
 .
 :RequestedPickupTransportEvent
   rdf:type :TransportEvent ;
-  :location :pickupLocation ;
-  :period :pickupPeriod ;
-  :transportEventTypeCode "TE1000"^^xsd:string ;
+  LogiCO:hasLocation :RequestedPickupLocation ;
+  LogiServ:hasStatus "Requested"^^xsd:string ;
+  LogiServ:hasTime :RequestedPickupPeriod ;
+  :hasTransportEventTypeCode "TE1000"^^xsd:string ;
   rdfs:label "Requested pickup transport event"^^xsd:string ;
 .
-:Temperature_1
-  rdf:type LogiCO:Temperature ;
-  LogiCO:hasTemperatureValue "5"^^xsd:float ;
-  LogiCO:isMeasuredIn LogiCO:CLS ;
-  rdfs:label "Temperature 1"^^xsd:string ;
-.
-:Temperature_2
-  rdf:type LogiCO:Temperature ;
-  LogiCO:hasTemperatureValue "20"^^xsd:float ;
-  LogiCO:isMeasuredIn LogiCO:CLS ;
-  rdfs:label "Temperature 2"^^xsd:string ;
+:Rotterdam
+  rdf:type LogiCO:City ;
+  LogiCO:hasCityName "Rotterdam"^^xsd:string ;
+  rdfs:label "Rotterdam"^^xsd:string ;
 .
 :TransportActivity
   rdf:type owl:Class ;
   rdfs:comment "A Transport Activity is an Activity in which Cargo is moved from Origin to Destination using Resources by a Carrier."^^xsd:string ;
   rdfs:label "Transport activity"^^xsd:string ;
-  rdfs:subClassOf LogiServ:Activity ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:allValuesFrom LogiCO:TransportMeans ;
-      owl:onProperty :resources ;
-    ] ;
+  rdfs:subClassOf LogiServ:Transport ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :statusCode ;
+      owl:onProperty LogiServ:hasStatus ;
     ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty LogiCO:hasID ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onClass :TransportLocation ;
-      owl:onProperty :destination ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onClass :TransportLocation ;
-      owl:onProperty :origin ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onClass :TransportParty ;
-      owl:onProperty :carrier ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :cargo ;
-    ] ;
-.
-:TransportActivity_1
-  rdf:type :TransportActivity ;
-  LogiCO:hasID :Identifier_TEP-20130924-1 ;
-  LogiServ:hasConsumer :Company_x ;
-  LogiServ:hasProvider :Company_y ;
-  :cargo :TransportHandlingUnit_1 ;
-  :destination :deliveryLocation ;
-  :issueDate "2013-10-17"^^xsd:date ;
-  :origin :pickupLocation ;
-  :statusCode "NotConfirmed"^^xsd:string ;
-  rdfs:label "Transport activity 1"^^xsd:string ;
 .
 :TransportActivity_Pickup
   rdf:type LogiServ:Transport ;
@@ -663,16 +761,145 @@ LogiCO:Package
 .
 :TransportContract_1
   rdf:type :Contract ;
-  LogiCO:hasID :Identifier_FW-2013-12345 ;
+  LogiCO:hasID :ContractIdentifier_FW-2013-12345 ;
   :hasDocumentType "FWAGREEMENT"^^xsd:string ;
   rdfs:label "Transport contract 1"^^xsd:string ;
 .
+<http://www.tno.nl/Transport#TransportEquipmentHeight_1.44MTR>
+  rdf:type LogiCO:Height ;
+  LogiCO:hasHeightValue "1.44"^^xsd:float ;
+  LogiCO:isMeasuredIn LogiCO:MTR ;
+  rdfs:label "Transport Equipment Height 1.44 MTR"^^xsd:string ;
+.
+<http://www.tno.nl/Transport#TransportEquipmentHeight_2.44MTR>
+  rdf:type LogiCO:Height ;
+  LogiCO:hasHeightValue "2.44"^^xsd:float ;
+  LogiCO:isMeasuredIn LogiCO:MTR ;
+  rdfs:label "Transport Equipment Height 1"^^xsd:string ;
+.
+:TransportEquipmentID_00007141415555555551
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_SSCC ;
+  LogiCO:hasIDValue "00007141415555555551"^^xsd:string ;
+  rdfs:label "Transport Equipment ID 00007141415555555551"^^xsd:string ;
+.
+:TransportEquipmentID_00007141415555555552
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_SSCC ;
+  LogiCO:hasIDValue "00007141415555555552"^^xsd:string ;
+  rdfs:label "Transport equipment ID 00007141415555555552"^^xsd:string ;
+.
+:TransportEquipmentID_00007141415555555553
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_SSCC ;
+  LogiCO:hasIDValue "00007141415555555553"^^xsd:string ;
+  rdfs:label "Transport equipment ID 00007141415555555553"^^xsd:string ;
+.
+:TransportEquipmentID_00007141415555555554
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_SSCC ;
+  LogiCO:hasIDValue "00007141415555555554"^^xsd:string ;
+  rdfs:label "Transport equipment ID 00007141415555555554"^^xsd:string ;
+.
+:TransportEquipmentID_00007141415555555555
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_SSCC ;
+  LogiCO:hasIDValue "00007141415555555555"^^xsd:string ;
+  rdfs:label "Transport equipment ID 00007141415555555555"^^xsd:string ;
+.
+:TransportEquipmentID_00007141415555555556
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_SSCC ;
+  LogiCO:hasIDValue "00007141415555555556"^^xsd:string ;
+  rdfs:label "Transport equipment ID 00007141415555555556"^^xsd:string ;
+.
+:TransportEquipmentID_00007141415555555557
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_SSCC ;
+  LogiCO:hasIDValue "00007141415555555557"^^xsd:string ;
+  rdfs:label "Transport equipment ID 00007141415555555557"^^xsd:string ;
+.
+:TransportEquipmentID_00007141415555555558
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasAgency :CodeIssuingAgency_SSCC ;
+  LogiCO:hasIDValue "00007141415555555558"^^xsd:string ;
+  rdfs:label "Transport equipment ID 00007141415555555558"^^xsd:string ;
+.
 :TransportEquipment_00007141415555555551
   rdf:type LogiCO:Pallet ;
-  LogiCO:contains :Package_1 ;
-  LogiCO:hasID :Identification_00007141415555555551 ;
-  LogiCO:hasPhysicalAttribute :Height_1 ;
+  LogiCO:contains :GoodsItem_34Cucumber ;
+  LogiCO:hasHeight <http://www.tno.nl/Transport#TransportEquipmentHeight_2.44MTR> ;
+  LogiCO:hasID :TransportEquipmentID_00007141415555555551 ;
+  LogiCO:hasQuantity 1 ;
+  LogiCO:hasSize LogiCO:ISO0_halfEURO ;
   rdfs:label "Transport equipment 00007141415555555551"^^xsd:string ;
+.
+:TransportEquipment_00007141415555555552
+  rdf:type LogiCO:Pallet ;
+  LogiCO:contains :GoodsItem_34Cucumber ;
+  LogiCO:hasAmount :InsuranceValueAmount_300EUR ;
+  LogiCO:hasHeight <http://www.tno.nl/Transport#TransportEquipmentHeight_2.44MTR> ;
+  LogiCO:hasID :TransportEquipmentID_00007141415555555552 ;
+  LogiCO:hasQuantity 1 ;
+  LogiCO:hasSize LogiCO:ISO0_halfEURO ;
+  rdfs:label "Transport equipment 00007141415555555552"^^xsd:string ;
+.
+:TransportEquipment_00007141415555555553
+  rdf:type LogiCO:Pallet ;
+  LogiCO:contains :GoodsItem_34Cucumber ;
+  LogiCO:hasAmount :InsuranceValueAmount_300EUR ;
+  LogiCO:hasHeight <http://www.tno.nl/Transport#TransportEquipmentHeight_2.44MTR> ;
+  LogiCO:hasID :TransportEquipmentID_00007141415555555553 ;
+  LogiCO:hasQuantity 1 ;
+  LogiCO:hasSize LogiCO:ISO0_halfEURO ;
+  rdfs:label "Transport equipment 00007141415555555553"^^xsd:string ;
+.
+:TransportEquipment_00007141415555555554
+  rdf:type LogiCO:Pallet ;
+  LogiCO:contains :GoodsItem_34Cucumber ;
+  LogiCO:hasAmount :InsuranceValueAmount_300EUR ;
+  LogiCO:hasHeight <http://www.tno.nl/Transport#TransportEquipmentHeight_2.44MTR> ;
+  LogiCO:hasID :TransportEquipmentID_00007141415555555554 ;
+  LogiCO:hasQuantity 1 ;
+  LogiCO:hasSize LogiCO:ISO0_halfEURO ;
+  rdfs:label "Transport equipment 00007141415555555554"^^xsd:string ;
+.
+:TransportEquipment_00007141415555555555
+  rdf:type LogiCO:Pallet ;
+  LogiCO:contains :GoodsItem_34Cucumber ;
+  LogiCO:hasAmount :InsuranceValueAmount_300EUR ;
+  LogiCO:hasHeight <http://www.tno.nl/Transport#TransportEquipmentHeight_2.44MTR> ;
+  LogiCO:hasID :TransportEquipmentID_00007141415555555555 ;
+  LogiCO:hasQuantity 1 ;
+  LogiCO:hasSize LogiCO:ISO0_halfEURO ;
+  rdfs:label "Transport equipment 00007141415555555555"^^xsd:string ;
+.
+:TransportEquipment_00007141415555555556
+  rdf:type LogiCO:Pallet ;
+  LogiCO:contains :GoodsItem_10Aubergine ;
+  LogiCO:hasHeight <http://www.tno.nl/Transport#TransportEquipmentHeight_1.44MTR> ;
+  LogiCO:hasID :TransportEquipmentID_00007141415555555556 ;
+  LogiCO:hasQuantity 1 ;
+  LogiCO:hasSize LogiCO:ISO0_halfEURO ;
+  rdfs:label "Transport equipment 00007141415555555556"^^xsd:string ;
+.
+:TransportEquipment_00007141415555555557
+  rdf:type LogiCO:Pallet ;
+  LogiCO:contains :GoodsItem_10Aubergine ;
+  LogiCO:hasHeight <http://www.tno.nl/Transport#TransportEquipmentHeight_1.44MTR> ;
+  LogiCO:hasID :TransportEquipmentID_00007141415555555557 ;
+  LogiCO:hasQuantity 1 ;
+  LogiCO:hasSize LogiCO:ISO0_halfEURO ;
+  rdfs:label "Transport equipment 00007141415555555557"^^xsd:string ;
+.
+:TransportEquipment_00007141415555555558
+  rdf:type LogiCO:Pallet ;
+  LogiCO:contains :GoodsItem_10Aubergine ;
+  LogiCO:hasHeight <http://www.tno.nl/Transport#TransportEquipmentHeight_1.44MTR> ;
+  LogiCO:hasID :TransportEquipmentID_00007141415555555558 ;
+  LogiCO:hasQuantity 1 ;
+  LogiCO:hasSize LogiCO:ISO0_halfEURO ;
+  rdfs:label "Transport equipment 00007141415555555558"^^xsd:string ;
 .
 :TransportEvent
   rdf:type owl:Class ;
@@ -680,32 +907,62 @@ LogiCO:Package
   rdfs:subClassOf LogiServ:Event ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:allValuesFrom xsd:string ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty LogiCO:hasDescription ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :location ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :period ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty LogiServ:hasStatus ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :transportEventTypeCode ;
+      owl:onProperty :hasTransportEventTypeCode ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty LogiServ:hasTime ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass :TransportLocation ;
+      owl:onProperty LogiCO:hasLocation ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
 .
-:TransportHandlingUnit_1
+:TransportHandlingUnitID_THU1
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasIDValue "THU1"^^xsd:string ;
+  rdfs:label "Transport handling unit ID THU1"^^xsd:string ;
+.
+:TransportHandlingUnitID_THU2
+  rdf:type LogiCO:Identifier ;
+  LogiCO:hasIDValue "THU2"^^xsd:string ;
+  rdfs:label "Transport handling unit ID THU2"^^xsd:string ;
+.
+:TransportHandlingUnit_THU1
   rdf:type LogiServ:Cargo ;
   LogiCO:contains :TransportEquipment_00007141415555555551 ;
-  LogiCO:hasID :Identifier_THU1 ;
+  LogiCO:contains :TransportEquipment_00007141415555555552 ;
+  LogiCO:contains :TransportEquipment_00007141415555555553 ;
+  LogiCO:contains :TransportEquipment_00007141415555555554 ;
+  LogiCO:contains :TransportEquipment_00007141415555555555 ;
+  LogiCO:hasID :TransportHandlingUnitID_THU1 ;
   LogiCO:hasSpecialRequirement "Handle with care"^^xsd:string ;
   LogiCO:isDangerous "false"^^xsd:boolean ;
-  rdfs:label "Transport handling unit 1"^^xsd:string ;
+  rdfs:label "Transport handling unit THU1"^^xsd:string ;
+.
+:TransportHandlingUnit_THU2
+  rdf:type LogiServ:Cargo ;
+  LogiCO:contains :TransportEquipment_00007141415555555556 ;
+  LogiCO:contains :TransportEquipment_00007141415555555557 ;
+  LogiCO:contains :TransportEquipment_00007141415555555558 ;
+  LogiCO:hasID :TransportHandlingUnitID_THU2 ;
+  LogiCO:hasSpecialRequirement "Handle with care"^^xsd:string ;
+  LogiCO:isDangerous "false"^^xsd:boolean ;
+  rdfs:label "Transport handling unit THU2"^^xsd:string ;
 .
 :TransportLocation
   rdf:type owl:Class ;
@@ -714,38 +971,25 @@ LogiCO:Package
   rdfs:subClassOf LogiCO:Location ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:allValuesFrom LogiCO:Interval ;
-      owl:onProperty :validityPeriod ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:allValuesFrom xsd:string ;
-      owl:onProperty :conditions ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty LogiCO:hasAddress ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty LogiCO:hasDescription ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty LogiCO:hasID ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty LogiCO:hasName ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :coordinates ;
+      owl:onProperty :hasConditions ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:time ;
+      owl:onProperty :hasValidityPeriodEndTime ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:time ;
+      owl:onProperty :hasValidityPeriodStartTime ;
     ] ;
 .
 :TransportParty
@@ -757,6 +1001,11 @@ LogiCO:Package
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty LogiCO:hasName ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty LogiCO:hasWebsiteURI ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -778,11 +1027,6 @@ LogiCO:Package
       owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty :hasRegistrationAddress ;
     ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :websiteURI ;
-    ] ;
 .
 :TransportPlan
   rdf:type owl:Class ;
@@ -790,8 +1034,8 @@ LogiCO:Package
   rdfs:label "Transport plan"^^xsd:string ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:allValuesFrom :TransportActivity ;
-      owl:onProperty :activities ;
+      owl:allValuesFrom LogiServ:Transport ;
+      owl:onProperty LogiServ:instantiates ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -816,32 +1060,27 @@ LogiCO:Package
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :issueDate ;
+      owl:onProperty :hasIssueDate ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :plannedDelivery ;
+      owl:onProperty :hasStatusCode ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :plannedPickup ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :statusCode ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :uuid ;
+      owl:onProperty :hasUUID ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :consignment ;
+      owl:onProperty :hasConsignment ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty LogiServ:instantiates ;
+      owl:someValuesFrom LogiServ:Transport ;
     ] ;
 .
 :TransportPlan_1
@@ -849,14 +1088,12 @@ LogiCO:Package
   LogiCO:hasID :Identifier_TEP-20130924-1 ;
   LogiServ:hasConsumer :Company_x ;
   LogiServ:hasProvider :Company_y ;
-  :cargo :TransportHandlingUnit_1 ;
-  :consignment :XYZ987 ;
-  :destination :deliveryLocation ;
-  :issueDate "2013-10-17"^^xsd:date ;
-  :origin :pickupLocation ;
-  :requestedDelivery :RequestedDeliveryTransportEvent ;
-  :requestedPickup :RequestedPickupTransportEvent ;
-  :statusCode "NotConfirmed"^^xsd:string ;
+  LogiServ:instantiates :PlannedTransportActivity_1 ;
+  :hasConsignment :Consignment_XYZ987 ;
+  :hasIssueDate "2013-10-17"^^xsd:date ;
+  :hasStatusCode "Confirmed"^^xsd:string ;
+  :hasUUID "6feca890-51e8-11e3-8f96-0800200c9a66"^^xsd:string ;
+  :satisfies :TransportRequest_1 ;
   rdfs:label "Transport plan 1"^^xsd:string ;
 .
 :TransportRequest
@@ -865,8 +1102,8 @@ LogiCO:Package
   rdfs:label "Transport Request"^^xsd:string ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:allValuesFrom :TransportActivity ;
-      owl:onProperty :activities ;
+      owl:allValuesFrom LogiServ:Transport ;
+      owl:onProperty LogiServ:instantiates ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -886,37 +1123,27 @@ LogiCO:Package
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :destination ;
+      owl:onProperty :hasIssueDate ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :issueDate ;
+      owl:onProperty :hasStatusCode ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :origin ;
+      owl:onProperty :hasUUID ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :statusCode ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty :hasConsignment ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :requestedDelivery ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty :requestedPickup ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty :cargo ;
-      owl:someValuesFrom LogiServ:Cargo ;
+      owl:onProperty LogiServ:instantiates ;
+      owl:someValuesFrom LogiServ:Transport ;
     ] ;
 .
 :TransportRequest_1
@@ -924,29 +1151,11 @@ LogiCO:Package
   LogiCO:hasID :Identifier_TEP-20130924-1 ;
   LogiServ:hasConsumer :Company_x ;
   LogiServ:hasProvider :Company_y ;
-  :cargo :TransportHandlingUnit_1 ;
-  :consignment :XYZ987 ;
-  :destination :deliveryLocation ;
-  :issueDate "2013-10-17"^^xsd:date ;
-  :origin :pickupLocation ;
-  :requestedDelivery :RequestedDeliveryTransportEvent ;
-  :requestedPickup :RequestedPickupTransportEvent ;
-  :statusCode "NotConfirmed"^^xsd:string ;
+  :hasConsignment :Consignment_XYZ987 ;
+  :hasIssueDate "2013-10-17"^^xsd:date ;
+  :hasStatusCode "NotConfirmed"^^xsd:string ;
+  :hasUUID "a7f755c0-252c-11e3-8224-0800200c9a66"^^xsd:string ;
   rdfs:label "Transport request 1"^^xsd:string ;
-.
-:XYZ987
-  rdf:type :Consignment ;
-  LogiCO:hasID :Identification_XYZ987 ;
-  LogiCO:hasInvoiceTotalAmount :InvoiceTotalAmount_1 ;
-  :consignee :CompanyB ;
-  :consigneeAssignedID :Identification_A123789 ;
-  :consignor :CompanyA ;
-  :consignorAssignedID :Identification_Z987321 ;
-  :hasTransportContract :TransportContract_1 ;
-  :requestedDelivery :RequestedDeliveryTransportEvent ;
-  :requestedPickup :RequestedPickupTransportEvent ;
-  :transportHandlingUnit :TransportHandlingUnit_1 ;
-  rdfs:label "XYZ987"^^xsd:string ;
 .
 :Zoetermeer
   rdf:type LogiCO:City ;
@@ -958,72 +1167,6 @@ LogiCO:Package
   LogiCO:hasCityName "Zwolle"^^xsd:string ;
   rdfs:label "Zwolle"^^xsd:string ;
 .
-:activities
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "activities"^^xsd:string ;
-  rdfs:range :TransportActivity ;
-.
-:address
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "address"^^xsd:string ;
-.
-:cargo
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "cargo"^^xsd:string ;
-  rdfs:range LogiServ:Cargo ;
-.
-:carrier
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "carrier"^^xsd:string ;
-  rdfs:range [
-      rdf:type owl:Class ;
-      owl:unionOf (
-          LogiCO:Carrier
-          :TransportParty
-        ) ;
-    ] ;
-.
-:carrierAssignedID
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "carrier assigned ID"^^xsd:string ;
-  rdfs:subPropertyOf LogiCO:hasID ;
-.
-:conditions
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :TransportLocation ;
-  rdfs:label "conditions"^^xsd:string ;
-  rdfs:range xsd:string ;
-.
-:consignee
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "consignee"^^xsd:string ;
-  rdfs:range LogiCO:Consignee ;
-.
-:consigneeAssignedID
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "consignee assigned ID"^^xsd:string ;
-  rdfs:subPropertyOf LogiCO:hasID ;
-.
-:consignment
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "consignment"^^xsd:string ;
-  rdfs:range :Consignment ;
-.
-:consignor
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "consignor"^^xsd:string ;
-  rdfs:range LogiCO:Consignor ;
-.
-:consignorAssignedID
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "consignor assigned ID"^^xsd:string ;
-  rdfs:subPropertyOf LogiCO:hasID ;
-.
-:coordinates
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "coordinates"^^xsd:string ;
-  rdfs:range :Coordinates ;
-.
 :deliveryAddress
   rdf:type LogiCO:Address ;
   LogiCO:hasCity :Arnhem ;
@@ -1032,62 +1175,35 @@ LogiCO:Package
   LogiCO:hasStreet :Kloosterlaan198 ;
   rdfs:label "delivery address"^^xsd:string ;
 .
-:deliveryLocation
-  rdf:type :TransportLocation ;
-  LogiCO:hasAddress :deliveryAddress ;
-  LogiCO:hasID :Identification_4058673827000 ;
-  LogiCO:hasName "Company B storage"^^xsd:string ;
-  rdfs:label "delivery location"^^xsd:string ;
-.
-:deliveryPeriod
-  rdf:type LogiCO:Interval ;
-  rdfs:label "delivery period"^^xsd:string ;
-.
-:description
+:hasConditions
   rdf:type owl:DatatypeProperty ;
-  rdfs:label "description"^^xsd:string ;
+  rdfs:label "has conditions"^^xsd:string ;
   rdfs:range xsd:string ;
 .
-:destination
+:hasConsignee
   rdf:type owl:ObjectProperty ;
-  rdfs:label "destination"^^xsd:string ;
-  rdfs:range :TransportLocation ;
+  rdfs:label "has consignee"^^xsd:string ;
+  rdfs:range LogiCO:Consignee ;
 .
-:documentReference
+:hasConsigneeAssignedID
   rdf:type owl:ObjectProperty ;
-  rdfs:label "document reference"^^xsd:string ;
+  rdfs:label "consignee assigned ID"^^xsd:string ;
+  rdfs:subPropertyOf LogiCO:hasID ;
 .
-:eMail
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Contact ;
-  rdfs:label "e mail"^^xsd:string ;
-  rdfs:range xsd:string ;
-.
-:fax
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Contact ;
-  rdfs:label "fax"^^xsd:string ;
-  rdfs:range xsd:string ;
-.
-:finalDeliveryParty
+:hasConsignment
   rdf:type owl:ObjectProperty ;
-  rdfs:label "final delivery party"^^xsd:string ;
-  rdfs:range :TransportParty ;
+  rdfs:label "has consignment"^^xsd:string ;
+  rdfs:range :Consignment ;
 .
-:grossVolumeMeasure
+:hasConsignor
   rdf:type owl:ObjectProperty ;
-  rdfs:label "gross volume measure"^^xsd:string ;
-  rdfs:range LogiCO:GrossVolume ;
+  rdfs:label "has consignor"^^xsd:string ;
+  rdfs:range LogiCO:Consignor ;
 .
-:grossWeigthMeasure
+:hasConsignorAssignedID
   rdf:type owl:ObjectProperty ;
-  rdfs:label "gross weigth measure"^^xsd:string ;
-  rdfs:range LogiCO:GrossWeight ;
-.
-:handlingInstructions
-  rdf:type owl:DatatypeProperty ;
-  rdfs:label "handling instructions"^^xsd:string ;
-  rdfs:range xsd:string ;
+  rdfs:label "has consignor assigned ID"^^xsd:string ;
+  rdfs:subPropertyOf LogiCO:hasID ;
 .
 :hasContactDetails
   rdf:type owl:ObjectProperty ;
@@ -1099,10 +1215,37 @@ LogiCO:Package
   rdfs:label "has document type"^^xsd:string ;
   rdfs:range xsd:string ;
 .
+:hasIssueDate
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "has issue date"^^xsd:string ;
+  rdfs:range xsd:date ;
+.
+:hasNote
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Contact ;
+  rdfs:label "has note"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:hasOtherCommunication
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Contact ;
+  rdfs:label "has other communication"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
 :hasPhysicalLocation
   rdf:type owl:ObjectProperty ;
   rdfs:label "has physical location"^^xsd:string ;
-  rdfs:range :TransportLocation ;
+  rdfs:subPropertyOf LogiCO:hasAddress ;
+.
+:hasPlannedDelivery
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "has planned delivery"^^xsd:string ;
+  rdfs:range :TransportEvent ;
+.
+:hasPlannedPickup
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "has planned pickup"^^xsd:string ;
+  rdfs:range :TransportEvent ;
 .
 :hasPostalAddress
   rdf:type owl:ObjectProperty ;
@@ -1114,126 +1257,19 @@ LogiCO:Package
   rdfs:label "has registration address"^^xsd:string ;
   rdfs:subPropertyOf LogiCO:hasAddress ;
 .
-:hasTransportContract
+:hasRequestedDelivery
   rdf:type owl:ObjectProperty ;
-  rdfs:label "has transport contract"^^xsd:string ;
-  rdfs:range :Contract ;
-.
-:insuranceValueAmount
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "insurance value amount"^^xsd:string ;
-  rdfs:range LogiCO:MonetaryAmount ;
-.
-:issueDate
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :TransportActivity ;
-  rdfs:label "issue date"^^xsd:string ;
-  rdfs:range xsd:date ;
-.
-:location
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "location"^^xsd:string ;
-  rdfs:range :TransportLocation ;
-.
-:maximumTemperature
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "maximum temperature"^^xsd:string ;
-  rdfs:range LogiCO:Temperature ;
-.
-:minimumTemperature
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "minimum temperature"^^xsd:string ;
-  rdfs:range LogiCO:Temperature ;
-.
-:name
-  rdf:type owl:DatatypeProperty ;
-  rdfs:label "name"^^xsd:string ;
-  rdfs:range xsd:string ;
-.
-:note
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Contact ;
-  rdfs:label "note"^^xsd:string ;
-  rdfs:range xsd:string ;
-.
-:notifyParty
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "notify party"^^xsd:string ;
-  rdfs:range :TransportParty ;
-.
-:origin
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "origin"^^xsd:string ;
-  rdfs:range :TransportLocation ;
-.
-:period
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "period"^^xsd:string ;
-  rdfs:range LogiCO:Interval ;
-.
-:pickupLocation
-  rdf:type :TransportLocation ;
-  LogiCO:hasAddress :PhysicalAddressCompanyA ;
-  LogiCO:hasID :Identification_4058673827003 ;
-  LogiCO:hasName "Opslag Company A"^^xsd:string ;
-  :conditions "Hoogte voertuig max 3 meter"^^xsd:string ;
-  :validityPeriod :pickupValidity ;
-  rdfs:label "pickup location"^^xsd:string ;
-.
-:pickupPeriod
-  rdf:type LogiCO:Interval ;
-  rdfs:label "pickup period"^^xsd:string ;
-  time:hasBeginning :Instant_PickupStartTime ;
-  time:hasEnd :Instant_PickupEndTime ;
-.
-:pickupValidity
-  rdf:type LogiCO:Interval ;
-  rdfs:label "pickup validity"^^xsd:string ;
-.
-:plannedDelivery
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "planned delivery"^^xsd:string ;
+  rdfs:label "has requested delivery"^^xsd:string ;
   rdfs:range :TransportEvent ;
 .
-:plannedPickup
+:hasRequestedPickup
   rdf:type owl:ObjectProperty ;
-  rdfs:label "planned pickup"^^xsd:string ;
+  rdfs:label "has requested pickup"^^xsd:string ;
   rdfs:range :TransportEvent ;
 .
-:quantity
+:hasStatusCode
   rdf:type owl:DatatypeProperty ;
-  rdfs:label "quantity"^^xsd:string ;
-  rdfs:range xsd:integer ;
-.
-:remarks
-  rdf:type owl:DatatypeProperty ;
-  rdfs:label "remarks"^^xsd:string ;
-  rdfs:range xsd:string ;
-.
-:requestedDelivery
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "requested delivery"^^xsd:string ;
-  rdfs:range :TransportEvent ;
-.
-:requestedPickup
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "requested pickup"^^xsd:string ;
-  rdfs:range :TransportEvent ;
-.
-:resources
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "resources"^^xsd:string ;
-  rdfs:range LogiCO:TransportMeans ;
-.
-:satisfies
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "satisfies"^^xsd:string ;
-  rdfs:range :TransportRequest ;
-.
-:statusCode
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :TransportActivity ;
-  rdfs:label "status code"^^xsd:string ;
+  rdfs:label " has status code"^^xsd:string ;
   rdfs:range [
       rdf:type rdfs:Datatype ;
       owl:oneOf (
@@ -1244,48 +1280,43 @@ LogiCO:Package
         ) ;
     ] ;
 .
-:telephone
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Contact ;
-  rdfs:label "telephone"^^xsd:string ;
-  rdfs:range xsd:string ;
-.
-:transportEvent
+:hasTransportContract
   rdf:type owl:ObjectProperty ;
-  rdfs:label "transport event"^^xsd:string ;
-  rdfs:range :TransportEvent ;
+  rdfs:label "has transport contract"^^xsd:string ;
+  rdfs:range :Contract ;
 .
-:transportEventTypeCode
+:hasTransportEventTypeCode
   rdf:type owl:DatatypeProperty ;
-  rdfs:label "transport event type code"^^xsd:string ;
+  rdfs:label "has transport event type code"^^xsd:string ;
   rdfs:range xsd:string ;
 .
-:transportHandlingUnit
+:hasTransportHandlingUnit
   rdf:type owl:ObjectProperty ;
-  rdfs:label "transport handling unit"^^xsd:string ;
+  rdfs:label "has transport handling unit"^^xsd:string ;
 .
-:unitCode
+:hasUUID
   rdf:type owl:DatatypeProperty ;
-  rdfs:label "unit code"^^xsd:string ;
-  rdfs:range xsd:string ;
-.
-:uuid
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :TransportActivity ;
   rdfs:label "uuid"^^xsd:string ;
   rdfs:range xsd:string ;
 .
-:validityPeriod
+:hasValidityPeriodEndTime
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "has validity period end time"^^xsd:string ;
+  rdfs:range xsd:time ;
+.
+:hasValidityPeriodStartTime
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "has validity period start time"^^xsd:string ;
+  rdfs:range xsd:time ;
+.
+:pickupValidity
+  rdf:type LogiCO:Interval ;
+  rdfs:label "pickup validity"^^xsd:string ;
+  time:hasBeginning :PickupLocationStartTime ;
+  time:hasEnd :Instant_RequestedPickupEnd ;
+.
+:satisfies
   rdf:type owl:ObjectProperty ;
-  rdfs:label "validity period"^^xsd:string ;
-.
-:value
-  rdf:type owl:DatatypeProperty ;
-  rdfs:label "value"^^xsd:string ;
-  rdfs:range xsd:float ;
-.
-:websiteURI
-  rdf:type owl:DatatypeProperty ;
-  rdfs:label "website URI"^^xsd:string ;
-  rdfs:range xsd:anyURI ;
+  rdfs:label "satisfies"^^xsd:string ;
+  rdfs:range :TransportRequest ;
 .

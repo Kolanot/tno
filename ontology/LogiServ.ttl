@@ -5,6 +5,7 @@
 @prefix LogiCO: <http://tno-logistics.nl/LogiCO#> .
 @prefix LogiServ: <http://tno-logistics.nl/LogiServ#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -103,14 +104,26 @@ LogiCO:isTriggerOf
 .
 LogiServ:Activity
   rdf:type owl:Class ;
-  rdfs:comment """An Activity denotes an action that is relevant for the purpose of logistics and provides value for a potential customer.
-An Activity can be Atomic or Complex. Atomic activities can be used to compose more complex activities. 
+  rdfs:comment """An Activity denotes an action that is relevant for the purpose of logistics and provides value for a potential customer. An Activity can be used as a basic building block to compose more complex activities.
+
+We have identified some relevant activity types for logistics, but the list can be further extended. The identified activity types are the following:
+- Transport, which denotes the activity of moving resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) from an origin to a destination, in a certain time, using suitable transport mode and transport means;
+- Transhipment, which denotes the activity of changing transport mode at an intermediate destination and, consequently, transshipment implies a change of transport means (for example, from a truck to a vessel in a port);
+- Loading,  which denotes the activity of placing resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) into/onto a transport means; 
+- Discharge, which denotes the activity of taking out resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) from a transport means;
+- Storage, which denotes the activity of keeping in stock resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) in a warehouse facility for a certain period of time;
+- Consolidation, which denotes the activity of assembling several (smaller) resource units into one (bigger) unit;
+- Deconsolidation, which denotes the activity of disassembling of one (bigger) unit of resources in several (smaller) units.
+- LoadTransportDischarge is an example of complex activity consisting of 1) Load a certain transport means with a container at an origin, 2) Transport the container using the transport means towards a destination; and 3) Discharge the transport means at destination
 
 Properties:
 - An Activity must have a Consumer (at least one)
 - An Activity must have a Provider (at least one)
-- An Activity must specify a location (at least one)
-- An Activity must specify a Time interval or instant (at least one)""" ;
+- An Activity must specify a Location (at least one)
+- An Activity must specify a Time interval or instant (at least one)
+- An Activity hasConstituent min 1 Activity. In other words, an activity has always as constituent at least itself (mandatory) and can have as constituent other activities (optional). For example, Transport hasConstituent Transport (itself).
+- An Activity isConstituentOf min 1 Activity. In other words, an activity is always constituent of at least itself (mandatory), but can be constituent of more complex activities (optional). For example, Transport isConstituentOf Transport (itself) and LoadTransportDischarge (complex activity). 
+"""^^xsd:string ;
   rdfs:subClassOf LogiCO:Activity ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -126,6 +139,18 @@ Properties:
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass LogiServ:Activity ;
+      owl:onProperty dul:hasConstituent ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass LogiServ:Activity ;
+      owl:onProperty dul:isConstituentOf ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
       owl:onProperty LogiCO:hasLocation ;
       owl:someValuesFrom LogiCO:Location ;
     ] ;
@@ -134,39 +159,15 @@ Properties:
       owl:onProperty LogiServ:hasTime ;
       owl:someValuesFrom LogiCO:TemporalRegion ;
     ] ;
-  owl:equivalentClass [
-      rdf:type owl:Class ;
-      owl:unionOf (
-          LogiServ:AtomicActivity
-          LogiServ:ComplexActivity
-        ) ;
-    ] ;
+.
+LogiServ:Address_1
+  rdf:type LogiCO:Address ;
+  LogiCO:hasCountry LogiCO:Netherlands ;
+  rdfs:label "Address 1"^^xsd:string ;
 .
 LogiServ:Arrive
   rdf:type owl:Class ;
   rdfs:subClassOf LogiServ:Event ;
-.
-LogiServ:AtomicActivity
-  rdf:type owl:Class ;
-  rdfs:comment """An atomic activity is a basic building block that can be used to compose more complex activities. 
-
-We have identified some relevant atomic activity types for logistics, but the list is not complete and can be further extended. The identified activity types are the following:
-- Transport, which denotes the activity of moving resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) from an origin to a destination, in a certain time, using suitable transport mode and transport means;
-- Transhipment, which denotes the activity of changing transport mode at an intermediate destination and, consequently, transshipment implies a change of transport means (for example, from a truck to a vessel in a port);
-- Loading,  which denotes the activity of placing resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) into/onto a transport means; 
-- Discharge, which denotes the activity of taking out resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) from a transport means;
-- Storage, which denotes the activity of keeping in stock resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) in a warehouse facility for a certain period of time;
-- Consolidation, which denotes the activity of assembling several (smaller) resource units into one (bigger) unit;
-- Deconsolidation, which denotes the activity of disassembling of one (bigger) unit of resources in several (smaller) units.
-
-Properties:
-An atomic activity isConstituentOf some complex activty"""^^xsd:string ;
-  rdfs:subClassOf LogiServ:Activity ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onProperty <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isConstituentOf> ;
-      owl:someValuesFrom LogiServ:ComplexActivity ;
-    ] ;
 .
 LogiServ:BusinessServiceDescription
   rdf:type owl:Class ;
@@ -212,29 +213,10 @@ Desc: Code specifying the classification of a type of cargo.
 D.12B Core Component Library UN02000049""" ;
   rdfs:subClassOf LogiCO:MoveableResource ;
 .
-LogiServ:ComplexActivity
-  rdf:type owl:Class ;
-  rdfs:comment """A complex activity is an activity that can be decomposed in more atomic activities. A complex activity consists of at least two other activities (atomic or complex).
-
-An example of complex activity is LoadTransportDischarge activity type, which we defined as follows:
-1) Loading a certain transport means with a container at an origin
-2) Transport of the container using the transport means towards a destination
-3) Discharge of the transport means at destination
-
-Properties:
-- A ComplexActivity hasConstituent at least 2 activities, which can be atomic or complex activities""" ;
-  rdfs:subClassOf LogiServ:Activity ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-      owl:onClass LogiServ:Activity ;
-      owl:onProperty <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasConstituent> ;
-    ] ;
-.
 LogiServ:Consolidation
   rdf:type owl:Class ;
   rdfs:comment "Consolidation denotes the activity of assembling several (smaller) resource units into one (bigger) unit"^^xsd:string ;
-  rdfs:subClassOf LogiServ:AtomicActivity ;
+  rdfs:subClassOf LogiServ:Activity ;
 .
 LogiServ:Consumer
   rdf:type owl:Class ;
@@ -262,7 +244,7 @@ Desc: Code specifying a monetary unit.""" ;
 LogiServ:Deconsolidation
   rdf:type owl:Class ;
   rdfs:comment "Deconsolidation denotes the activity of disassembling of one (bigger) unit of resources in several (smaller) units."^^xsd:string ;
-  rdfs:subClassOf LogiServ:AtomicActivity ;
+  rdfs:subClassOf LogiServ:Activity ;
 .
 LogiServ:Depart
   rdf:type owl:Class ;
@@ -271,7 +253,7 @@ LogiServ:Depart
 LogiServ:Discharge
   rdf:type owl:Class ;
   rdfs:comment "Discharge denotes the activity of taking out resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) from a transport means"^^xsd:string ;
-  rdfs:subClassOf LogiServ:AtomicActivity ;
+  rdfs:subClassOf LogiServ:Activity ;
 .
 LogiServ:Drop
   rdf:type owl:Class ;
@@ -316,7 +298,7 @@ LogiServ:GovernmentalRequirement
 LogiServ:Load
   rdf:type owl:Class ;
   rdfs:comment "Load denotes the activity of placing resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) into/onto a transport means"^^xsd:string ;
-  rdfs:subClassOf LogiServ:AtomicActivity ;
+  rdfs:subClassOf LogiServ:Activity ;
 .
 LogiServ:LoadTransportDischarge
   rdf:type owl:Class ;
@@ -324,7 +306,7 @@ LogiServ:LoadTransportDischarge
 1) Load a certain transport means with a container at an origin
 2) Transport of the container using the transport means towards a destination
 3) Discharge of the transport means at destination"""^^xsd:string ;
-  rdfs:subClassOf LogiServ:ComplexActivity ;
+  rdfs:subClassOf LogiServ:Activity ;
   rdfs:subClassOf [
       rdf:type owl:Class ;
       owl:unionOf (
@@ -332,15 +314,19 @@ LogiServ:LoadTransportDischarge
           LogiServ:Load
           [
             rdf:type owl:Restriction ;
-            owl:onProperty <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasConstituent> ;
+            owl:onProperty dul:hasConstituent ;
             owl:someValuesFrom LogiServ:Discharge ;
           ]
         ) ;
     ] ;
 .
+LogiServ:Location_1
+  rdf:type LogiCO:Location ;
+  rdfs:label "Location 1"^^xsd:string ;
+.
 LogiServ:MultimodalRoadSeaTransport
   rdf:type owl:Class ;
-  rdfs:subClassOf LogiServ:ComplexActivity ;
+  rdfs:subClassOf LogiServ:Activity ;
 .
 LogiServ:Netherlands
   rdf:type LogiCO:Location ;
@@ -388,7 +374,7 @@ LogiServ:Service_1
 LogiServ:Storage
   rdf:type owl:Class ;
   rdfs:comment "Storage denotes the activity of keeping in stock resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) in a warehouse facility for a certain period of time"^^xsd:string ;
-  rdfs:subClassOf LogiServ:AtomicActivity ;
+  rdfs:subClassOf LogiServ:Activity ;
 .
 LogiServ:Subscribe
   rdf:type owl:Class ;
@@ -401,7 +387,7 @@ LogiServ:Suspend
 LogiServ:Transport
   rdf:type owl:Class ;
   rdfs:comment "Transport denotes the activity of moving resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) from an origin to a destination, in a certain time, using suitable transport mode and transport means"^^xsd:string ;
-  rdfs:subClassOf LogiServ:AtomicActivity ;
+  rdfs:subClassOf LogiServ:Activity ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onProperty LogiServ:hasDestination ;
@@ -449,14 +435,17 @@ LogiServ:TransportRequirement
 .
 LogiServ:Transport_1
   rdf:type LogiServ:Transport ;
+  LogiCO:hasLocation LogiServ:pickup-location ;
   LogiServ:hasDestination LogiCO:DenHaagCentralStationLocation ;
   LogiServ:hasProvider LogiServ:Provider_1 ;
+  dul:hasConstituent LogiServ:Transport_1 ;
+  dul:isConstituentOf LogiServ:Transport_1 ;
   rdfs:label "Transport 1"^^xsd:string ;
 .
 LogiServ:Transshipment
   rdf:type owl:Class ;
   rdfs:comment "Transhipment denotes the activity of changing transport mode at an intermediate destination and, consequently, transshipment implies a change of transport means (for example, from a truck to a vessel in a port)"^^xsd:string ;
-  rdfs:subClassOf LogiServ:AtomicActivity ;
+  rdfs:subClassOf LogiServ:Activity ;
 .
 LogiServ:currencyUsageCode
   rdf:type owl:DatatypeProperty ;
@@ -524,7 +513,6 @@ LogiServ:hasActor
 .
 LogiServ:hasConsumer
   rdf:type owl:ObjectProperty ;
-  rdfs:domain LogiServ:Activity ;
   rdfs:range LogiServ:Consumer ;
 .
 LogiServ:hasCurrency
@@ -563,7 +551,6 @@ LogiServ:hasOrigin
 .
 LogiServ:hasProvider
   rdf:type owl:ObjectProperty ;
-  rdfs:domain LogiServ:Activity ;
   rdfs:range LogiServ:Provider ;
 .
 LogiServ:hasRole
@@ -633,6 +620,11 @@ Desc: Code specifying the payment method for transport charges.     """ ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf LogiCO:hasCode ;
 .
+LogiServ:pickup-location
+  rdf:type LogiCO:Location ;
+  LogiCO:hasAddress LogiServ:Address_1 ;
+  rdfs:label "pickup-location"^^xsd:string ;
+.
 LogiServ:transportMovementCode
   rdf:type owl:DatatypeProperty ;
   LogiServ:mappingToEDI <http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/tred/tred8323.htm> ;
@@ -651,17 +643,15 @@ Desc: Code specifying the priority of a transport service""" ;
   rdfs:range xsd:int ;
   rdfs:subPropertyOf LogiCO:hasCode ;
 .
-<http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasConstituent>
+dul:hasConstituent
   rdf:type owl:ObjectProperty ;
   rdfs:comment "from DUL ontology" ;
-  rdfs:domain LogiServ:ComplexActivity ;
   rdfs:range LogiServ:Activity ;
 .
-<http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isConstituentOf>
+dul:isConstituentOf
   rdf:type owl:ObjectProperty ;
-  rdfs:domain LogiServ:AtomicActivity ;
-  rdfs:range LogiServ:ComplexActivity ;
-  owl:inverseOf <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasConstituent> ;
+  rdfs:range LogiCO:Activity ;
+  owl:inverseOf dul:hasConstituent ;
 .
 time:Instant
   rdf:type owl:Class ;
