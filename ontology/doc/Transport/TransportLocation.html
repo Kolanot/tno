@@ -51,49 +51,31 @@ Transport Location
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at most one <A href="LogiCO_hasAddress.html">address</A>
+<A href="hasValidityPeriodStartTime.html">has validity period start time</A> max 1 xsd:time
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLAllValuesFrom.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has only <A href="conditions.html">conditions</A> that are a string
+<IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="hasValidityPeriodEndTime.html">has validity period end time</A> max 1 xsd:time
+</FONT></TD></TR></TABLE>
+</DD>
+<DD>
+<TABLE><TR><TD VALIGN="TOP">
+<IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="hasConditions.html">has conditions</A> max 1
+</FONT></TD></TR></TABLE>
+</DD>
+<DD>
+<TABLE><TR><TD VALIGN="TOP">
+<IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiCO_hasName.html">LogiCO:has name</A> max 1
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.greyed.gif" width="16" height="16"></TD><TD><FONT size="-1">
 <A href="LogiCO_Location.html">LogiCO:Location</A></FONT></TD></TR></TABLE>
-</DD>
-<DD>
-<TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLAllValuesFrom.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has only <A href="validityPeriod.html">validity periods</A> that are an <A href="LogiCO_Interval.html">Interval</A>
-</FONT></TD></TR></TABLE>
-</DD>
-<DD>
-<TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at most one <A href="coordinates_.html">coordinates</A>
-</FONT></TD></TR></TABLE>
-</DD>
-<DD>
-<TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at most one <A href="LogiCO_hasDescription.html">description</A>
-</FONT></TD></TR></TABLE>
-</DD>
-<DD>
-<TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at most one <A href="LogiCO_hasName.html">name</A>
-</FONT></TD></TR></TABLE>
-</DD>
-<DD>
-<TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at most one <A href="LogiCO_hasID.html">iD</A>
-</FONT></TD></TR></TABLE>
 </DD>
 </DL>
 </TD></TR>
@@ -103,14 +85,14 @@ Anything that has at most one <A href="LogiCO_hasID.html">iD</A>
 <B>Instances</B></FONT></TH>
 </TR>
 <TR><TD><FONT size="-1">
-<A href="deliveryLocation_.html">delivery location</A>, <A href="PhysicalLocation_CompanyX_.html">Physical location CompanyX</A>, <A href="pickupLocation_.html">pickup location</A></FONT></TABLE><P>
+<A href="PhysicalLocation_CompanyX.html">Physical location CompanyX</A>, <A href="PlannedPickupLocation.html">planned pickup location</A>, <A href="RequestedDeliveryLocation.html">Requested delivery location</A>, <A href="RequestedPickupLocation.html">requested pickup location</A></FONT></TABLE><P>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#CCCCFF">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+1">
 <B>References</B></FONT></TH>
 </TR>
 <TR><TD><FONT size="-1"><UL>
-<LI>as rdfs:domain (<A href="conditions.html">conditions</A>)</LI><LI>as rdfs:range (<A href="origin.html">origin</A>,&nbsp;<A href="location.html">location</A>,&nbsp;<A href="destination.html">destination</A>,&nbsp;<A href="hasPhysicalLocation.html">has physical location</A>)</LI><LI>as rdfs:subClassOf (<A href="TransportActivity.html">Transport activity</A>,&nbsp;<A href="TransportActivity.html">Transport activity</A>)</LI></UL></FONT></TABLE><P>
+<LI>as rdfs:subClassOf (<A href="TransportEvent.html">Transport event</A>)</LI></UL></FONT></TABLE><P>
 </FONT>
 <P align="right"><FONT size="-1" face="Verdana, Helvetica, sans-serif">Generated with <A href="http://www.topbraidcomposer.org" target="_top">TopBraid Composer</A>
  by <A href="http://www.topquadrant.com" target="_top">TopQuadrant, Inc.</A></P>

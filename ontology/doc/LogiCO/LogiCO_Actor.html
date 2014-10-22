@@ -47,9 +47,8 @@ owl:Class</FONT></TD></TR></TABLE>
 <DL>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/XSDLiteral.gif" width="16" height="16"></TD><TD><FONT size="-1">
-An actor represents a company, an authority or an individual that provides or requests activities and operates on physical resources 
-
+<IMG border="0" src="icons/XSDstring.gif" width="16" height="16"></TD><TD><FONT size="-1">
+An actor represents a company, an authority or an individual that provides or requests activities and operates on physical resources. 
 We have identified a number of Actor types that are relevant for logistics, but the list can be further extended.
 
 Equivalent to the concept of Agent in:
@@ -65,7 +64,25 @@ DOLCE UltraLite (DUL) ontology: 'Any agentive Object , either physical (e.g. a w
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLSomeValuesFrom.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at least one <A href="LogiCO_hasAddress.html">address</A> that is an <A href="LogiCO_Address.html">Address</A>
+<A href="LogiCO_hasAddress.html">LogiCO:hasAddress</A> some <A href="LogiCO_Address.html">LogiCO:Address</A>
+</FONT></TD></TR></TABLE>
+</DD>
+<DD>
+<TABLE><TR><TD VALIGN="TOP">
+<IMG border="0" src="icons/OWLMinCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiCO_hasPhoneNr.html">LogiCO:has phone nr</A> min 1
+</FONT></TD></TR></TABLE>
+</DD>
+<DD>
+<TABLE><TR><TD VALIGN="TOP">
+<IMG border="0" src="icons/OWLMinCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiCO_hasEmail.html">LogiCO:has email</A> min 1
+</FONT></TD></TR></TABLE>
+</DD>
+<DD>
+<TABLE><TR><TD VALIGN="TOP">
+<IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiCO_hasWebsiteURI.html">LogiCO:has website URI</A> max 1
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
@@ -75,6 +92,13 @@ Anything that has at least one <A href="LogiCO_hasAddress.html">address</A> that
 </DD>
 </DL>
 </TD></TR>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+1">
+<B>Instances</B></FONT></TH>
+</TR>
+<TR><TD><FONT size="-1">
+<A href="LogiCO_Actor_1.html">LogiCO:Actor 1</A></FONT></TABLE><P>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#CCCCFF">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+1">

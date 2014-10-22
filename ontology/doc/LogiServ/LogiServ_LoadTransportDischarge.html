@@ -22,18 +22,33 @@ owl:Class</FONT></TD></TR></TABLE>
 </TD></TR>
 <TR BGCOLOR="white">
 <TD>
+<B><FONT size="-1">rdfs:comment</FONT></B>
+<DL>
+<DD>
+<TABLE><TR><TD VALIGN="TOP">
+<IMG border="0" src="icons/XSDstring.gif" width="16" height="16"></TD><TD><FONT size="-1">
+LoadTransportDischarge is an example of complex activity type, which we defined as follows:
+1) Load a certain transport means with a container at an origin
+2) Transport of the container using the transport means towards a destination
+3) Discharge of the transport means at destination
+</FONT></TD></TR></TABLE>
+</DD>
+</DL>
+</TD></TR>
+<TR BGCOLOR="white">
+<TD>
 <B><FONT size="-1">rdfs:subClassOf</FONT></B>
 <DL>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLUnionClass.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that is a <A href="LogiServ_Discharge.html">Discharge</A><BR>or is a <A href="LogiServ_Load.html">Load</A><BR>or has at least one <A href="LogiCO_hasConstituent.html">constituent</A> that is a <A href="LogiServ_Discharge.html">Discharge</A>
+<A href="LogiServ_Discharge.html">LogiServ:Discharge</A><BR> or <A href="LogiServ_Load.html">LogiServ:Load</A><BR> or (<A href="dul_hasConstituent.html">dul:hasConstituent</A> some <A href="LogiServ_Discharge.html">LogiServ:Discharge</A>)
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16"></TD><TD><FONT size="-1">
-<A href="LogiServ_ComplexActivity.html">LogiServ:ComplexActivity</A></FONT></TD></TR></TABLE>
+<A href="LogiServ_Activity.html">LogiServ:Activity</A></FONT></TD></TR></TABLE>
 </DD>
 </DL>
 </TD></TR>

@@ -22,39 +22,58 @@ owl:Class</FONT></TD></TR></TABLE>
 </TD></TR>
 <TR BGCOLOR="white">
 <TD>
+<B><FONT size="-1">rdfs:comment</FONT></B>
+<DL>
+<DD>
+<TABLE><TR><TD VALIGN="TOP">
+<IMG border="0" src="icons/XSDstring.gif" width="16" height="16"></TD><TD><FONT size="-1">
+Transport denotes the activity of moving resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) from an origin to a destination, in a certain time, using suitable transport mode and transport means
+</FONT></TD></TR></TABLE>
+</DD>
+</DL>
+</TD></TR>
+<TR BGCOLOR="white">
+<TD>
 <B><FONT size="-1">rdfs:subClassOf</FONT></B>
 <DL>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLSomeValuesFrom.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at least one <A href="time_hasEnd.html">end</A> that is an <A href="time_Instant.html">Instant</A>
+time:hasEnd some time:Instant
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLSomeValuesFrom.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at least one <A href="time_hasBeginning.html">beginning</A> that is an <A href="time_Instant.html">Instant</A>
+time:hasBeginning some time:Instant
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLSomeValuesFrom.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at least one <A href="LogiServ_hasOrigin.html">origin</A> that is a <A href="LogiCO_SpaceRegion.html">Space region</A>
+<A href="LogiServ_hasOrigin.html">LogiServ:hasOrigin</A> some <A href="LogiCO_Location.html">LogiCO:Location</A>
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLSomeValuesFrom.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at least one <A href="LogiServ_hasDestination.html">destination</A> that is a <A href="LogiCO_SpaceRegion.html">Space region</A>
+<A href="LogiServ_hasDestination.html">LogiServ:hasDestination</A> some <A href="LogiCO_Location.html">LogiCO:Location</A>
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16"></TD><TD><FONT size="-1">
-<A href="LogiServ_AtomicActivity.html">LogiServ:AtomicActivity</A></FONT></TD></TR></TABLE>
+<A href="LogiServ_Activity.html">LogiServ:Activity</A></FONT></TD></TR></TABLE>
 </DD>
 </DL>
 </TD></TR>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+1">
+<B>Instances</B></FONT></TH>
+</TR>
+<TR><TD><FONT size="-1">
+<A href="LogiServ_Transport_1.html">LogiServ:Transport 1</A></FONT></TABLE><P>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#CCCCFF">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+1">

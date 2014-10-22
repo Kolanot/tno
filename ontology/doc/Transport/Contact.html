@@ -38,32 +38,38 @@ Contact
 <DL>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at most one <A href="telephone.html">telephone</A>
+<IMG border="0" src="icons/OWLMinCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="hasOtherCommunication.html">has other communication</A> min 0
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at most one <A href="note.html">note</A>
+<A href="hasNote.html">has note</A> max 1
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at most one <A href="fax.html">fax</A>
+<A href="LogiCO_hasPhoneNr.html">LogiCO:has phone nr</A> max 1
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at most one <A href="eMail.html">e mail</A>
+<A href="LogiCO_hasFaxNr.html">LogiCO:has fax nr</A> max 1
+</FONT></TD></TR></TABLE>
+</DD>
+<DD>
+<TABLE><TR><TD VALIGN="TOP">
+<IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiCO_hasEmail.html">LogiCO:has email</A> max 1
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has exactly one <A href="LogiCO_hasName.html">name</A>
+<A href="LogiCO_hasName.html">LogiCO:has name</A> exactly 1
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
@@ -79,14 +85,14 @@ owl:Thing</FONT></TD></TR></TABLE>
 <B>Instances</B></FONT></TH>
 </TR>
 <TR><TD><FONT size="-1">
-<A href="Contact_1_.html">Contact 1</A>, <A href="Contact_B_.html">Contact B</A>, <A href="Contact_CompanyA_.html">Contact Company a</A></FONT></TABLE><P>
+<A href="Contact_CompanyA.html">Contact Company a</A>, <A href="Contact_CompanyB.html">Contact company B</A>, <A href="Contact_CompanyX.html">Contact company x</A>, <A href="Contact_CompanyY.html">Contact Company y</A></FONT></TABLE><P>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#CCCCFF">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+1">
 <B>References</B></FONT></TH>
 </TR>
 <TR><TD><FONT size="-1"><UL>
-<LI>as rdfs:domain (<A href="telephone.html">telephone</A>,&nbsp;<A href="note.html">note</A>,&nbsp;<A href="fax.html">fax</A>,&nbsp;<A href="eMail.html">e mail</A>)</LI><LI>as rdfs:range (<A href="hasContactDetails.html">has contact details</A>)</LI></UL></FONT></TABLE><P>
+<LI>as rdfs:domain (<A href="hasOtherCommunication.html">has other communication</A>,&nbsp;<A href="hasNote.html">has note</A>)</LI><LI>as rdfs:range (<A href="hasContactDetails.html">has contact details</A>)</LI></UL></FONT></TABLE><P>
 </FONT>
 <P align="right"><FONT size="-1" face="Verdana, Helvetica, sans-serif">Generated with <A href="http://www.topbraidcomposer.org" target="_top">TopBraid Composer</A>
  by <A href="http://www.topquadrant.com" target="_top">TopQuadrant, Inc.</A></P>

@@ -50,68 +50,62 @@ Transport plan
 <DL>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has exactly one <A href="statusCode.html">status code</A>
+<IMG border="0" src="icons/OWLSomeValuesFrom.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiServ_instantiates.html">LogiServ:instantiates</A> some <A href="LogiServ_Transport.html">LogiServ:Transport</A>
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has exactly one <A href="plannedPickup.html">planned pickup</A>
+<A href="LogiServ_hasConsumer.html">LogiServ:hasConsumer</A> exactly 1
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has exactly one <A href="LogiCO_hasID.html">iD</A>
+<A href="LogiCO_hasID.html">LogiCO:hasID</A> exactly 1
+</FONT></TD></TR></TABLE>
+</DD>
+<DD>
+<TABLE><TR><TD VALIGN="TOP">
+<IMG border="0" src="icons/OWLAllValuesFrom.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiServ_instantiates.html">LogiServ:instantiates</A> only <A href="LogiServ_Transport.html">LogiServ:Transport</A>
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLMinCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at least one <A href="consignment_.html">consignment</A>
+<A href="hasConsignment.html">has consignment</A> min 1
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has exactly one <A href="uuid.html">uuid</A>
-</FONT></TD></TR></TABLE>
-</DD>
-<DD>
-<TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has exactly one <A href="LogiServ_hasProvider.html">provider</A>
-</FONT></TD></TR></TABLE>
-</DD>
-<DD>
-<TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has exactly one <A href="LogiServ_hasConsumer.html">consumer</A>
+<A href="hasIssueDate.html">has issue date</A> exactly 1
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLAllValuesFrom.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has only <A href="satisfies.html">satisfies</A> that are a <A href="TransportRequest.html">Transport Request</A>
-</FONT></TD></TR></TABLE>
-</DD>
-<DD>
-<TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLAllValuesFrom.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has only <A href="activities.html">activities</A> that are a <A href="TransportActivity.html">Transport activity</A>
+<A href="satisfies.html">satisfies</A> only <A href="TransportRequest.html">Transport Request</A>
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has exactly one <A href="plannedDelivery.html">planned delivery</A>
+<A href="LogiServ_hasProvider.html">LogiServ:hasProvider</A> exactly 1
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has exactly one <A href="issueDate.html">issue date</A>
+<A href="hasUUID.html">uuid</A> exactly 1
+</FONT></TD></TR></TABLE>
+</DD>
+<DD>
+<TABLE><TR><TD VALIGN="TOP">
+<IMG border="0" src="icons/OWLCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="hasStatusCode.html"> has status code</A> exactly 1
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
@@ -127,7 +121,7 @@ owl:Thing</FONT></TD></TR></TABLE>
 <B>Instances</B></FONT></TH>
 </TR>
 <TR><TD><FONT size="-1">
-<A href="TransportPlan_1_.html">Transport plan 1</A></FONT></TABLE><P>
+<A href="TransportPlan_1.html">Transport plan 1</A></FONT></TABLE><P>
 </FONT>
 <P align="right"><FONT size="-1" face="Verdana, Helvetica, sans-serif">Generated with <A href="http://www.topbraidcomposer.org" target="_top">TopBraid Composer</A>
  by <A href="http://www.topquadrant.com" target="_top">TopQuadrant, Inc.</A></P>

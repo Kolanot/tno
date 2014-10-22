@@ -146,10 +146,19 @@ LogiCO:AddressDenHaagCentralStation
 LogiCO:AirTransport
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TransportMode ;
+  owl:disjointWith LogiCO:InlandWaterTransport ;
+  owl:disjointWith LogiCO:RailwayTransport ;
+  owl:disjointWith LogiCO:RoadTransport ;
+  owl:disjointWith LogiCO:SeaTransport ;
 .
 LogiCO:Airplane
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TransportMeans ;
+  owl:disjointWith LogiCO:Barge ;
+  owl:disjointWith LogiCO:Train ;
+  owl:disjointWith LogiCO:Truck ;
+  owl:disjointWith LogiCO:Van ;
+  owl:disjointWith LogiCO:Vessel ;
 .
 LogiCO:Airport
   rdf:type owl:Class ;
@@ -197,6 +206,11 @@ LogiCO:Bank
 LogiCO:Barge
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TransportMeans ;
+  owl:disjointWith LogiCO:Airplane ;
+  owl:disjointWith LogiCO:Train ;
+  owl:disjointWith LogiCO:Truck ;
+  owl:disjointWith LogiCO:Van ;
+  owl:disjointWith LogiCO:Vessel ;
 .
 LogiCO:Barrel
   rdf:type owl:Class ;
@@ -601,6 +615,10 @@ LogiCO:InlandTerminalOperator
 LogiCO:InlandWaterTransport
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TransportMode ;
+  owl:disjointWith LogiCO:AirTransport ;
+  owl:disjointWith LogiCO:RailwayTransport ;
+  owl:disjointWith LogiCO:RoadTransport ;
+  owl:disjointWith LogiCO:SeaTransport ;
 .
 LogiCO:Instant
   rdf:type owl:Class ;
@@ -728,6 +746,8 @@ LogiCO:Netherlands
 LogiCO:NormalTruck
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Truck ;
+  owl:disjointWith LogiCO:SemiTrailer ;
+  owl:disjointWith LogiCO:Tractor ;
 .
 LogiCO:Object
   rdf:type owl:Class ;
@@ -908,6 +928,10 @@ LogiCO:RailwayStation
 LogiCO:RailwayTransport
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TransportMode ;
+  owl:disjointWith LogiCO:AirTransport ;
+  owl:disjointWith LogiCO:InlandWaterTransport ;
+  owl:disjointWith LogiCO:RoadTransport ;
+  owl:disjointWith LogiCO:SeaTransport ;
 .
 LogiCO:RailwayWagon
   rdf:type owl:Class ;
@@ -935,6 +959,10 @@ LogiCO:Returnable
 LogiCO:RoadTransport
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TransportMode ;
+  owl:disjointWith LogiCO:AirTransport ;
+  owl:disjointWith LogiCO:InlandWaterTransport ;
+  owl:disjointWith LogiCO:RailwayTransport ;
+  owl:disjointWith LogiCO:SeaTransport ;
 .
 LogiCO:Schiphol
   rdf:type LogiCO:Location ;
@@ -952,6 +980,10 @@ LogiCO:SeaTerminalOperator
 LogiCO:SeaTransport
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TransportMode ;
+  owl:disjointWith LogiCO:AirTransport ;
+  owl:disjointWith LogiCO:InlandWaterTransport ;
+  owl:disjointWith LogiCO:RailwayTransport ;
+  owl:disjointWith LogiCO:RoadTransport ;
 .
 LogiCO:Seller
   rdf:type owl:Class ;
@@ -961,6 +993,8 @@ LogiCO:Seller
 LogiCO:SemiTrailer
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Truck ;
+  owl:disjointWith LogiCO:NormalTruck ;
+  owl:disjointWith LogiCO:Tractor ;
 .
 LogiCO:Shipper
   rdf:type owl:Class ;
@@ -1090,6 +1124,8 @@ LogiCO:Toxic
 LogiCO:Tractor
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Truck ;
+  owl:disjointWith LogiCO:NormalTruck ;
+  owl:disjointWith LogiCO:SemiTrailer ;
 .
 LogiCO:Trailer
   rdf:type owl:Class ;
@@ -1098,6 +1134,11 @@ LogiCO:Trailer
 LogiCO:Train
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TransportMeans ;
+  owl:disjointWith LogiCO:Airplane ;
+  owl:disjointWith LogiCO:Barge ;
+  owl:disjointWith LogiCO:Truck ;
+  owl:disjointWith LogiCO:Van ;
+  owl:disjointWith LogiCO:Vessel ;
 .
 LogiCO:TransportMeans
   rdf:type owl:Class ;
@@ -1124,6 +1165,11 @@ LogiCO:Tray
 LogiCO:Truck
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TransportMeans ;
+  owl:disjointWith LogiCO:Airplane ;
+  owl:disjointWith LogiCO:Barge ;
+  owl:disjointWith LogiCO:Train ;
+  owl:disjointWith LogiCO:Van ;
+  owl:disjointWith LogiCO:Vessel ;
 .
 LogiCO:USD
   rdf:type LogiCO:Currency ;
@@ -1144,10 +1190,20 @@ Equivalent to the concept of UnitOf Measure in DOLCE UltraLite (DUL) ontology.""
 LogiCO:Van
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TransportMeans ;
+  owl:disjointWith LogiCO:Airplane ;
+  owl:disjointWith LogiCO:Barge ;
+  owl:disjointWith LogiCO:Train ;
+  owl:disjointWith LogiCO:Truck ;
+  owl:disjointWith LogiCO:Vessel ;
 .
 LogiCO:Vessel
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:TransportMeans ;
+  owl:disjointWith LogiCO:Airplane ;
+  owl:disjointWith LogiCO:Barge ;
+  owl:disjointWith LogiCO:Train ;
+  owl:disjointWith LogiCO:Truck ;
+  owl:disjointWith LogiCO:Van ;
 .
 LogiCO:Volume
   rdf:type owl:Class ;
@@ -1841,31 +1897,3 @@ Desc: Code qualifying the function of a date, time or period.
 
 D.12B Core Component Library UN02000162""" ;
 .
-[
-  rdf:type owl:AllDisjointClasses ;
-  owl:members (
-      LogiCO:AirTransport
-      LogiCO:InlandWaterTransport
-      LogiCO:RailwayTransport
-      LogiCO:RoadTransport
-    ) ;
-].
-[
-  rdf:type owl:AllDisjointClasses ;
-  owl:members (
-      LogiCO:Airplane
-      LogiCO:Barge
-      LogiCO:Train
-      LogiCO:Truck
-      LogiCO:Van
-      LogiCO:Vessel
-    ) ;
-].
-[
-  rdf:type owl:AllDisjointClasses ;
-  owl:members (
-      LogiCO:NormalTruck
-      LogiCO:SemiTrailer
-      LogiCO:Tractor
-    ) ;
-].

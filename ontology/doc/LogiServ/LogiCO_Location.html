@@ -47,8 +47,8 @@ owl:Class</FONT></TD></TR></TABLE>
 <DL>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/XSDLiteral.gif" width="16" height="16"></TD><TD><FONT size="-1">
-It represents the relative location used to define the place(s) relevant for logistics activities
+<IMG border="0" src="icons/XSDstring.gif" width="16" height="16"></TD><TD><FONT size="-1">
+It represents the relative location used to define the place(s) relevant for logistics activities.
 
 Equivalent to the concept of Place in:
 - DOLCE UltraLite (DUL) ontology:  'A location, in a very generic sense: a political geographic entity (Roma, Lesotho), a non-material location determined by the presence of other entities ('the area close to Roma'), pivot events or signs ('the area where the helicopter fell'), complements of other entities ('the area under the table'), etc. 
@@ -63,8 +63,8 @@ In this generic sense, a Place is a relative location. For an absolute location,
 <DL>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLAllValuesFrom.greyed.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has only <A href="LogiCO_hasAddress.html">address</A> that are an <A href="LogiCO_Address.html">Address</A>
+<IMG border="0" src="icons/OWLSomeValuesFrom.greyed.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiCO_hasAddress.html">LogiCO:hasAddress</A> some <A href="LogiCO_Address.html">LogiCO:Address</A>
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
@@ -77,10 +77,17 @@ Anything that has only <A href="LogiCO_hasAddress.html">address</A> that are an 
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#CCCCFF">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+1">
+<B>Instances</B></FONT></TH>
+</TR>
+<TR><TD><FONT size="-1">
+<A href="LogiCO_DenHaagCentralStationLocation.html">LogiCO:Den haag central station location</A>, <A href="LogiCO_Schiphol.html">LogiCO:Schiphol</A>, <A href="LogiServ_Location_1.html">LogiServ:Location 1</A>, <A href="LogiServ_Netherlands.html">LogiServ:Netherlands</A>, <A href="LogiServ_pickup-location.html">LogiServ:pickup-location</A></FONT></TABLE><P>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+1">
 <B>References</B></FONT></TH>
 </TR>
 <TR><TD><FONT size="-1"><UL>
-<LI>as rdfs:domain (<A href="LogiCO_isLocationOf.html">LogiCO:isLocationOf</A>,&nbsp;<A href="LogiCO_hasLocationID.html">LogiCO:hasLocationID</A>)</LI><LI>as rdfs:range (<A href="LogiCO_hasLocation.html">LogiCO:hasLocation</A>)</LI><LI>as rdfs:subClassOf (<A href="LogiCO_Street.html">LogiCO:Street</A>,&nbsp;<A href="LogiCO_Region.html">LogiCO:Region</A>,&nbsp;<A href="LogiCO_Country.html">LogiCO:Country</A>,&nbsp;<A href="LogiCO_City.html">LogiCO:City</A>,&nbsp;<A href="LogiCO_Building.html">LogiCO:Building</A>)</LI></UL></FONT></TABLE><P>
+<LI>as rdfs:domain (<A href="LogiCO_isLocationOf.html">LogiCO:isLocationOf</A>,&nbsp;<A href="LogiCO_hasLocationID.html">LogiCO:hasLocationID</A>)</LI><LI>as rdfs:range (<A href="LogiServ_hasOrigin.html">LogiServ:hasOrigin</A>,&nbsp;<A href="LogiServ_hasDestination.html">LogiServ:hasDestination</A>,&nbsp;<A href="LogiCO_hasLocation.html">LogiCO:hasLocation</A>)</LI><LI>as rdfs:subClassOf (<A href="LogiServ_Transport.html">LogiServ:Transport</A>,&nbsp;<A href="LogiServ_Transport.html">LogiServ:Transport</A>,&nbsp;<A href="LogiServ_BusinessServiceDescription.html">LogiServ:business service description</A>,&nbsp;<A href="LogiServ_Activity.html">LogiServ:Activity</A>,&nbsp;<A href="LogiCO_PhysicalResource.html">LogiCO:PhysicalResource</A>)</LI></UL></FONT></TABLE><P>
 </FONT>
 <P align="right"><FONT size="-1" face="Verdana, Helvetica, sans-serif">Generated with <A href="http://www.topbraidcomposer.org" target="_top">TopBraid Composer</A>
  by <A href="http://www.topquadrant.com" target="_top">TopQuadrant, Inc.</A></P>

@@ -20,10 +20,10 @@
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Activity.html">LogiCO:Activity</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Entity.html">LogiCO:Entity</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Actor.html">LogiCO:Actor</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasAddress some LogiCO:Address<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Object.html">LogiCO:Object</A></FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Actor.html">LogiCO:Actor</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasAddress some LogiCO:Address<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasPhoneNr min 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasEmail min 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasWebsiteURI max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Object.html">LogiCO:Object</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Address.html">LogiCO:Address</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasCountry exactly 1 LogiCO:Country<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasCity exactly 1 LogiCO:City<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Object.html">LogiCO:Object</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasPostalCode some xsd:string<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasPostbox max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasStreet exactly 1 LogiCO:Street<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasBuilding exactly 1 LogiCO:Building</FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Address.html">LogiCO:Address</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasRegion max 1 LogiCO:Region<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasCountry max 1 LogiCO:Country<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Object.html">LogiCO:Object</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasCity max 1 LogiCO:City<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasPostbox max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasPostalCode max 1 xsd:string<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasBuilding min 0 LogiCO:Building<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasStreet max 1 LogiCO:Street<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasStreetNumber max 1 xsd:string</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Airplane.html">LogiCO:Airplane</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_TransportMeans.html">LogiCO:TransportMeans</A></FONT>
@@ -65,7 +65,7 @@
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Bucket.html">LogiCO:Bucket</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Package.html">LogiCO:Package</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Building.html">LogiCO:Building</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasBuildingName some xsd:string<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasBuildingNumber exactly 1 xsd:integer<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Location.html">LogiCO:Location</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_GeoPoint.html">LogiCO:GeoPoint</A></FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Building.html">LogiCO:Building</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_GeoPoint.html">LogiCO:GeoPoint</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Bulk.html">LogiCO:Bulk</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_ProductClass.html">LogiCO:ProductClass</A></FONT>
@@ -86,7 +86,7 @@
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Case.html">LogiCO:Case</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Package.html">LogiCO:Package</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_City.html">LogiCO:City</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasCityName some xsd:string<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Location.html">LogiCO:Location</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_GeoArea.html">LogiCO:GeoArea</A></FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_City.html">LogiCO:City</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_GeoArea.html">LogiCO:GeoArea</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_CodeIssuingAgency.html">LogiCO:CodeIssuingAgency</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasAgencyName max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasAgencyCode max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: (LogiCO:hasAgencyCode min 1)
@@ -108,7 +108,7 @@
 <IMG border="0" src="icons/OWLNamedClassDefined.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_ContainerSizeUnit.html">LogiCO:ContainerSizeUnit</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:measures some LogiCO:ContainerSize<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_SizeUnit.html">LogiCO:SizeUnit</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Country.html">LogiCO:Country</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasCountryName some xsd:string<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Location.html">LogiCO:Location</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_GeoArea.html">LogiCO:GeoArea</A></FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Country.html">LogiCO:Country</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_GeoArea.html">LogiCO:GeoArea</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Crane.html">LogiCO:Crane</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_StaticEquipment.html">LogiCO:StaticEquipment</A></FONT>
@@ -147,10 +147,10 @@
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Event.html">LogiCO:Event</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Entity.html">LogiCO:Entity</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Facility.html">LogiCO:Facility</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasLocation some LogiCO:GeoPoint<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hosts min 0 LogiCO:StaticEquipment<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: dul:isPartOf min 0 LogiCO:FacilityStructure<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_StaticResource.html">LogiCO:StaticResource</A></FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Facility.html">LogiCO:Facility</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hosts min 0 LogiCO:StaticEquipment<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: dul:isPartOf min 0 LogiCO:FacilityStructure<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_StaticResource.html">LogiCO:StaticResource</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_GeoPoint.html">LogiCO:GeoPoint</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_FacilityStructure.html">LogiCO:FacilityStructure</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasLocation some LogiCO:GeoArea<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hosts min 0 LogiCO:StaticEquipment<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_StaticResource.html">LogiCO:StaticResource</A></FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_FacilityStructure.html">LogiCO:FacilityStructure</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hosts min 0 LogiCO:StaticEquipment<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_StaticResource.html">LogiCO:StaticResource</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_GeoArea.html">LogiCO:GeoArea</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Flammable.html">LogiCO:Flammable</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_ProductClass.html">LogiCO:ProductClass</A></FONT>
@@ -162,16 +162,16 @@
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_GeoArea.html">LogiCO:GeoArea</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_SpaceRegion.html">LogiCO:SpaceRegion</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_GeoCoordinateSystem.html">LogiCO:GeoCoordinateSystem</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="geo_SpatialThing.html">geo:SpatialThing</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_SpaceRegionUnit.html">LogiCO:SpaceRegionUnit</A></FONT>
-</TD></TR>
-<TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_GeoPoint.html">LogiCO:GeoPoint</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_SpaceRegion.html">LogiCO:SpaceRegion</A></FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_GeoPoint.html">LogiCO:GeoPoint</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="geo_Point.html">geo:point</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_SpaceRegion.html">LogiCO:SpaceRegion</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_GrossVolume.html">LogiCO:GrossVolume</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Volume.html">LogiCO:Volume</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_GrossWeight.html">LogiCO:GrossWeight</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Weight.html">LogiCO:Weight</A></FONT>
+</TD></TR>
+<TR><TD><FONT size="-1">
+<IMG border="0" src="icons/OWLNamedClassDefined.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_GS1PalletCodeList.html">LogiCO:GS1Pallet code list</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_PalletSize.html">LogiCO:Pallet size</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_HeavyMachinery.html">LogiCO:HeavyMachinery</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_ProductClass.html">LogiCO:ProductClass</A></FONT>
@@ -188,7 +188,7 @@
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Hub.html">LogiCO:Hub</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Facility.html">LogiCO:Facility</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Identifier.html">LogiCO:Identifier</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasAgency max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:id exactly 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: owl:Thing</FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Identifier.html">LogiCO:Identifier</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasAgency max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasIDValue exactly 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Object.html">LogiCO:Object</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_InlandTerminalOperator.html">LogiCO:InlandTerminalOperator</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_TerminalOperator.html">LogiCO:TerminalOperator</A></FONT>
@@ -212,7 +212,13 @@
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Lenght.html">LogiCO:Lenght</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_PhysicalAttribute.html">LogiCO:PhysicalAttribute</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Location.html">LogiCO:Location</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasAddress only LogiCO:Address<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Object.html">LogiCO:Object</A></FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Location.html">LogiCO:Location</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasAddress some LogiCO:Address<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Object.html">LogiCO:Object</A></FONT>
+</TD></TR>
+<TR><TD><FONT size="-1">
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_MaxTemperature.html">LogiCO:Max temperature</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Temperature.html">LogiCO:Temperature</A></FONT>
+</TD></TR>
+<TR><TD><FONT size="-1">
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_MinTemperature.html">LogiCO:Min temperature</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Temperature.html">LogiCO:Temperature</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Modality.html">LogiCO:Modality</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Abstract.html">LogiCO:Abstract</A></FONT>
@@ -248,20 +254,23 @@
 <IMG border="0" src="icons/OWLNamedClassDefined.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Pallet.html">LogiCO:Pallet</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equivalentClass: <A href="LogiCO_Pallet.html">LogiCO:Pallet</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Package.html">LogiCO:Package</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_MoveableEquipment.html">LogiCO:MoveableEquipment</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_PalletSize.html">LogiCO:Pallet size</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_EquipmentSize.html">LogiCO:EquipmentSize</A></FONT>
+</TD></TR>
+<TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Parameter.html">LogiCO:Parameter</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Object.html">LogiCO:Object</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Perishable.html">LogiCO:Perishable</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_ProductClass.html">LogiCO:ProductClass</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_PhysicalAttribute.html">LogiCO:PhysicalAttribute</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Abstract.html">LogiCO:Abstract</A></FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_PhysicalAttribute.html">LogiCO:PhysicalAttribute</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:isMeasuredIn some LogiCO:PhysicalAttributeUnit<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Abstract.html">LogiCO:Abstract</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_PhysicalAttributeUnit.html">LogiCO:PhysicalAttributeUnit</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_UnitOfMeasure.html">LogiCO:UnitOfMeasure</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassDefined.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_PhysicalResource.html">LogiCO:PhysicalResource</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equivalentClass: LogiCO:MoveableResource
- or LogiCO:StaticResource<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasTemperature some LogiCO:Temperature<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasQuantity some LogiCO:Amount<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasPhysicalAttribute some LogiCO:PhysicalAttribute<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasLocation some LogiCO:SpaceRegion<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Object.html">LogiCO:Object</A></FONT>
+ or LogiCO:StaticResource<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasTemperature some LogiCO:Temperature<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasQuantity some LogiCO:Amount<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasPhysicalAttribute some LogiCO:PhysicalAttribute<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasLocation some LogiCO:Location<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Object.html">LogiCO:Object</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_PhysicalState.html">LogiCO:PhysicalState</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Abstract.html">LogiCO:Abstract</A></FONT>
@@ -282,7 +291,7 @@
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_RailwayWagon.html">LogiCO:RailwayWagon</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_MoveableEquipment.html">LogiCO:MoveableEquipment</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Region.html">LogiCO:Region</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasRegionName some xsd:string<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Location.html">LogiCO:Location</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_GeoArea.html">LogiCO:GeoArea</A></FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Region.html">LogiCO:Region</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_GeoArea.html">LogiCO:GeoArea</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Regular.html">LogiCO:Regular</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_ProductClass.html">LogiCO:ProductClass</A></FONT>
@@ -315,10 +324,7 @@
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_SizeUnit.html">LogiCO:SizeUnit</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_PhysicalAttributeUnit.html">LogiCO:PhysicalAttributeUnit</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_SpaceRegion.html">LogiCO:SpaceRegion</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Abstract.html">LogiCO:Abstract</A></FONT>
-</TD></TR>
-<TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_SpaceRegionUnit.html">LogiCO:SpaceRegionUnit</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_UnitOfMeasure.html">LogiCO:UnitOfMeasure</A></FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_SpaceRegion.html">LogiCO:SpaceRegion</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="geo_SpatialThing.html">geo:SpatialThing</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Abstract.html">LogiCO:Abstract</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Standard.html">LogiCO:Standard</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Container.html">LogiCO:Container</A></FONT>
@@ -333,7 +339,7 @@
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Stevedore.html">LogiCO:Stevedore</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Actor.html">LogiCO:Actor</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Street.html">LogiCO:Street</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasStreetNumber some xsd:string<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: LogiCO:hasStreetName some xsd:string<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Location.html">LogiCO:Location</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_GeoArea.html">LogiCO:GeoArea</A></FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Street.html">LogiCO:Street</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_GeoArea.html">LogiCO:GeoArea</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Tank.html">LogiCO:Tank</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_Package.html">LogiCO:Package</A></FONT>
@@ -411,7 +417,7 @@
 <IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16">&nbsp;Class <A href="LogiCO_Width.html">LogiCO:Width</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="LogiCO_PhysicalAttribute.html">LogiCO:PhysicalAttribute</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.greyed.gif" width="16" height="16">&nbsp;Class <A href="time_DateTimeDescription.html">time:DateTimeDescription</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: owl:Thing<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:second max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:dayOfWeek max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:timeZone max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:unitType exactly 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:month max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:hour max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:dayOfYear max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:year max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:week max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:minute max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:day max 1</FONT>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.greyed.gif" width="16" height="16">&nbsp;Class <A href="time_DateTimeDescription.html">time:DateTimeDescription</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: owl:Thing<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:year max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:hour max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:unitType exactly 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:timeZone max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:day max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:second max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:week max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:dayOfWeek max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:month max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:dayOfYear max 1<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: time:minute max 1</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLNamedClassPrimitive.greyed.gif" width="16" height="16">&nbsp;Class <A href="time_DateTimeInterval.html">time:DateTimeInterval</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subClassOf: <A href="time_ProperInterval.html">time:ProperInterval</A></FONT>
@@ -450,13 +456,19 @@
 <IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="dul_hasComponent.html">dul:hasComponent</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="dul_hasPart.html">dul:hasPart</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="dul_isComponentOf.html">dul:isComponentOf</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="dul_hasConstituent.html">dul:hasConstituent</A></FONT>
+</TD></TR>
+<TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="dul_hasPart.html">dul:hasPart</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="dul_isComponentOf.html">dul:isComponentOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="dul_isPartOf.html">dul:isPartOf</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="dul_isPartOf.html">dul:isPartOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Entity.html">LogiCO:Entity</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Entity.html">LogiCO:Entity</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="dul_hasPart.html">dul:hasPart</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="dul_isConstituentOf.html">dul:isConstituentOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="dul_hasConstituent.html">dul:hasConstituent</A></FONT>
+</TD></TR>
+<TR><TD><FONT size="-1">
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="dul_isPartOf.html">dul:isPartOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="dul_hasPart.html">dul:hasPart</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/RDFProperty.greyed.gif" width="16" height="16">&nbsp;Property <A href="geo_alt.html">geo:altitude</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="geo_SpatialThing.html">geo:SpatialThing</A></FONT>
@@ -480,10 +492,16 @@
 <IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasAgency.html">LogiCO:has agency</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_CodeIssuingAgency.html">LogiCO:CodeIssuingAgency</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasAmount.html">LogiCO:has amount</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Amount.html">LogiCO:Amount</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasAmount.html">LogiCO:has amount</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Object.html">LogiCO:Object</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Amount.html">LogiCO:Amount</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasCapacity.html">LogiCO:has capacity</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasPhysicalAttribute.html">LogiCO:hasPhysicalAttribute</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Capacity.html">LogiCO:Capacity</A></FONT>
+</TD></TR>
+<TR><TD><FONT size="-1">
+<IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasEmail.html">LogiCO:has email</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
+</TD></TR>
+<TR><TD><FONT size="-1">
+<IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasFaxNr.html">LogiCO:has fax nr</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasHeight.html">LogiCO:has height</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasPhysicalAttribute.html">LogiCO:hasPhysicalAttribute</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Height.html">LogiCO:Height</A></FONT>
@@ -498,7 +516,13 @@
 <IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasName.html">LogiCO:has name</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
+<IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasPhoneNr.html">LogiCO:has phone nr</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
+</TD></TR>
+<TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasVolume.html">LogiCO:has volume</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasPhysicalAttribute.html">LogiCO:hasPhysicalAttribute</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Volume.html">LogiCO:Volume</A></FONT>
+</TD></TR>
+<TR><TD><FONT size="-1">
+<IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasWebsiteURI.html">LogiCO:has website URI</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:anyURI</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasWeight.html">LogiCO:has weight</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasPhysicalAttribute.html">LogiCO:hasPhysicalAttribute</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Weight.html">LogiCO:Weight</A></FONT>
@@ -522,16 +546,16 @@
 <IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasAmountValue.html">LogiCO:hasAmountValue</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasParameterValue.html">LogiCO:hasParameterValue</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Amount.html">LogiCO:Amount</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:float</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasBuilding.html">LogiCO:hasBuilding</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasLocation.html">LogiCO:hasLocation</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Building.html">LogiCO:Building</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_isBuildingOf.html">LogiCO:isBuildingOf</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasBuilding.html">LogiCO:hasBuilding</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Building.html">LogiCO:Building</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_isBuildingOf.html">LogiCO:isBuildingOf</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasBuildingName.html">LogiCO:hasBuildingName</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Building.html">LogiCO:Building</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasBuildingNumber.html">LogiCO:hasBuildingNumber</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Building.html">LogiCO:Building</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:int</FONT>
+<IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasBuildingNumber.html">LogiCO:hasBuildingNumber</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Building.html">LogiCO:Building</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasCity.html">LogiCO:hasCity</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasLocation.html">LogiCO:hasLocation</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_City.html">LogiCO:City</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasCity.html">LogiCO:hasCity</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_City.html">LogiCO:City</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasCityName.html">LogiCO:hasCityName</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_City.html">LogiCO:City</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
@@ -540,16 +564,10 @@
 <IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasCode.html">LogiCO:hasCode</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasConstituent.html">LogiCO:hasConstituent</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Entity.html">LogiCO:Entity</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Entity.html">LogiCO:Entity</A></FONT>
-</TD></TR>
-<TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasContainerSize.html">LogiCO:hasContainerSize</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasSize.html">LogiCO:hasSize</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Container.html">LogiCO:Container</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_ContainerSize.html">LogiCO:ContainerSize</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasCoordinates.html">LogiCO:hasCoordinates</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_GeoPoint.html">LogiCO:GeoPoint</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_GeoArea.html">LogiCO:GeoArea</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_GeoCoordinateSystem.html">LogiCO:GeoCoordinateSystem</A></FONT>
-</TD></TR>
-<TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasCountry.html">LogiCO:hasCountry</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasLocation.html">LogiCO:hasLocation</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Country.html">LogiCO:Country</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_isCountryOf.html">LogiCO:isCountryOf</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasCountry.html">LogiCO:hasCountry</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Country.html">LogiCO:Country</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_isCountryOf.html">LogiCO:isCountryOf</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasCountryName.html">LogiCO:hasCountryName</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Country.html">LogiCO:Country</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
@@ -615,7 +633,7 @@
 <IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasQuantity.html">LogiCO:hasQuantity</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Object.html">LogiCO:Object</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:integer</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasRegion.html">LogiCO:hasRegion</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasLocation.html">LogiCO:hasLocation</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Region.html">LogiCO:Region</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasRegion.html">LogiCO:hasRegion</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Region.html">LogiCO:Region</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasRegionName.html">LogiCO:hasRegionName</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Region.html">LogiCO:Region</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
@@ -640,13 +658,13 @@
 <IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasStatusDescription.html">LogiCO:hasStatusDescription</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasStatus.html">LogiCO:hasStatus</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Currency.html">LogiCO:Currency</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:int</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasStreet.html">LogiCO:hasStreet</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasLocation.html">LogiCO:hasLocation</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Street.html">LogiCO:Street</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasStreet.html">LogiCO:hasStreet</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Street.html">LogiCO:Street</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasStreetName.html">LogiCO:hasStreetName</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Street.html">LogiCO:Street</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasStreetNumber.html">LogiCO:hasStreetNumber</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
+<IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasStreetNumber.html">LogiCO:hasStreetNumber</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Street.html">LogiCO:Street</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasSupplier.html">LogiCO:hasSupplier</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: LogiCO:MoveableEquipment
@@ -679,28 +697,23 @@
 <IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasWidthValue.html">LogiCO:hasWidthValue</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasParameterValue.html">LogiCO:hasParameterValue</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Width.html">LogiCO:Width</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:float</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hosts.html">LogiCO:hosts</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_StaticResource.html">LogiCO:StaticResource</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_StaticResource.html">LogiCO:StaticResource</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hosts.html">LogiCO:hosts</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_StaticResource.html">LogiCO:StaticResource</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: LogiCO:StaticResource
+ or LogiCO:MoveableResource</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_id.html">LogiCO:id</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
+<IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_hasIDValue.html">LogiCO:id</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:string</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_identifies.html">LogiCO:identifies</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Address.html">LogiCO:Address</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_GeoPoint.html">LogiCO:GeoPoint</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isBuildingOf.html">LogiCO:isBuildingOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Building.html">LogiCO:Building</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_hasBuilding.html">LogiCO:hasBuilding</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isBuildingOf.html">LogiCO:isBuildingOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_isLocationOf.html">LogiCO:isLocationOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Building.html">LogiCO:Building</A></FONT>
-</TD></TR>
-<TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isCityOf.html">LogiCO:isCityOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_isLocationOf.html">LogiCO:isLocationOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_City.html">LogiCO:City</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_hasCity.html">LogiCO:hasCity</A></FONT>
-</TD></TR>
-<TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isConstituentOf.html">LogiCO:isConstituentOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Entity.html">LogiCO:Entity</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Entity.html">LogiCO:Entity</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_hasConstituent.html">LogiCO:hasConstituent</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isCityOf.html">LogiCO:isCityOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_City.html">LogiCO:City</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_hasCity.html">LogiCO:hasCity</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isContainedIn.html">LogiCO:isContainedIn</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_MoveableResource.html">LogiCO:MoveableResource</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_MoveableResource.html">LogiCO:MoveableResource</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_contains.html">LogiCO:contains</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isCountryOf.html">LogiCO:isCountryOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_isLocationOf.html">LogiCO:isLocationOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Country.html">LogiCO:Country</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isCountryOf.html">LogiCO:isCountryOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Country.html">LogiCO:Country</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_hasCountry.html">LogiCO:hasCountry</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isDangerous.html">LogiCO:isDangerous</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasSpecialRequirement.html">LogiCO:hasSpecialRequirement</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_MoveableResource.html">LogiCO:MoveableResource</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:boolean</FONT>
@@ -710,10 +723,10 @@
  or LogiCO:TransportMeans<BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:int</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isLocationOf.html">LogiCO:isLocationOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Location.html">LogiCO:Location</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isLocationOf.html">LogiCO:isLocationOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Location.html">LogiCO:Location</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_hasLocation.html">LogiCO:hasLocation</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isMeasuredIn.html">LogiCO:isMeasuredIn</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Abstract.html">LogiCO:Abstract</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_UnitOfMeasure.html">LogiCO:UnitOfMeasure</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_measures.html">LogiCO:measures</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isMeasuredIn.html">LogiCO:isMeasuredIn</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_UnitOfMeasure.html">LogiCO:UnitOfMeasure</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_measures.html">LogiCO:measures</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isMovedBy.html">LogiCO:isMovedBy</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_MoveableResource.html">LogiCO:MoveableResource</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_MoveableResource.html">LogiCO:MoveableResource</A></FONT>
@@ -734,10 +747,10 @@
 <IMG border="0" src="icons/OWLDatatypeProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isRefeer.html">LogiCO:isRefeer</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_hasSpecialRequirement.html">LogiCO:hasSpecialRequirement</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_MoveableResource.html">LogiCO:MoveableResource</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: xsd:boolean</FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isRegionOf.html">LogiCO:isRegionOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_isLocationOf.html">LogiCO:isLocationOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Region.html">LogiCO:Region</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_hasRegion.html">LogiCO:hasRegion</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isRegionOf.html">LogiCO:isRegionOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Region.html">LogiCO:Region</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_hasRegion.html">LogiCO:hasRegion</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isStreetOf.html">LogiCO:isStreetOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subPropertyOf: <A href="LogiCO_isLocationOf.html">LogiCO:isLocationOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Street.html">LogiCO:Street</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_hasStreet.html">LogiCO:hasStreet</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isStreetOf.html">LogiCO:isStreetOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Street.html">LogiCO:Street</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_hasStreet.html">LogiCO:hasStreet</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_isSupplierOf.html">LogiCO:isSupplierOf</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_Actor.html">LogiCO:Actor</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: LogiCO:MoveableEquipment
@@ -755,7 +768,7 @@
 <IMG border="0" src="icons/OWLAnnotationProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_mappingToEDI.html">LogiCO:mappingToEDI</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
-<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_measures.html">LogiCO:measures</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_UnitOfMeasure.html">LogiCO:UnitOfMeasure</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_Abstract.html">LogiCO:Abstract</A></FONT>
+<IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_measures.html">LogiCO:measures</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_UnitOfMeasure.html">LogiCO:UnitOfMeasure</A></FONT>
 </TD></TR>
 <TR><TD><FONT size="-1">
 <IMG border="0" src="icons/OWLObjectProperty.gif" width="16" height="16">&nbsp;Property <A href="LogiCO_moves.html">LogiCO:moves</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <A href="LogiCO_MoveableResource.html">LogiCO:MoveableResource</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range: <A href="LogiCO_MoveableResource.html">LogiCO:MoveableResource</A><BR />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inverseOf: <A href="LogiCO_isMovedBy.html">LogiCO:isMovedBy</A></FONT>

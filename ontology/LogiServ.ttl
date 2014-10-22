@@ -217,6 +217,14 @@ LogiServ:Consolidation
   rdf:type owl:Class ;
   rdfs:comment "Consolidation denotes the activity of assembling several (smaller) resource units into one (bigger) unit"^^xsd:string ;
   rdfs:subClassOf LogiServ:Activity ;
+  owl:disjointWith LogiServ:Deconsolidation ;
+  owl:disjointWith LogiServ:Discharge ;
+  owl:disjointWith LogiServ:Load ;
+  owl:disjointWith LogiServ:LoadTransportDischarge ;
+  owl:disjointWith LogiServ:MultimodalRoadSeaTransport ;
+  owl:disjointWith LogiServ:Storage ;
+  owl:disjointWith LogiServ:Transport ;
+  owl:disjointWith LogiServ:Transshipment ;
 .
 LogiServ:Consumer
   rdf:type owl:Class ;
@@ -245,6 +253,14 @@ LogiServ:Deconsolidation
   rdf:type owl:Class ;
   rdfs:comment "Deconsolidation denotes the activity of disassembling of one (bigger) unit of resources in several (smaller) units."^^xsd:string ;
   rdfs:subClassOf LogiServ:Activity ;
+  owl:disjointWith LogiServ:Consolidation ;
+  owl:disjointWith LogiServ:Discharge ;
+  owl:disjointWith LogiServ:Load ;
+  owl:disjointWith LogiServ:LoadTransportDischarge ;
+  owl:disjointWith LogiServ:MultimodalRoadSeaTransport ;
+  owl:disjointWith LogiServ:Storage ;
+  owl:disjointWith LogiServ:Transport ;
+  owl:disjointWith LogiServ:Transshipment ;
 .
 LogiServ:Depart
   rdf:type owl:Class ;
@@ -254,6 +270,14 @@ LogiServ:Discharge
   rdf:type owl:Class ;
   rdfs:comment "Discharge denotes the activity of taking out resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) from a transport means"^^xsd:string ;
   rdfs:subClassOf LogiServ:Activity ;
+  owl:disjointWith LogiServ:Consolidation ;
+  owl:disjointWith LogiServ:Deconsolidation ;
+  owl:disjointWith LogiServ:Load ;
+  owl:disjointWith LogiServ:LoadTransportDischarge ;
+  owl:disjointWith LogiServ:MultimodalRoadSeaTransport ;
+  owl:disjointWith LogiServ:Storage ;
+  owl:disjointWith LogiServ:Transport ;
+  owl:disjointWith LogiServ:Transshipment ;
 .
 LogiServ:Drop
   rdf:type owl:Class ;
@@ -299,6 +323,14 @@ LogiServ:Load
   rdf:type owl:Class ;
   rdfs:comment "Load denotes the activity of placing resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) into/onto a transport means"^^xsd:string ;
   rdfs:subClassOf LogiServ:Activity ;
+  owl:disjointWith LogiServ:Consolidation ;
+  owl:disjointWith LogiServ:Deconsolidation ;
+  owl:disjointWith LogiServ:Discharge ;
+  owl:disjointWith LogiServ:LoadTransportDischarge ;
+  owl:disjointWith LogiServ:MultimodalRoadSeaTransport ;
+  owl:disjointWith LogiServ:Storage ;
+  owl:disjointWith LogiServ:Transport ;
+  owl:disjointWith LogiServ:Transshipment ;
 .
 LogiServ:LoadTransportDischarge
   rdf:type owl:Class ;
@@ -319,6 +351,14 @@ LogiServ:LoadTransportDischarge
           ]
         ) ;
     ] ;
+  owl:disjointWith LogiServ:Consolidation ;
+  owl:disjointWith LogiServ:Deconsolidation ;
+  owl:disjointWith LogiServ:Discharge ;
+  owl:disjointWith LogiServ:Load ;
+  owl:disjointWith LogiServ:MultimodalRoadSeaTransport ;
+  owl:disjointWith LogiServ:Storage ;
+  owl:disjointWith LogiServ:Transport ;
+  owl:disjointWith LogiServ:Transshipment ;
 .
 LogiServ:Location_1
   rdf:type LogiCO:Location ;
@@ -327,6 +367,14 @@ LogiServ:Location_1
 LogiServ:MultimodalRoadSeaTransport
   rdf:type owl:Class ;
   rdfs:subClassOf LogiServ:Activity ;
+  owl:disjointWith LogiServ:Consolidation ;
+  owl:disjointWith LogiServ:Deconsolidation ;
+  owl:disjointWith LogiServ:Discharge ;
+  owl:disjointWith LogiServ:Load ;
+  owl:disjointWith LogiServ:LoadTransportDischarge ;
+  owl:disjointWith LogiServ:Storage ;
+  owl:disjointWith LogiServ:Transport ;
+  owl:disjointWith LogiServ:Transshipment ;
 .
 LogiServ:Netherlands
   rdf:type LogiCO:Location ;
@@ -375,6 +423,14 @@ LogiServ:Storage
   rdf:type owl:Class ;
   rdfs:comment "Storage denotes the activity of keeping in stock resources (namely, products and/or packages and/or pieces of equipment, but also empty containers) in a warehouse facility for a certain period of time"^^xsd:string ;
   rdfs:subClassOf LogiServ:Activity ;
+  owl:disjointWith LogiServ:Consolidation ;
+  owl:disjointWith LogiServ:Deconsolidation ;
+  owl:disjointWith LogiServ:Discharge ;
+  owl:disjointWith LogiServ:Load ;
+  owl:disjointWith LogiServ:LoadTransportDischarge ;
+  owl:disjointWith LogiServ:MultimodalRoadSeaTransport ;
+  owl:disjointWith LogiServ:Transport ;
+  owl:disjointWith LogiServ:Transshipment ;
 .
 LogiServ:Subscribe
   rdf:type owl:Class ;
@@ -408,6 +464,14 @@ LogiServ:Transport
       owl:onProperty time:hasEnd ;
       owl:someValuesFrom time:Instant ;
     ] ;
+  owl:disjointWith LogiServ:Consolidation ;
+  owl:disjointWith LogiServ:Deconsolidation ;
+  owl:disjointWith LogiServ:Discharge ;
+  owl:disjointWith LogiServ:Load ;
+  owl:disjointWith LogiServ:LoadTransportDischarge ;
+  owl:disjointWith LogiServ:MultimodalRoadSeaTransport ;
+  owl:disjointWith LogiServ:Storage ;
+  owl:disjointWith LogiServ:Transshipment ;
 .
 LogiServ:TransportRequirement
   rdf:type owl:Class ;
@@ -446,6 +510,14 @@ LogiServ:Transshipment
   rdf:type owl:Class ;
   rdfs:comment "Transhipment denotes the activity of changing transport mode at an intermediate destination and, consequently, transshipment implies a change of transport means (for example, from a truck to a vessel in a port)"^^xsd:string ;
   rdfs:subClassOf LogiServ:Activity ;
+  owl:disjointWith LogiServ:Consolidation ;
+  owl:disjointWith LogiServ:Deconsolidation ;
+  owl:disjointWith LogiServ:Discharge ;
+  owl:disjointWith LogiServ:Load ;
+  owl:disjointWith LogiServ:LoadTransportDischarge ;
+  owl:disjointWith LogiServ:MultimodalRoadSeaTransport ;
+  owl:disjointWith LogiServ:Storage ;
+  owl:disjointWith LogiServ:Transport ;
 .
 LogiServ:currencyUsageCode
   rdf:type owl:DatatypeProperty ;
@@ -662,15 +734,3 @@ time:hasBeginning
 time:hasEnd
   rdf:type owl:ObjectProperty ;
 .
-[
-  rdf:type owl:AllDisjointClasses ;
-  owl:members (
-      LogiServ:Consolidation
-      LogiServ:Deconsolidation
-      LogiServ:Discharge
-      LogiServ:Load
-      LogiServ:Storage
-      LogiServ:Transport
-      LogiServ:Transshipment
-    ) ;
-].

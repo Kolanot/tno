@@ -38,26 +38,32 @@ Transport event
 <DL>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
+<IMG border="0" src="icons/OWLCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiCO_hasLocation.html">LogiCO:hasLocation</A> exactly 1 <A href="TransportLocation.html">Transport Location</A>
+</FONT></TD></TR></TABLE>
+</DD>
+<DD>
+<TABLE><TR><TD VALIGN="TOP">
+<IMG border="0" src="icons/OWLMinCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiServ_hasTime.html">LogiServ:hasTime</A> min 1
+</FONT></TD></TR></TABLE>
+</DD>
+<DD>
+<TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has at most one <A href="transportEventTypeCode.html">transport event type code</A>
+<A href="hasTransportEventTypeCode.html">has transport event type code</A> max 1
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has exactly one <A href="period.html">period</A>
+<IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiServ_hasStatus.html">LogiServ:has status</A> max 1
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has exactly one <A href="location.html">location</A>
-</FONT></TD></TR></TABLE>
-</DD>
-<DD>
-<TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLAllValuesFrom.gif" width="16" height="16"></TD><TD><FONT size="-1">
-Anything that has only <A href="LogiCO_hasDescription.html">descriptions</A> that are a string
+<IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiCO_hasDescription.html">LogiCO:hasDescription</A> max 1
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
@@ -73,14 +79,14 @@ Anything that has only <A href="LogiCO_hasDescription.html">descriptions</A> tha
 <B>Instances</B></FONT></TH>
 </TR>
 <TR><TD><FONT size="-1">
-<A href="RequestedDeliveryTransportEvent_.html">Requested delivery transport event</A>, <A href="RequestedPickupTransportEvent_.html">Requested pickup transport event</A></FONT></TABLE><P>
+<A href="PlannedDeliveryTransportEvent.html">Planned delivery transport event</A>, <A href="PlannedPickupTransportEvent.html">Planned pickup transport event</A>, <A href="RequestedDeliveryTransportEvent.html">Requested delivery transport event</A>, <A href="RequestedPickupTransportEvent.html">Requested pickup transport event</A></FONT></TABLE><P>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#CCCCFF">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+1">
 <B>References</B></FONT></TH>
 </TR>
 <TR><TD><FONT size="-1"><UL>
-<LI>as rdfs:range (<A href="transportEvent_.html">transport event</A>,&nbsp;<A href="requestedPickup.html">requested pickup</A>,&nbsp;<A href="requestedDelivery.html">requested delivery</A>,&nbsp;<A href="plannedPickup.html">planned pickup</A>,&nbsp;<A href="plannedDelivery.html">planned delivery</A>)</LI></UL></FONT></TABLE><P>
+<LI>as rdfs:range (<A href="hasRequestedPickup.html">has requested pickup</A>,&nbsp;<A href="hasRequestedDelivery.html">has requested delivery</A>,&nbsp;<A href="hasPlannedPickup.html">has planned pickup</A>,&nbsp;<A href="hasPlannedDelivery.html">has planned delivery</A>)</LI></UL></FONT></TABLE><P>
 </FONT>
 <P align="right"><FONT size="-1" face="Verdana, Helvetica, sans-serif">Generated with <A href="http://www.topbraidcomposer.org" target="_top">TopBraid Composer</A>
  by <A href="http://www.topquadrant.com" target="_top">TopQuadrant, Inc.</A></P>
