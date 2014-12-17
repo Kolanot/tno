@@ -1,9 +1,9 @@
-# baseURI: http://tno-logistics.nl/LogiCO
+# baseURI: http://ontology.tno.nl/logico
 # imports: http://www.w3.org/2003/01/geo/wgs84_pos#
 # imports: http://www.w3.org/2006/time
 
 # c14n-version: 3
-@prefix LogiCO: <http://tno-logistics.nl/LogiCO#> .
+@prefix LogiCO: <http://ontology.tno.nl/logico#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
 @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
@@ -12,19 +12,17 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-<http://tno-logistics.nl/LogiCO>
+<http://ontology.tno.nl/logico>
   rdf:type owl:Ontology ;
   dcterms:created "29-10-2013"^^xsd:string ;
   dcterms:creator "Laura Daniele (laura.daniele@tno.nl)"^^xsd:string ;
-  dcterms:description "LogiCO contains the core concepts and properties used in the Logistics domain, and mappings (as annotations) to UN/EDIFACTS Data elements. "^^xsd:string ;
+  dcterms:description "LogiCO contains the core concepts and properties used in the logistics domain, and mappings (as annotations) to UN/EDIFACTS Data elements. "^^xsd:string ;
   dcterms:issued "04-06-2014"^^xsd:string ;
   dcterms:publisher "TNO"^^xsd:string ;
   dcterms:title "LogiCO: Logistics Core Ontology"^^xsd:string ;
-  rdfs:comment "LogiCO imports the W3C Time and Geo ontologies"^^xsd:string ;
   rdfs:label "LogiCO"@en ;
   owl:imports geo: ;
   owl:imports <http://www.w3.org/2006/time> ;
-  owl:versionIRI <http://tno-logistics.nl/LogiCO> ;
   owl:versionInfo "1.0"^^xsd:string ;
 .
 LogiCO:Abstract
@@ -388,19 +386,10 @@ LogiCO:DenHaag
   rdf:type LogiCO:City ;
   rdfs:label "Den haag"^^xsd:string ;
 .
-LogiCO:DenHaagCentralStation
-  rdf:type LogiCO:RailwayStation ;
-  LogiCO:hasLocation LogiCO:DenHaagCentralStationLocation ;
-  rdfs:label "Railway station Den haag"^^xsd:string ;
-.
 LogiCO:DenHaagCentralStationLocation
   rdf:type LogiCO:Location ;
   LogiCO:hasAddress LogiCO:AddressDenHaagCentralStation ;
   rdfs:label "Den haag central station location"^^xsd:string ;
-.
-LogiCO:DenHaagHS
-  rdf:type LogiCO:RailwayStation ;
-  rdfs:label "Den haag HS"^^xsd:string ;
 .
 LogiCO:Document
   rdf:type owl:Class ;
@@ -675,10 +664,6 @@ LogiCO:MTR
   rdf:type LogiCO:HeightLenghtWidthUnit ;
   rdf:type LogiCO:PhysicalAttributeUnit ;
   rdfs:label "MTR"^^xsd:string ;
-.
-LogiCO:MainBuildingDenHaagCentralStation
-  rdf:type LogiCO:Building ;
-  rdfs:label "Main building den haag central station"^^xsd:string ;
 .
 LogiCO:MaxTemperature
   rdf:type owl:Class ;
@@ -1112,6 +1097,11 @@ LogiCO:Terminal
 LogiCO:TerminalOperator
   rdf:type owl:Class ;
   rdfs:subClassOf LogiCO:Actor ;
+.
+LogiCO:TheHagueCentralStation
+  rdf:type LogiCO:RailwayStation ;
+  LogiCO:hasLocation LogiCO:DenHaagCentralStationLocation ;
+  rdfs:label "Railway station The Hague"^^xsd:string ;
 .
 LogiCO:TowedBarge
   rdf:type owl:Class ;

@@ -1,9 +1,9 @@
-# baseURI: http://tno-logistics.nl/LogiServ
-# imports: http://tno-logistics.nl/LogiCO
+# baseURI: http://ontology.tno.nl/logiserv
+# imports: http://ontology.tno.nl/logico
 
 # c14n-version: 3
-@prefix LogiCO: <http://tno-logistics.nl/LogiCO#> .
-@prefix LogiServ: <http://tno-logistics.nl/LogiServ#> .
+@prefix LogiCO: <http://ontology.tno.nl/logico#> .
+@prefix LogiServ: <http://ontology.tno.nl/logiserv#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -12,6 +12,20 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://ontology.tno.nl/logiserv>
+  rdf:type owl:Ontology ;
+  dcterms:created "29-10-2013"^^xsd:string ;
+  dcterms:creator "Laura Daniele (laura.daniele@tno.nl)"^^xsd:string ;
+  dcterms:description "LogiServ (Logistics Service Ontology) models business activities (such as Transport, Transshipment, Load, Discharge, Storage, Consolidation, Deconsolidation, etc.) and their properties as the basis for specifying logistic services. LogiServ is an extension of LogiCO (Logistics Core Ontology)."^^xsd:string ;
+  dcterms:issued "04-06-2014"^^xsd:string ;
+  dcterms:publisher "TNO"^^xsd:string ;
+  dcterms:title "LogiServ: Logistics Service Ontology"^^xsd:string ;
+  rdfs:label "LogiServ"@en ;
+  owl:imports <http://ontology.tno.nl/logico> ;
+  owl:versionInfo "1.0"^^xsd:string ;
+.
+
 LogiCO:Activity
   rdf:type owl:Class ;
 .
@@ -88,20 +102,7 @@ LogiCO:isTriggerOf
   rdfs:domain LogiServ:Event ;
   rdfs:range LogiServ:Activity ;
 .
-<http://tno-logistics.nl/LogiServ>
-  rdf:type owl:Ontology ;
-  dcterms:created "29-10-2013"^^xsd:string ;
-  dcterms:creator "Laura Daniele (laura.daniele@tno.nl)"^^xsd:string ;
-  dcterms:description "LogiServ (Logistics Service Ontology) models business activities (such as Transport, Transshipment, Load, Discharge, Storage, Consolidation, Deconsolidation, etc.) and their properties as the basis for specifying logistic services. LogiServ is an extension of LogiCO (Logistics Core Ontology)."^^xsd:string ;
-  dcterms:issued "04-06-2014"^^xsd:string ;
-  dcterms:publisher "TNO"^^xsd:string ;
-  dcterms:title "LogiServ: Logistics Service Ontology"^^xsd:string ;
-  rdfs:label "LogiServ"@en ;
-  owl:imports <http://tno-logistics.nl/LogiCO> ;
-  owl:versionIRI <http://tno-logistics.nl/LogiCO> ;
-  owl:versionIRI <http://tno-logistics.nl/LogiServ> ;
-  owl:versionInfo "1.0"^^xsd:string ;
-.
+
 LogiServ:Activity
   rdf:type owl:Class ;
   rdfs:comment """An Activity denotes an action that is relevant for the purpose of logistics and provides value for a potential customer. An Activity can be used as a basic building block to compose more complex activities.
