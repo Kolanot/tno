@@ -5,7 +5,7 @@
 <BODY>
 <FONT face="Verdana, Helvetica, sans-serif">
 <H2>
-<FONT SIZE="-1">http://tno-logistics.nl/LogiCO#Address</FONT><BR>
+<FONT SIZE="-1">http://ontology.tno.nl/logico#Address</FONT><BR>
 Class LogiCO:Address</H2>
 <CENTER><IMG border="0" src="diagrams/LogiCO_Address.jpg"></CENTER><P>
 <HR>
@@ -15,15 +15,15 @@ Class LogiCO:Address</H2>
 <DL>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/XSDLiteral.gif" width="16" height="16"></TD><TD><FONT size="-1">
-UN/EDIFACT D.12B Composite Data Element C058 NAME AND ADDRESS
-Desc: Unstructured name and address: one to five lines
+<IMG border="0" src="icons/RDFResource.greyed.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/trcd/trcdc058.htm" target="_top">http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/trcd/trcdc058.htm</A>
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/RDFResource.greyed.gif" width="16" height="16"></TD><TD><FONT size="-1">
-<A href="http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/trcd/trcdc058.htm" target="_top">http://www.unece.org/fileadmin/DAM/trade/untdid/d12b/trcd/trcdc058.htm</A>
+<IMG border="0" src="icons/XSDLiteral.gif" width="16" height="16"></TD><TD><FONT size="-1">
+UN/EDIFACT D.12B Composite Data Element C058 NAME AND ADDRESS
+Desc: Unstructured name and address: one to five lines
 </FONT></TD></TR></TABLE>
 </DD>
 </DL>
@@ -57,13 +57,20 @@ owl:Class</FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16"></TD><TD><FONT size="-1">
-<A href="LogiCO_Object.html">LogiCO:Object</A></FONT></TD></TR></TABLE>
+<IMG border="0" src="icons/OWLMinCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiCO_hasBuilding.html">LogiCO:hasBuilding</A> min 0 <A href="LogiCO_Building.html">LogiCO:Building</A>
+</FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
 <A href="LogiCO_hasCity.html">LogiCO:hasCity</A> max 1 <A href="LogiCO_City.html">LogiCO:City</A>
+</FONT></TD></TR></TABLE>
+</DD>
+<DD>
+<TABLE><TR><TD VALIGN="TOP">
+<IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiCO_hasStreetNumber.html">LogiCO:hasStreetNumber</A> max 1 xsd:string
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
@@ -80,21 +87,14 @@ owl:Class</FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLMinCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-<A href="LogiCO_hasBuilding.html">LogiCO:hasBuilding</A> min 0 <A href="LogiCO_Building.html">LogiCO:Building</A>
-</FONT></TD></TR></TABLE>
-</DD>
-<DD>
-<TABLE><TR><TD VALIGN="TOP">
 <IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
 <A href="LogiCO_hasStreet.html">LogiCO:hasStreet</A> max 1 <A href="LogiCO_Street.html">LogiCO:Street</A>
 </FONT></TD></TR></TABLE>
 </DD>
 <DD>
 <TABLE><TR><TD VALIGN="TOP">
-<IMG border="0" src="icons/OWLMaxCardinality.gif" width="16" height="16"></TD><TD><FONT size="-1">
-<A href="LogiCO_hasStreetNumber.html">LogiCO:hasStreetNumber</A> max 1 xsd:string
-</FONT></TD></TR></TABLE>
+<IMG border="0" src="icons/OWLNamedClassPrimitive.gif" width="16" height="16"></TD><TD><FONT size="-1">
+<A href="LogiCO_Object.html">LogiCO:Object</A></FONT></TD></TR></TABLE>
 </DD>
 </DL>
 </TD></TR>
